@@ -1,11 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './styles/main.scss'
+
+import Home from './common/Home'
 
 class App extends React.Component {
   render() {
     return (
-      <h1>React Starter Pack</h1>
+      <BrowserRouter>
+        <main>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+          </Switch>
+        </main>
+      </BrowserRouter>
+     
     )
   }
 }
