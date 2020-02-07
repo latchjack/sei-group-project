@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import 'bulma'
 import './styles/main.scss'
 
 import Home from './common/Home'
