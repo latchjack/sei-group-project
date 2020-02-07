@@ -5,12 +5,14 @@ import 'bulma'
 import './styles/main.scss'
 
 import Home from './common/Home'
+import Navbar from './common/Navbar'
 
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <main>
+          <Navbar/>
           <Switch>
             <Route exact path="/" component={Home}/>
           </Switch>
