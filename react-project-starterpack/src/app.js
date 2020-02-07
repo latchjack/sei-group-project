@@ -2,13 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './styles/main.scss'
 
+import Map from './components/Map'
 class App extends React.Component {
   render() {
     return (
-      <h1>React Starter Pack</h1>
+      <>
+      <Map />
+      </>
     )
   }
 }
+
+
 
 ReactDOM.render(
   <App />,
