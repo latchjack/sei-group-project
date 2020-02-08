@@ -25,7 +25,7 @@ class Register extends React.Component {
     e.prevent.default()
 
     try {
-      await axios.post('/register', this.state.data)
+      await axios.post('/api/register', this.state.data)
       this.props.history.push('/login') 
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
@@ -44,7 +44,7 @@ class Register extends React.Component {
               <h2 className="title">Register</h2>
               <div className="field">
                 <label className="label">Username</label>
-                <div className="control">
+                <div className="control has-icons-left">
                   <input 
                     className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Username"
@@ -52,11 +52,14 @@ class Register extends React.Component {
                     name="username"
                     onChange={this.handleChange}
                   />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-user"></i>
+                  </span>
                 </div>
               </div>
               <div className="field">
                 <label className="label">Email</label>
-                <div className="control">
+                <div className="control has-icons-left">
                   <input 
                     className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Email"
@@ -64,11 +67,14 @@ class Register extends React.Component {
                     name="email"
                     onChange={this.handleChange}
                   />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope"></i>
+                  </span>
                 </div>
               </div>
               <div className="field">
                 <label className="label">Password</label>
-                <div className="control">
+                <div className="control has-icons-left">
                   <input 
                     className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Password"
@@ -76,11 +82,14 @@ class Register extends React.Component {
                     name="password"
                     onChange={this.handleChange}
                   />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock"></i>
+                  </span>
                 </div>
               </div>
               <div className="field">
                 <label className="label">Password Confirmation</label>
-                <div className="control">
+                <div className="control has-icons-left">
                   <input 
                     className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Password Confirmation"
@@ -88,6 +97,9 @@ class Register extends React.Component {
                     name="passwordConfirmation"
                     onChange={this.handleChange}
                   />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock-open"></i>
+                  </span>
                 </div>
                 {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation}</small>}
               </div>
