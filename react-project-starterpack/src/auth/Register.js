@@ -22,10 +22,11 @@ class Register extends React.Component {
   }
 
   handleSubmit = async e => {
-    e.prevent.default()
-
+    e.preventDefault()
+    console.log('i am submitting')
     try {
       await axios.post('/api/register', this.state.data)
+      console.log(this.state.data)
       this.props.history.push('/login') 
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
@@ -80,6 +81,7 @@ class Register extends React.Component {
                     placeholder="Password"
                     required
                     name="password"
+                    type="password"
                     onChange={this.handleChange}
                   />
                   <span className="icon is-small is-left">
@@ -94,6 +96,7 @@ class Register extends React.Component {
                     className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Password Confirmation"
                     required
+                    type="password"
                     name="passwordConfirmation"
                     onChange={this.handleChange}
                   />

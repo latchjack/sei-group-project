@@ -8,7 +8,7 @@ const TrailNew = ({ data, handleChange, handleSubmit }) => {
   
   return (
     <div className="columns">
-      <form onSubmit={handleSubmit} className="colum is one-half is-offset-one-quarter">
+      <form onSubmit={handleSubmit} className="column is-half is-offset-one-quarter">
         <h2 className="title">Create a new GeoCache</h2>
         <div className="field">
           <label className="label">Name</label>
@@ -32,7 +32,7 @@ const TrailNew = ({ data, handleChange, handleSubmit }) => {
               required
               placeholder="Directions"
               onChange={handleChange}
-              value={data.name}
+              value={data.directions}
             />
           </div>
         </div> 
@@ -41,11 +41,29 @@ const TrailNew = ({ data, handleChange, handleSubmit }) => {
           <div className="control">
             <input 
               className="input"
-              name="clues"
+              name="clueOne"
               required
-              placeholder="Clues"
+              placeholder="Clue One"
               onChange={handleChange}
-              value={data.name}
+              value={data.clueOne}
+            />
+           
+            <input 
+              className="input"
+              name="clueTwo"
+              required
+              placeholder="Clue Two"
+              onChange={handleChange}
+              value={data.clueTwo}
+            />
+            
+            <input 
+              className="input"
+              name="clueThree"
+              required
+              placeholder="Clue Three"
+              onChange={handleChange}
+              value={data.clueThree}
             />
           </div>
         </div> 
@@ -58,22 +76,19 @@ const TrailNew = ({ data, handleChange, handleSubmit }) => {
               required
               placeholder="Image"
               onChange={handleChange}
-              value={data.name}
+              value={data.image}
             />
           </div>
         </div> 
         <div className="field">
-            <label className="checkbox label">Is weather a factor?
-              <input 
-                type="checkbox"
-                name="weatherFactor"
-                onChange={handleChange}
-                value={data.name}
-                checked={data.weatherFactor}
+          <label className="checkbox label">Please check if weather is a factor</label>
+          <input 
+            type="checkbox"
+            name="weatherFactor"
+            onChange={handleChange}
+            checked={data.weatherFactor}
                 
-              />
-              
-            </label>
+          />
             
         </div> 
         <button type="submit" className="button is-fullwidth is-warning">Make Geocache</button>

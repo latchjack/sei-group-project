@@ -9,14 +9,18 @@ class TrailNew extends React.Component {
       data: {
         name: '',
         directions: '',
-        clues: [''], //this is an array with three items in it. 
+        clueOne: '',
+        clueTwo: '',
+        clueThree: '',  
         image: '',
         weatherFactor: false//"is weather a factor? true or false - this is a tick box
       }     
     }
 
+    
+
     handleChange = ({ target: { name, value, checked, type } }) => {
-      console.log(checked, type) //value of type is if someone checked the check box
+      console.log(this.state.data) //value of type is if someone checked the check box
       const newValue = type === 'checkbox' ? checked : value //update state with calculated new value, if the type is check box then use checked value, if not then use it's own value
       const data = ({ ...this.state.data, [name]: newValue })
       this.setState({ data })
@@ -36,6 +40,7 @@ class TrailNew extends React.Component {
 
 
     render() {
+
       return (
         <section className="section">
           <div className="container">
