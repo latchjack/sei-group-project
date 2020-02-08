@@ -10,15 +10,15 @@ class Register extends React.Component {
       email: '',
       password: '',
       passwordConfirmation: ''
-    }
+    },
+    errors: {}
     
   }
 
   
   handleChange = e => {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
-    console.log(this.state.data)
-    this.setState({ data }) 
+    this.setState({ data })
   }
 
   handleSubmit = async e => {
@@ -28,9 +28,10 @@ class Register extends React.Component {
       await axios.post('/register', this.state.data)
       this.props.history.push('/login') 
     } catch (err) {
-      console.log(err)
+      this.setState({ errors: err.response.data.errors })
     }
   }
+
 
 
   render() {
@@ -45,7 +46,7 @@ class Register extends React.Component {
                 <label className="label">Username</label>
                 <div className="control">
                   <input 
-                    className="input"
+                    className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Username"
                     required
                     name="username"
@@ -57,7 +58,7 @@ class Register extends React.Component {
                 <label className="label">Email</label>
                 <div className="control">
                   <input 
-                    className="input"
+                    className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Email"
                     required
                     name="email"
@@ -69,7 +70,7 @@ class Register extends React.Component {
                 <label className="label">Password</label>
                 <div className="control">
                   <input 
-                    className="input"
+                    className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Password"
                     required
                     name="password"
@@ -81,13 +82,14 @@ class Register extends React.Component {
                 <label className="label">Password Confirmation</label>
                 <div className="control">
                   <input 
-                    className="input"
+                    className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
                     placeholder="Password Confirmation"
                     required
                     name="passwordConfirmation"
                     onChange={this.handleChange}
                   />
                 </div>
+                {this.state.errors.passwordConfirmation && <small className="help is-danger">{this.state.errors.passwordConfirmation}</small>}
               </div>
               <div className="field">
                 <button type="submit" className="button is-fullwidth is-warning">Register Me

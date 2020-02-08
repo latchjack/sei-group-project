@@ -1,10 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-<<<<<<< HEAD
-
-=======
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
->>>>>>> development
 import 'bulma'
 import './styles/main.scss'
 import Register from './auth/Register'
@@ -28,25 +23,6 @@ const App = () => (
   
 )
 
-<<<<<<< HEAD
-=======
-import Home from './common/Home'
-
-class App extends React.Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <main>
-          <Switch>
-            <Route exact path="/" component={Home}/>
-          </Switch>
-        </main>
-      </BrowserRouter>
-     
-    )
-  }
-}
->>>>>>> development
 
 ReactDOM.render(
   <App />,
