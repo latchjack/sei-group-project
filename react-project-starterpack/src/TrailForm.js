@@ -63,18 +63,18 @@ const TrailNew = ({ data, handleChange, handleSubmit }) => {
           </div>
         </div> 
         <div className="field">
-          <label className="checkbox label">Is Weather a Factor?</label>
-          <div className="control">
-            <input 
-              name="weatherFactor"
-              type="checkbox"
-              required
-              placeholder="Weather"
-              onChange={handleChange}
-              value={data.name}
-              checked={data.weatherFactor}
-            />
-          </div>
+            <label className="checkbox label">Is weather a factor?
+              <input 
+                type="checkbox"
+                name="weatherFactor"
+                onChange={handleChange}
+                value={data.name}
+                checked={data.weatherFactor}
+                
+              />
+              
+            </label>
+            
         </div> 
         <button type="submit" className="button is-fullwidth is-warning">Make Geocache</button>
       </form>

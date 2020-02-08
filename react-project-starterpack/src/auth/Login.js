@@ -13,7 +13,7 @@ class Login extends React.Component {
         
       }
 
-      handleChange = ({ target: { name, value }} ) => {
+      handleChange = ({ target: { name, value } } ) => {
         const data = ({ ...this.state.data, [name]: value })
         console.log( this.state.data )
         this.setState({ data, error: '' })
