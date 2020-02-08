@@ -5,7 +5,7 @@ import './styles/main.scss'
 import Register from './auth/Register'
 import Login from './auth/Login'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-
+import TrailNew from './TrailNew'
 
 
 const App = () => (
@@ -15,6 +15,7 @@ const App = () => (
         
         <Route path="/register"component={Register}/>
         <Route path="/login"component={Login} />
+        <Route path="/trails/new"component={TrailNew} />
         
       </Switch>
 
