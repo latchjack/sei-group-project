@@ -16,6 +16,29 @@ userSchema.set('toJSON', {
   }
 })
 
+userSchema.virtual('createdTrails', {
+  ref: 'Trail',
+  localField: '_id',
+  foreignField: 'user'
+})
+
+/* would like to use this for 'saved' trails
+userSchema.virtual('likedDinosaurs', {
+  ref: 'Dinosaur',
+  localField: '_id',
+  foreignField: 'likes.user'
+})
+*/
+
+userSchema
+  .set('toJSON', {
+    virtuals: true,
+    transform(doc, json) {
+      delete json.password
+      return json
+    }
+  })
+
 userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
 }
