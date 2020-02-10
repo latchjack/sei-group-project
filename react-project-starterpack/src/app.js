@@ -11,6 +11,7 @@ import TrailCard from './components/trails/TrailCard'
 import CompleteForm from './components/trails/CompleteForm'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import FAQ from './components/common/FAQ'
 
 class App extends React.Component {
   render() {
