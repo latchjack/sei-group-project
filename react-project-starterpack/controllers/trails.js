@@ -1,13 +1,11 @@
 const Trail = require('../models/trail')
 
-//must add controller for creating completion form
-
 function index(req, res) {
   Trail
     .find()
     .populate('user')
     .then(foundTrails => res.status(200).json(foundTrails))
-    .catch(err => console.log(err))
+    .catch(err => res.json(err))
 }
 
 function create(req, res) {
@@ -15,15 +13,18 @@ function create(req, res) {
   Trail
     .create(req.body)
     .then(createdTrail => res.status(201).json(createdTrail))
-    .catch(err => console.log(err))
+    .catch(err => res.json(err))
 }
 
 function show(req, res) {
   Trail
     .findById(req.params.id)
     .populate('user')
-    .then(trail => res.status(200).json(trail))
-    .catch(err => console.log(err))
+    .then(trail => {
+      if (!trail) return res.status(404).json({ message: 'Not Found ' })
+      res.status(200).json(trail)
+    })
+    .catch(err => res.json(err))
 }
 
 function update(req, res, next) {
