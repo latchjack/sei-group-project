@@ -23,11 +23,12 @@ class CompleteForm extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault()
+    const trailId = this.props.match.params.id
     console.log('i am submitting')
     try {
-      await axios.post('/api/trails', this.state.data)//needs an id to post this onto the specific trail
+      await axios.post(`/api/trails/${trailId}`, this.state.data)//needs an id to post this onto the specific trail
       console.log(this.state.data)
-      this.props.history.push('/') //trails page
+      this.props.history.push('/trails') //trails page
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
     }
