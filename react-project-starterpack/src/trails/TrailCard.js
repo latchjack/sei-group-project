@@ -34,9 +34,17 @@ render() {
               <img src={trail.image} alt={trail.name}/>
             </figure>
           </div>
-          <h4>{trail.clues}</h4>
-          <hr/>
-          <h4>{trail.weatherFactor}</h4>
+          <div className="container">
+            <h3>Trail Clues</h3>
+            <hr/>
+            <h4>1.{trail.clueOne}</h4>
+            <hr/>
+            <h4>2.{trail.clueTwo}</h4>
+            <hr/>
+            <h4>3.{trail.clueThree}</h4>
+            <hr/>
+            <h4>{trail.weatherFactor}</h4>
+          </div>
         </div>
       </div>
     </section>
