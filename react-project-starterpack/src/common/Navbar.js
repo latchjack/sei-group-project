@@ -10,12 +10,10 @@ class Navbar extends React.Component {
         <div className="container">
           < div className="navbar-brand">
             <Link className="navbar-item" to="/">Home </Link>
-            <Link className="navbar-item" to="/">GeoIndex</Link>
+            <Link className="navbar-item" to="/trails">GeoIndex</Link>
             <Link className="navbar-item" to="/">FAQ</Link>
             <Link className="navbar-item" to="/">Register</Link>
             <Link className="navbar-item" to="/">Login</Link>
-
-            {/* Add in the forms to Navbar once user has regeistered and signed in  */}
           </div>
         </div>
       </nav>
