@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken')
 
 const  { secret } = require('../config/environment')
 
-function register(req, res) { 
+function register(req, res, next) { 
   User
     .create(req.body)
     .then(user => res.status(201).json({ message: `Welcome to our site, ${user.username}!` }))
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
 function login(req, res) {
@@ -26,4 +26,13 @@ function login(req, res) {
     .catch(() => res.status(401).json({ message: 'Unauthorized' }))
 }
 
-module.exports = { register, login }
+function profile(req, res) {
+  User
+    .findById(req.currentUser._id)
+    .populate('createdDinosaurs')
+    .populate('likedDinosaurs')
+    .then(user => res.status(200).json(user))
+    .catch(err => res.json(err))
+}
+
+module.exports = { register, login, profile }
