@@ -20,7 +20,6 @@ app.use(logger)
 app.use('/api', router)
 
 app.use(errorHandler)
-
 app.listen(port, () => console.log(`Express is listening on ${port}`))
 
 module.exports = app
