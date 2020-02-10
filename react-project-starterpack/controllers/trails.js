@@ -57,6 +57,20 @@ function destroy(req, res) {
     .catch(err => res.json(err))
 }
 
+//new controller for completion form
+function completion(req, res, next) {
+  req.body.user = req.currentUser
+  Trail 
+    .findById(req.params.id)
+    .then(trail => {
+      if (!trail) return res.status(404).json({ message: 'Not Found' })
+      trail.completion.push(req.body)
+      return trail.save()
+    })
+    .then(trail => res.status(201).json(trail))
+    .catch(next)
+}
+
 function commentCreate(req, res, next) {
   req.body.user = req.currentUser
   Trail 
@@ -86,4 +100,18 @@ function commentDelete(req, res) {
     .catch(err => res.json(err))
 }
 
-module.exports = { index, create, show, update, destroy, commentCreate, commentDelete }
+// * GET /api/trails/:id/like
+function like(req, res) {
+  Trail
+    .findById(req.params.id)
+    .then(trail => {
+      if (!trail) return res.status(404).json({ message: 'Not Found ' })
+      if (trail.likes.some(like => like.user.equals(req.currentUser._id))) return trail
+      trail.likes.push({ user: req.currentUser })
+      return trail.save()
+    })
+    .then(trail => res.status(202).json(trail))
+    .catch(err => res.json(err))
+}
+
+module.exports = { index, create, show, update, destroy, commentCreate, commentDelete, completion, like }

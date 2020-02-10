@@ -10,12 +10,15 @@ const commentSchema = new mongoose.Schema({
 
 const likeSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+}, {
+  timestamps: true
 })
 
 //our completion form that will be accessed from the SHOW page and then added to the trailSchema
 const completionSchema = new mongoose.Schema({
   text: { type: String, required: true },
-  image: { type: String, required: true }
+  image: { type: String, required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 }, {
   timestamps: true 
 })
@@ -23,7 +26,9 @@ const completionSchema = new mongoose.Schema({
 const trailSchema = new mongoose.Schema({
   name: { type: String, required: true },
   directions: { type: String, required: true },
-  clues: { type: [String], required: true },
+  clueOne: { type: String, required: true },
+  clueTwo: { type: String },
+  clueThree: { type: String },
   image: { type: String, required: true },
   weatherFactor: { type: Boolean, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
@@ -33,5 +38,13 @@ const trailSchema = new mongoose.Schema({
 }, {
   timestamps: true
 })
+
+trailSchema
+  .virtual('likeCount')
+  .get(function() {
+    return this.likes.length
+  })
+
+trailSchema.set('toJSON', { virtuals: true })
 
 module.exports = mongoose.model('Trail', trailSchema)
