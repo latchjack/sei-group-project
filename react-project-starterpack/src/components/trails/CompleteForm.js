@@ -64,17 +64,10 @@ class CompleteForm extends React.Component {
                   name="text"
                   required
                   placeholder="Text"
-                  onChange={this.handleChange}
-                
+                  onChange={this.handleChange}               
                 />
               </div>
-
-
-
             </div>
-
-       
-          
             {image ? 
               <div>
                 <img src={image} />
