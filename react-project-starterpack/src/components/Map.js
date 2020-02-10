@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import axios from 'axios'
 import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { Component } from 'react'
+// import { Component } from 'react'
 import { get } from 'mongoose'
 
 // const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js')
@@ -13,23 +13,21 @@ class Map extends React.Component {
 
   state = {
     viewport: {
-      width: 600,
+      width: 800,
       height: 600,
       latitude: 51.520,
       longitude: -0.128,
       zoom: 12
     },
-    trailPoints: []
-  }
-
-  function onHover(params) {
-    
+    trailPoints: [],
+    clickedLocation: null,
+    showPopup: false
   }
 
   async componentDidMount() {
     console.log('I have mounted')
     try {
-      const res = await axios.get('localhost:4000')
+      const res = await axios.get('/api/trails')
       console.log(res.data)
       this.setState({ trailPoints: res.data })
     } catch (err) {
@@ -37,32 +35,44 @@ class Map extends React.Component {
     }
   }
 
+  handleClick = (e) => {
+    this.setState({
+      clickedLocation: e.lngLat, showPopup: !this.state.showPopup
+    })
+    console.log(this.state.clickedLocation)
+  }
+
   render() {
+    // console.log(this.state)
+    const { showPopup } = this.state
     return (
       <ReactMapGL mapboxApiAccessToken={mapboxToken}
         mapStyle="mapbox://styles/mapbox/streets-v9" 
         {...this.state.viewport} 
-        onViewportChange={viewport => this.setState({ viewport })}>
-        {/* <Markers data={TRAILS} /> */}
+        onViewportChange={viewport => this.setState({ viewport })}
+        onClick={this.handleClick}
+      >
+        
+
         <NavigationControl showCompass />
+        
         {this.state.trailPoints.map(trail => (
-          <TrailMarkers key={trail.name} {...trail} > <div className="pins" /> </TrailMarkers>
+          <Marker data={this.state.trailPoints} key={trail.id} longitude={trail.longitude} latitude={trail.latitude} {...trail} > 
+            <div className="pins" /> 
+          </Marker>
         ))}
+        {/* {showPopup && <Popup
+          latitude={this.state.clickedLocation[0]}
+          longitude={this.state.clickedLocation[1]}
+          closeButton={true}
+          closeOnClick={false}
+          onClose={() => this.setState({ showPopup: false })}
+          anchor="top" >
+          <div>You are here</div>
+        </Popup>} */}
       </ReactMapGL>
     )
   }
-  // render() {
-  //   console.log(this.state.trailPoints)
-  //   return (
-  //     <ReactMapGL
-  //       mapboxApiAccessToken={mapboxToken}
-  //       mapStyle="mapbox://styles/mapbox/streets-v9"
-  //       {...this.state.viewport}
-  //       onViewportChange={(viewport) => this.setState({ viewport })}
-  //     />
-      
-  //   )
-  // }
 }
 
 export default Map
