@@ -1,33 +1,15 @@
 import React, { PureComponent } from 'react'
-// import MapGL, { Marker } from 'react-map-gl'
-// import axios from 'axios'
-import ReactMapGL, { Marker, Popup } from 'react-map-gl'
+import axios from 'axios'
+import ReactMapGL, { Marker, Popup, NavigationControl } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { Component } from 'react'
+import { get } from 'mongoose'
 
 // const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js')
 const mapboxToken = process.env.MAPBOX_ACCESS_TOKEN
 // const pinImage = '/src/assets/pin.png'
 
-
-// ? THROWAWAY DATABASE WHICH WILL BE REPLACED BY ASTARA'S SEEDFILE
-state = {
-  TRAILS: [
-    { name: 'a', longitude: 51.521, latitude: -0.129 },
-    { name: 'b', longitude: 51.522, latitude: -0.130 },
-    { name: 'c', longitude: 51.523, latitude: -0.131 }
-  ]
-}
-
-// class Markers extends PureComponent {
-//   render() {
-//     return (
-//       this.state.trails.map(trail => <Marker key={trail.name} longitude={trail.longitude} latitude={trail.latitude}> <div className="pins" /> </Marker>
-//       ))
-//   }
-// }
-
-class Map extends Component {
+class Map extends React.Component {
 
   state = {
     viewport: {
@@ -36,8 +18,24 @@ class Map extends Component {
       latitude: 51.520,
       longitude: -0.128,
       zoom: 12
+    },
+    trailPoints: []
+  }
+
+  function onHover(params) {
+    
+  }
+
+  async componentDidMount() {
+    console.log('I have mounted')
+    try {
+      const res = await axios.get('localhost:4000')
+      console.log(res.data)
+      this.setState({ trailPoints: res.data })
+    } catch (err) {
+      console.log(err)
     }
-  };
+  }
 
   render() {
     return (
@@ -45,18 +43,16 @@ class Map extends Component {
         mapStyle="mapbox://styles/mapbox/streets-v9" 
         {...this.state.viewport} 
         onViewportChange={viewport => this.setState({ viewport })}>
-        <Markers data={TRAILS} />
-        <Popup
-          coordinates={[-0.13235092163085938,51.518250335096376]}
-          offset={{
-            'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
-          }}>
-          <h1>Popup</h1>
-        </Popup>
+        {/* <Markers data={TRAILS} /> */}
+        <NavigationControl showCompass />
+        {this.state.trailPoints.map(trail => (
+          <TrailMarkers key={trail.name} {...trail} > <div className="pins" /> </TrailMarkers>
+        ))}
       </ReactMapGL>
     )
   }
   // render() {
+  //   console.log(this.state.trailPoints)
   //   return (
   //     <ReactMapGL
   //       mapboxApiAccessToken={mapboxToken}
