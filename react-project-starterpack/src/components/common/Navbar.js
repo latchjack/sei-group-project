@@ -6,7 +6,7 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar is-warning">
+      <nav className="navbar has-background-grey-dark">
         <div className="container">
           < div className="navbar-brand">
             <Link className="navbar-item" to="/">Home </Link>

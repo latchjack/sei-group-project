@@ -11,6 +11,7 @@ import TrailCard from './components/trails/TrailCard'
 import CompleteForm from './components/trails/CompleteForm'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import FAQ from './components/common/FAQ'
 
 class App extends React.Component {
   render() {
@@ -24,6 +25,8 @@ class App extends React.Component {
             <Route path="/trails/new"component={TrailNew} />
             <Route path="/trails/:id" component={TrailCard}/>
             <Route path="/trails" component={Trails}/>
+            <Route path="/FAQ" component={FAQ}/>
+            <Route exact path="/" component={Home}/>
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
             
