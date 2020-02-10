@@ -12,7 +12,7 @@ class TrailNew extends React.Component {
         clueOne: '',
         clueTwo: '',
         clueThree: '',  
-        image: '',
+        image: null,
         weatherFactor: false//"is weather a factor? true or false - this is a tick box
       }     
     }
@@ -38,15 +38,24 @@ class TrailNew extends React.Component {
       }
     }
 
+    handleUpload = async ({ target: { files } }) => {
+      const data = new FormData
+      data.append('file', files[0])
+      data.append('upload_preset', 'rksde5wr')
+      const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
+      this.setState({ image: res.data.url })
+    }
+  
+
 
     render() {
-
       return (
         <section className="section">
           <div className="container">
             <TrailForm data={this.state.data}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
+              handleUpload={this.handleUpload}
 
 
             />
