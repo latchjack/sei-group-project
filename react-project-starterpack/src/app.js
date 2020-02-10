@@ -20,10 +20,10 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route exact path="/"component={Home}/>
-            <Route path="/trails/new"component={TrailNew} />
-            <Route path="/trails" component={Trails}/>
-            <Route path="/trails/:id" component={TrailCard}/>
             <Route path="/trails/:id/complete"component={CompleteForm}/>
+            <Route path="/trails/new"component={TrailNew} />
+            <Route path="/trails/:id" component={TrailCard}/>
+            <Route path="/trails" component={Trails}/>
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
             
