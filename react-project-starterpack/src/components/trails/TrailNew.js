@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 //import Auth from '../lib/Auth'
-import TrailForm from './TrailForm'
+
 
 class TrailNew extends React.Component {
 
@@ -49,20 +49,100 @@ class TrailNew extends React.Component {
 
 
     render() {
+      const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
+      const { image } = this.state
       return (
-        <section className="section">
-          <div className="container">
-            <TrailForm data={this.state.data}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              handleUpload={this.handleUpload}
-
-
+        <div className="columns">
+          <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter">
+            <h2 className="title">Create a new GeoCache</h2>
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input 
+                  className="input"
+                  name="name"
+                  required
+                  placeholder="Name"
+                  onChange={this.handleChange}
+                  value={this.state.data.name}
+                />
+              </div>
+            </div> 
+            <div className="field">
+              <label className="label">Directions</label>
+              <div className="control">
+                <input 
+                  className="input"
+                  name="directions"
+                  required
+                  placeholder="Directions"
+                  onChange={this.handleChange}
+                  value={this.state.data.directions}
+                />
+              </div>
+            </div> 
+            <div className="field">
+              <label className="label">Clues</label>
+              <div className="control">
+                <input 
+                  className="input"
+                  name="clueOne"
+                  required
+                  placeholder="Clue One"
+                  onChange={this.handleChange}
+                  value={this.state.data.clueOne}
+                />           
+                <input 
+                  className="input"
+                  name="clueTwo"
+                  required
+                  placeholder="Clue Two"
+                  onChange={this.handleChange}
+                  value={this.state.data.clueTwo}
+                />
+                  
+                <input 
+                  className="input"
+                  name="clueThree"
+                  required
+                  placeholder="Clue Three"
+                  onChange={this.handleChange}
+                  value={this.state.data.clueThree}
+                />
+              </div>
+            </div> 
+            {image ? 
+              <div>
+                <img src={image} />
+              </div>
+              :
+          <>
+            <h4>Please upload a photo</h4>
+            <label className={labelClass}>{this.props.labelText}</label>
+            <input
+              className={this.props.inputClassName}
+              type="file"
+              onChange={this.handleUpload}
             />
-
-          </div>
-        </section>
+          </>
+            }
+            <div className="field">
+              <label className="checkbox label">Please check if weather is a factor</label>
+              <input 
+                type="checkbox"
+                name="weatherFactor"
+                onChange={this.handleChange}
+                checked={this.state.data.weatherFactor}
+                      
+              />
+                  
+            </div> 
+            <button type="submit" className="button is-fullwidth is-warning">Make Geocache</button>
+          </form>
+      
+        </div>
       )
+      
     }
 
 
