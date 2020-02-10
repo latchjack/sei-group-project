@@ -12,6 +12,7 @@ import Home from './common/Home'
 import Navbar from './common/Navbar'
 import Trails from './trails/Trails'
 import TrailCard from './trails/TrailCard'
+import FAQ from './common/FAQ'
 
 class App extends React.Component {
   render() {
@@ -19,10 +20,10 @@ class App extends React.Component {
       <BrowserRouter>
         <Navbar/>
         <main>
-          <Navbar/>
           <Switch>
             <Route path="/trails/:id" component={TrailCard}/>
             <Route path="/trails" component={Trails}/>
+            <Route path="/FAQ" component={FAQ}/>
             <Route exact path="/" component={Home}/>
           </Switch>
         </main>
