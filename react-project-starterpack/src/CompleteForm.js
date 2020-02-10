@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
+//does this need auth key?
 
 class CompleteForm extends React.Component {
   state = {
@@ -12,7 +12,7 @@ class CompleteForm extends React.Component {
     errors: {}
 
   }
-
+ 
 
 
   handleChange = e => {
@@ -25,9 +25,9 @@ class CompleteForm extends React.Component {
     e.preventDefault()
     console.log('i am submitting')
     try {
-      await axios.post('/api/trails', this.state.data)
+      await axios.post('/api/trails', this.state.data)//needs an id to post this onto the specific trail
       console.log(this.state.data)
-      this.props.history.push('/') 
+      this.props.history.push('/') //trails page
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
     }
