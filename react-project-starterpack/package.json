@@ -6,7 +6,8 @@
   "scripts": {
     "start:back": "nodemon",
     "start:front": "webpack-dev-server --mode-development",
-    "seed": "node db/seeds.js"
+    "seed": "node db/seeds.js",
+    "test": "mocha test/**/*_spec.js --require test/helper --recursive --exit"
   },
   "dependencies": {
     "axios": "^0.19.2",
