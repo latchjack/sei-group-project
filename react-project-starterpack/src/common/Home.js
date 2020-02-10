@@ -6,7 +6,7 @@ const Home = () => (
     <div className="hero-body">
       <div className="container">
         <p className="title is-1 has-text-centered" id="Hero_txt">GEO-CACHE</p>
-        <p className=" title is-2 has-text-centered " id="Hero_txt">The largest treassure Hunt Community in London!</p>
+        <p className=" title is-2 has-text-centered " id="Hero_txt">The largest treasure Hunt Community in London!</p>
       </div>
     </div>
   </section>

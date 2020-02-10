@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class TrailCard extends React.Component{
 state = { trail: null }
@@ -22,6 +23,10 @@ render() {
       <div className="container">
         <h2 className="title">🔍 {trail.name} 🔎</h2>
         <h4>{trail.directions}</h4>
+        <div className="column-is-half">
+          <Link to={'/trails/CompleteForm'}><button>Complete Form</button></Link>
+          <Link to={'/trails/TrailForm'}><button>Trail Form</button></Link>
+        </div>
         <hr/>
         <div className="columns">
           <div className="column is-half">
