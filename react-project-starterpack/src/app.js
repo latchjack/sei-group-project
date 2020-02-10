@@ -23,6 +23,10 @@ class App extends React.Component {
             <Route path="/trails/:id" component={TrailCard}/>
             <Route path="/trails" component={Trails}/>
             <Route exact path="/" component={Home}/>
+            <Route path="/register"component={Register}/>
+            <Route path="/login"component={Login} />
+            <Route path="/trails/new"component={TrailNew} />
+            <Route path="/trails/:id/complete"component={CompleteForm}/>
           </Switch>
         </main>
       </BrowserRouter>
