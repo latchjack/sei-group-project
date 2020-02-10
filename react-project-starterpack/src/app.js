@@ -1,8 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import 'bulma'
 import './styles/main.scss'
+import Register from './auth/Register'
+import Login from './auth/Login'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import TrailNew from './TrailNew'
+import CompleteForm from './CompleteForm'
 
 import Map from './components/Map'
 

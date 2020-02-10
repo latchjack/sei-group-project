@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-//no unique validation
 const commentSchema = new mongoose.Schema({
   text: { type: String, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
@@ -24,7 +23,7 @@ const completionSchema = new mongoose.Schema({
 })
 
 const trailSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   directions: { type: String, required: true },
   longitude: { type: Number, required: true },
   latitude: { type: Number, required: true },
@@ -48,5 +47,7 @@ trailSchema
   })
 
 trailSchema.set('toJSON', { virtuals: true })
+
+trailSchema.plugin(require('mongoose-unique-validator'))
 
 module.exports = mongoose.model('Trail', trailSchema)

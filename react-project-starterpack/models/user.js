@@ -1,19 +1,10 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
-// will add unique valiadtor at the end along with better errors
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true , unique: true },
   email: { type: String, required: true , unique: true },
   password: { type: String, required: true }
-})
-
-userSchema.set('toJSON', {
-  transform(doc, json) {
-    delete json.password
-    delete json.email
-    return json
-  }
 })
 
 userSchema.virtual('createdTrails', {
@@ -22,19 +13,19 @@ userSchema.virtual('createdTrails', {
   foreignField: 'user'
 })
 
-/* would like to use this for 'saved' trails
-userSchema.virtual('likedDinosaurs', {
-  ref: 'Dinosaur',
+//could use this for 'saved' trails
+userSchema.virtual('likedTrails', {
+  ref: 'Trail',
   localField: '_id',
   foreignField: 'likes.user'
 })
-*/
 
 userSchema
   .set('toJSON', {
     virtuals: true,
     transform(doc, json) {
       delete json.password
+      delete json.email
       return json
     }
   })
@@ -64,5 +55,7 @@ userSchema
     }
     next()
   })
+
+userSchema.plugin(require('mongoose-unique-validator'))
 
 module.exports = mongoose.model('User', userSchema)
