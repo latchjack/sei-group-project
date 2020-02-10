@@ -1,30 +1,30 @@
 const Trail = require('../models/trail')
 
-function index(req, res) {
+function index(req, res, next) {
   Trail
     .find()
     .populate('user')
     .then(foundTrails => res.status(200).json(foundTrails))
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
-function create(req, res) {
+function create(req, res, next) {
   req.body.user = req.currentUser
   Trail
     .create(req.body)
     .then(createdTrail => res.status(201).json(createdTrail))
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
-function show(req, res) {
+function show(req, res, next) {
   Trail
     .findById(req.params.id)
     .populate('user')
     .then(trail => {
-      if (!trail) return res.status(404).json({ message: 'Not Found ' })
+      if (!trail) throw new Error('Not Found')
       res.status(200).json(trail)
     })
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
 function update(req, res, next) {
@@ -43,7 +43,7 @@ function update(req, res, next) {
     .catch(next)
 }
 
-function destroy(req, res) {
+function destroy(req, res, next) {
   Trail
     .findById(req.params.id)
     .then(trail => {
@@ -55,7 +55,7 @@ function destroy(req, res) {
         return res.sendStatus(204)
       }
     })
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
 //new controller for completion form
@@ -85,7 +85,7 @@ function commentCreate(req, res, next) {
     .catch(next)
 }
 
-function commentDelete(req, res) {
+function commentDelete(req, res, next) {
   Trail
     .findById(req.params.id)
     .then(trail => {
@@ -98,11 +98,11 @@ function commentDelete(req, res) {
         return trail.save().then(() => res.sendStatus(204))
       }
     })
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
 // * GET /api/trails/:id/like
-function like(req, res) {
+function like(req, res, next) {
   Trail
     .findById(req.params.id)
     .then(trail => {
@@ -112,7 +112,7 @@ function like(req, res) {
       return trail.save()
     })
     .then(trail => res.status(202).json(trail))
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
 module.exports = { index, create, show, update, destroy, commentCreate, commentDelete, completion, like }
