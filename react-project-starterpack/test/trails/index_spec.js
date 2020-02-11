@@ -97,10 +97,9 @@ describe('GET /trails', () => {
           expect(trail.clueOne).to.be.a('string')
           expect(trail.clueTwo).to.be.a('string')
           expect(trail.clueThree).to.be.a('string')
-          expect(trail.image).to.be.an('string')
-          expect(trail.weatherFactor).to.be.a('Boolean')
-          expect(trail.clueThree).to.be.a('string')
-          
+          expect(trail.image).to.be.a('string')
+          expect(trail.weatherFactor).to.be.a('boolean')
+          expect(trail.user).to.be.an('object')
         })
         done()
       })

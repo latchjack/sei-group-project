@@ -1,10 +1,10 @@
 /* global api, describe, it, expect, beforeEach, afterEach */
 const Trail = require('../../models/trail')
-const User = require('../../models/user') // we need our user again to attribute a created animal a user
+const User = require('../../models/user')
 
 describe('GET /trails/:id', () => {
 
-  let trail// we will stored a reference to our created animal here, we will use this dinosaur as the one we are tring to request, we store it so we can get its id to use in the requests
+  let trail
 
   beforeEach(done => {
     User.create({
@@ -26,7 +26,7 @@ describe('GET /trails/:id', () => {
         })
       })
       .then(createdTrail => {
-        trail = createdTrail // 
+        trail = createdTrail  
         done()
       })
   })
@@ -54,7 +54,7 @@ describe('GET /trails/:id', () => {
   })
 
   it('should return an object', done => {
-    api.get(`/api/trails/${trail._id}`) // 
+    api.get(`/api/trails/${trail._id}`) 
       .end((err, res) => {
         expect(res.body).to.be.an('object')
         done()
@@ -90,8 +90,8 @@ describe('GET /trails/:id', () => {
         expect(trail.image).to.be.a('string')
         expect(trail.weatherFactor).to.be.a('boolean')
         expect(trail.user).to.be.an('object')
+        done()
       })
-    done()
   })
 })
 

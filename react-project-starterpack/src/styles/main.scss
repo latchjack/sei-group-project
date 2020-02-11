@@ -1,11 +1,15 @@
+//HERO PAGE (HOME)
 .hero-body {
-  background-image: url('https://static.vecteezy.com/system/resources/previews/000/224/213/non_2x/compass-on-white-background-blank-page-template-with-compass-shapes-vector-illustration.jpg');
+  background-image: url('https://i.imgur.com/AQBlxQk.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
 }
 #Hero_txt{
   color:(rgb(0, 153, 255));
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 50px;
+  font-weight: bolder;
 }
 .pin {
   background-color: red;
@@ -32,4 +36,34 @@
 .overlays {
   align-items: center;
   border: 2px solid black;
+//NAVBAR
+.navbar-item{
+  color: white;
+  font-weight: bolder;
+}
+
+//FAQ
+.FAQPage{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 30px;
+  color:#32CD32;
+  letter-spacing: 1px;
+}
+
+//SHOW PAGE
+.SHOWPAGE{
+  font-weight: bolder;
+}
+
+.dropDown{
+  cursor: pointer;
+}
+// #ShowImage{
+//   border-radius: 2%;
+//  }
+
+.card{
+  &:hover {
+    box-shadow: 0px 0px 10px 10px springgreen;
+  }
 }
