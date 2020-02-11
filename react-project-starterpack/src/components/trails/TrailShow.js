@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Auth from './../../lib/Auth'
 
 class TrailCard extends React.Component{
 state = { trail: null }
@@ -15,6 +16,26 @@ async componentDidMount() {
   }
 }
 
+
+handleDelete = async () => {
+  const trailId = this.props.match.params.id
+  try {
+    await axios.delete(`/api/trails/${trailId}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}
+    ` }
+    })
+    this.props.history.push('/trails')
+  } catch (err) {
+    console.log(err.response)
+  }
+} 
+
+isOwner = () => {
+  console.log('make trail', Auth.getPayLoad().sub)
+  console.log('current user', this.state.trail.user._id)
+  return Auth.getPayLoad().sub === this.state.trail.user._id
+}
+
 render() {
   const { trail } = this.state
   if (!trail) return null
@@ -24,8 +45,8 @@ render() {
         <h2 className="title">🔍 {trail.name} 🔎</h2>
         <h4>{trail.directions}</h4>
         <div className="column-is-half">
-          <Link to={'/trails/CompleteForm'}><button>Complete Form</button></Link>
-          <Link to={'/trails/TrailForm'}><button>Trail Form</button></Link>
+          <Link to={'/trails/:id/complete'}><button>Complete Form</button></Link>
+          <Link to={'/trails/new'}><button>Make a new trail!</button></Link>
         </div>
         <hr/>
         <div className="columns">
@@ -44,6 +65,14 @@ render() {
             <h4>3.{trail.clueThree}</h4>
             <hr/>
             <h4>{trail.weatherFactor}</h4>
+            <br />
+            {this.isOwner() && 
+                <>
+                  <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
+                  <hr />
+                  <button onClick={this.handleDelete} className="button is-danger">Delete Trail</button>
+                </>
+            }
           </div>
         </div>
       </div>
