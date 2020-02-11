@@ -28,7 +28,7 @@ class FAQ extends React.Component {
               <li>6.Use your GPS device to assist you in finding the hidden geocache.</li>
               <li>7.Sign the logbook and return the geocache to its original location.</li>
               <li>8.Share your geocaching stories and photos online.</li>
-              <li> 9.There are many other levels to the game. Keep reading the guide to learn more!</li>
+              <li>9.There are many other levels to the game. Keep reading the guide to learn more!</li>
             </ul>
           </Collapsible>
           <hr/>
