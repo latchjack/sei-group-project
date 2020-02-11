@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom'
 import 'bulma'
 import './styles/main.scss'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-<<<<<<< HEAD
 import ErrorPage from './components/common/ErrorPage'
-=======
 
 import Map from './components/common/Map'
 
->>>>>>> development
 import TrailNew from './components/trails/TrailNew'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
