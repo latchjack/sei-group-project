@@ -2,9 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bulma'
 import './styles/main.scss'
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
-
-import Map from './components/common/Map'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import TrailNew from './components/trails/TrailNew'
 import Home from './components/common/Home'
