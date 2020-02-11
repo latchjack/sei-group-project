@@ -48,7 +48,6 @@ const TrailCard = ({ name, image, directions, _id, handleClick }) => (
       </div>
     </Link>
   </div>
-  </>
 )
 
 export default TrailCard
