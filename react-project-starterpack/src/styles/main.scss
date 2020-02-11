@@ -12,10 +12,11 @@
   font-weight: bolder;
 }
 //NAVBAR
-.navbar-item{
+.navbar-item {
   color: white;
   font-weight: bolder;
 }
+
 
 //FAQ
 .FAQPage{
@@ -41,4 +42,8 @@
   &:hover {
     box-shadow: 0px 0px 10px 10px springgreen;
   }
+}
+
+#root > main > section > div > div > p {
+  color: blue;
 }

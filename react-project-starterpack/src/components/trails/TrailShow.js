@@ -27,7 +27,7 @@ handleDelete = async () => {
     })
     this.props.history.push('/trails')
   } catch (err) {
-    console.log(err.response)
+    this.props.history.push('/notfound')
   }
 } 
 
@@ -56,8 +56,6 @@ render() {
               <img src={trail.image} alt={trail.name} id="ShowImage"/>
             </figure>
             <br/>
-            <Link to={'#'}><button className=" button is-success">Edit Trail</button></Link>
-            <Link to={'#'}><button className="button is-danger">Delete Trail</button></Link>
           </div>
           <div className="container">
             <h3 className="title is-3">Trail Clues</h3>
