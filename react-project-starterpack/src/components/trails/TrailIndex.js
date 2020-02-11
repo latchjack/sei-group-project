@@ -1,9 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
-import TrailProfile from './TrailCard'
+import TrailCard from './TrailCard'
 
-class Trails extends React.Component {
+class TrailIndex extends React.Component {
   state = { trails: [] }
 
   async componentDidMount() {
@@ -14,13 +14,14 @@ class Trails extends React.Component {
       console.log(err)
     }
   }
+
   render() {
     return (
       <section className="trailIndex">
         <div className="trailContainer">
           <div className="columns is-mobile is-multiline">
-            {this.state.trails.map( trail =>(
-              <TrailProfile key= {trail.name} {...trail}/>
+            {this.state.trails.map(trail => (
+              <TrailCard key= {trail.name} {...trail}/>
             ))}
           </div>
         </div>
@@ -29,4 +30,4 @@ class Trails extends React.Component {
   }
 }
 
-export default Trails
+export default TrailIndex
