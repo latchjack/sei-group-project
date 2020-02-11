@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-//import Auth from '../lib/Auth'
+import Auth from './../../lib/Auth'
 
 
 class TrailNew extends React.Component {
@@ -30,7 +30,7 @@ class TrailNew extends React.Component {
       e.preventDefault() 
       try {
         const res = await axios.post('/api/trails', this.state.data, {
-          headers: { Authorization: `Bearer ${Auth.getToken()}` }//need to set this up
+          headers: { Authorization: `Bearer ${Auth.getToken()}` }
         })
         this.props.history.push(`/trails/${res.data._id}`)
       } catch (err) {
