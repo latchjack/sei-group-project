@@ -29,8 +29,8 @@ function login(req, res) {
 function profile(req, res) {
   User
     .findById(req.currentUser._id)
-    .populate('createdDinosaurs')
-    .populate('likedDinosaurs')
+    .populate('createdTrails')
+    .populate('likedTrails')
     .then(user => res.status(200).json(user))
     .catch(err => res.json(err))
 }
