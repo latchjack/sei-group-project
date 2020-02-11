@@ -30,7 +30,6 @@ class App extends React.Component {
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
             
-            
           </Switch>
         </main>
       </BrowserRouter>
