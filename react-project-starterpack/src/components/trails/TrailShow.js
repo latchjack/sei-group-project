@@ -75,14 +75,12 @@ render() {
             </Collapsible>
             <hr/>
             <h4>{trail.weatherFactor}</h4>
-<<<<<<< HEAD
             <div className="Mapbox">
               <h4 className="title is-3">Map Locations</h4>
               <br/>
               <img src='https://c7.uihere.com/icons/305/955/619/gps-location-map-mobile-phone-pointer-smartphone-icon-3443604f1c2335175832ded904a4f6b7.png'/>
             </div>
             <hr/>
-=======
             <br />
             {this.isOwner() && 
                 <>
@@ -91,7 +89,6 @@ render() {
                   <button onClick={this.handleDelete} className="button is-danger">Delete Trail</button>
                 </>
             }
->>>>>>> development
           </div>
         </div>
       </div>
