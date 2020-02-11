@@ -3,7 +3,7 @@ import React from 'react'
 
 
 
-const TrailNew = ({ data, handleChange, handleSubmit }) => {
+const TrailForm = ({ data, handleChange, handleSubmit }) => {
 
   
   return (
@@ -100,4 +100,4 @@ const TrailNew = ({ data, handleChange, handleSubmit }) => {
 
 }
 
-export default TrailNew
+export default TrailForm
