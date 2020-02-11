@@ -4,7 +4,7 @@ import 'bulma'
 import './styles/main.scss'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
-import Map from './components/Map'
+import Map from './components/common/Map'
 
 import TrailNew from './components/trails/TrailNew'
 import Home from './components/common/Home'
@@ -29,11 +29,8 @@ class App extends React.Component {
             <Route path="/trails" component={Trails}/>
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
-            
-            
           </Switch>
         </main>
-        <Map />
       </BrowserRouter>
     )
   }
