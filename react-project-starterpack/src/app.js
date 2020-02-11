@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import 'bulma'
 import './styles/main.scss'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+
+import Map from './components/common/Map'
+
 import TrailNew from './components/trails/TrailNew'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
@@ -34,10 +37,11 @@ class App extends React.Component {
           </Switch>
         </main>
       </BrowserRouter>
-     
     )
   }
 }
+
+
 
 ReactDOM.render(
   <App />,
