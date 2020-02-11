@@ -19,8 +19,7 @@ class FAQ extends React.Component {
           <hr/>
           <Collapsible trigger = 'How is the game played?  +' className="dropDown">
             <ul>
-              <li> At its simplest level, geocaching requires these 9 steps:</li>
-              <li>-</li>
+              <li>At its simplest level, geocaching requires these 9 steps:</li>
               <li>1.Register for a free Basic Membership.</li>
               <li>2. Visit the *Hide and Seek a Cache* page.</li>
               <li>3.Enter your postal code and click *search.*</li>

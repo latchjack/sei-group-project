@@ -17,18 +17,18 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Navbar/>
         <main>
+          <Navbar/>
           <Switch>
-            <Route exact path="/"component={Home}/>
+
             <Route path="/trails/:id/complete"component={CompleteForm}/>
             <Route path="/trails/new"component={TrailNew} />
             <Route path="/trails/:id" component={TrailCard}/>
             <Route path="/trails" component={Trails}/>
             <Route path="/FAQ" component={FAQ}/>
-            <Route exact path="/" component={Home}/>
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
+            <Route exact path="/"component={Home}/>
             
             
           </Switch>

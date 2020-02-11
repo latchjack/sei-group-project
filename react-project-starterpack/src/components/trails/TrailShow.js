@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
+import Auth from './../../lib/Auth'
 
 class TrailCard extends React.Component{
 state = { trail: null }
@@ -16,6 +17,26 @@ async componentDidMount() {
   }
 }
 
+
+handleDelete = async () => {
+  const trailId = this.props.match.params.id
+  try {
+    await axios.delete(`/api/trails/${trailId}`, {
+      headers: { Authorization: `Bearer ${Auth.getToken()}
+    ` }
+    })
+    this.props.history.push('/trails')
+  } catch (err) {
+    console.log(err.response)
+  }
+} 
+
+isOwner = () => {
+  console.log('make trail', Auth.getPayLoad().sub)
+  console.log('current user', this.state.trail.user._id)
+  return Auth.getPayLoad().sub === this.state.trail.user._id
+}
+
 render() {
   const { trail } = this.state
   if (!trail) return null
@@ -25,6 +46,8 @@ render() {
         <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
         <h4>{trail.directions}</h4>
         <div className="column-is-half">
+          <Link to={'/trails/:id/complete'}><button>Complete Form</button></Link>
+          <Link to={'/trails/new'}><button>Make a new trail!</button></Link>
         </div>
         <hr/>
         <div className="columns">
@@ -52,12 +75,23 @@ render() {
             </Collapsible>
             <hr/>
             <h4>{trail.weatherFactor}</h4>
+<<<<<<< HEAD
             <div className="Mapbox">
               <h4 className="title is-3">Map Locations</h4>
               <br/>
               <img src='https://c7.uihere.com/icons/305/955/619/gps-location-map-mobile-phone-pointer-smartphone-icon-3443604f1c2335175832ded904a4f6b7.png'/>
             </div>
             <hr/>
+=======
+            <br />
+            {this.isOwner() && 
+                <>
+                  <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
+                  <hr />
+                  <button onClick={this.handleDelete} className="button is-danger">Delete Trail</button>
+                </>
+            }
+>>>>>>> development
           </div>
         </div>
       </div>
