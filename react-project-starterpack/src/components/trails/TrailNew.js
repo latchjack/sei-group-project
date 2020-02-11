@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Auth from './../../lib/Auth'
-
+import Map from '../common/Map'
 
 class TrailNew extends React.Component {
 
@@ -9,15 +9,22 @@ class TrailNew extends React.Component {
       data: {
         name: '',
         directions: '',
+        longitude: '',
+        latitude: '',
         clueOne: '',
         clueTwo: '',
         clueThree: '',  
         image: null,
+        clickedLocation: [],
         weatherFactor: false//"is weather a factor? true or false - this is a tick box
       }     
     }
 
-    
+    handleMap = (e) => {
+      // console.log(e.lngLat)
+      const data = { ...this.state.data, latitude: e.lngLat[1], longitude: e.lngLat[0], clickedLocation: e.lngLat }
+      this.setState({ data })
+    }
 
     handleChange = ({ target: { name, value, checked, type } }) => {
       console.log(this.state.data) //value of type is if someone checked the check box
@@ -49,6 +56,7 @@ class TrailNew extends React.Component {
 
 
     render() {
+      console.log(this.state)
       const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
       const { image } = this.state
       return (
@@ -69,18 +77,46 @@ class TrailNew extends React.Component {
               </div>
             </div> 
             <div className="field">
-              <label className="label">Directions</label>
+              <label className="label">Postcode</label>
               <div className="control">
                 <input 
                   className="input"
-                  name="directions"
+                  name="postcode"
                   required
-                  placeholder="Directions"
+                  placeholder="Postcode"
                   onChange={this.handleChange}
-                  value={this.state.data.directions}
+                  value={this.state.data.postcode}
                 />
               </div>
             </div> 
+            {/* <div className="field">
+              <label className="label">Longitude</label>
+              <div className="control">
+                <input 
+                  disabled
+                  className="input"
+                  name="longitude"
+                  required
+                  placeholder= 'Please click on the map below'
+                  onChange={this.handleChange}
+                  value={this.state.data.longitude}
+                />
+              </div>
+            </div> 
+            <div className="field">
+              <label className="label">Latitude</label>
+              <div className="control">
+                <input 
+                  disabled
+                  className="input"
+                  name="latitude"
+                  required
+                  placeholder="Please click on the map below"
+                  onChange={this.handleChange}
+                  value={this.state.data.latitude}
+                />
+              </div>
+            </div>  */}
             <div className="field">
               <label className="label">Clues</label>
               <div className="control">
@@ -137,9 +173,10 @@ class TrailNew extends React.Component {
               />
                   
             </div> 
+            <Map handleMap={this.handleMap} data={this.state.data}/>
             <button type="submit" className="button is-fullwidth is-warning">Make Geocache</button>
+            
           </form>
-      
         </div>
       )
       
