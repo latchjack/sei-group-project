@@ -12,6 +12,7 @@ import CompleteForm from './components/trails/CompleteForm'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import FAQ from './components/common/FAQ'
+import Profile from './components/common/Profile'
 
 class App extends React.Component {
   render() {
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="/FAQ" component={FAQ}/>
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
+            <Route path="/profile" component={Profile} />
             <Route exact path="/"component={Home}/>
             
           </Switch>
