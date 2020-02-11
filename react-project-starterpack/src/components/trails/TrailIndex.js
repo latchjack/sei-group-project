@@ -16,8 +16,8 @@ class Trails extends React.Component {
   }
   render() {
     return (
-      <section className="section">
-        <div className="container">
+      <section className="trailIndex">
+        <div className="trailContainer">
           <div className="columns is-mobile is-multiline">
             {this.state.trails.map( trail =>(
               <TrailProfile key= {trail.name} {...trail}/>

@@ -21,8 +21,15 @@
 .FAQPage{
   font-family: 'Luckiest Guy', cursive;
   font-size: 30px;
-  color:#32CD32;
+  color:#024BFD;
   letter-spacing: 1px;
+}
+.FAQtxt{
+color: #FDB402;
+}
+
+.title{
+  color: #FF0040;
 }
 
 //SHOW PAGE
@@ -39,6 +46,19 @@
 
 .card{
   &:hover {
-    box-shadow: 0px 0px 10px 10px springgreen;
+    box-shadow: 0px 0px 10px 10px #40FF00;
   }
+}
+
+//Trails
+.trailIndex{
+  margin: 20px;
+}
+
+//CARD
+
+.image-card{
+}
+.card-header-title{
+  color: #FF0040;
 }

@@ -43,12 +43,8 @@ render() {
   return (
     <section className="section">
       <div className="SHOWPAGE">
-        <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
-        <h4>{trail.directions}</h4>
-        <div className="column-is-half">
-          <Link to={'/trails/:id/complete'}><button>Complete Form</button></Link>
-          <Link to={'/trails/new'}><button>Make a new trail!</button></Link>
-        </div>
+        <h2 className="title is-3 has-text-left">{trail.name} 🔎</h2>
+        <h4 className="title is-4 has-text-left">{trail.directions}</h4>
         <hr/>
         <div className="columns">
           <div className="column is-half">
