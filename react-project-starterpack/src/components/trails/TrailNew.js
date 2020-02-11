@@ -89,34 +89,6 @@ class TrailNew extends React.Component {
                 />
               </div>
             </div> 
-            {/* <div className="field">
-              <label className="label">Longitude</label>
-              <div className="control">
-                <input 
-                  disabled
-                  className="input"
-                  name="longitude"
-                  required
-                  placeholder= 'Please click on the map below'
-                  onChange={this.handleChange}
-                  value={this.state.data.longitude}
-                />
-              </div>
-            </div> 
-            <div className="field">
-              <label className="label">Latitude</label>
-              <div className="control">
-                <input 
-                  disabled
-                  className="input"
-                  name="latitude"
-                  required
-                  placeholder="Please click on the map below"
-                  onChange={this.handleChange}
-                  value={this.state.data.latitude}
-                />
-              </div>
-            </div>  */}
             <div className="field">
               <label className="label">Clues</label>
               <div className="control">

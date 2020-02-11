@@ -10,7 +10,7 @@ import { faShare, faBinoculars } from '@fortawesome/free-solid-svg-icons'
 //share on twitter and facebook (not functioning)
 //onclick: make like button a filled in color
 
-const TrailCard = ({ name, image, directions, _id, handleClick }) => (
+const TrailCard = ({ name, image, directions, _id }) => (
   <div key={_id} className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
     <Link to={`/trails/${_id}`}>
       <div className="card">
