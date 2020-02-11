@@ -30,7 +30,7 @@ class TrailShow extends React.Component {
       })
       this.props.history.push('/trails')
     } catch (err) {
-      console.log(err.response)
+      this.props.history.push('/notfound')
     }
   }
 
