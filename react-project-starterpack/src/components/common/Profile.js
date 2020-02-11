@@ -4,29 +4,6 @@ import axios from 'axios'
 import Auth from '../../lib/auth'
 import TrailCard from '../trails/TrailCard'
 
-/*
-GET user with axios so that I can access:
-  -createdTrails
-  -likes
-
-console.log user object so I know everything that comes in with it
-
-display username, createdTrails and Likes in a "newsfeed"
-
-_________________
-Filter out trails not created by this user
-Map remaining trails onto the page (using the card rory created)
-_________________
-
-on navbar:
-<Link className="navbar-item" to="/profile">Profile</Link>
-
-on app.js:
-import Profile from './components/common/Profile'
-<Route path="/profile" component={Profile} />
-
-*/
-
 class Profile extends React.Component {
 
   state = {
@@ -46,13 +23,26 @@ class Profile extends React.Component {
 
   render() {
     const { profile } = this.state
+    console.log(this.state.profile)
     return (
       <section className="section">
         <h1>Username and User Image</h1>
-        <h2>Trails that user has made:</h2>
         <div className="container">
+          <h2>Trails that user has made:</h2>
           <div className="columns is-mobile is-multiline">
+            {profile.createdTrails && profile.createdTrails.length === 0 && 
+            <p>You have not created any trails yet!</p>}
             {profile.createdTrails && profile.createdTrails.map(trail => (
+              <TrailCard key={trail._id} {...trail} />
+            ))}
+          </div>
+        </div>
+        <div className="container">
+          <h2>Trails that user has liked:</h2>
+          <div className="columns is-mobile is-multiline">
+            {profile.likedTrails && profile.likedTrails.length === 0 && 
+            <p>You have not saved any trails yet!</p>}
+            {profile.likedTrails && profile.likedTrails.map(trail => (
               <TrailCard key={trail._id} {...trail} />
             ))}
           </div>
