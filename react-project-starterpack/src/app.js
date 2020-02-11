@@ -5,7 +5,6 @@ import './styles/main.scss'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 import Map from './components/common/Map'
-
 import TrailNew from './components/trails/TrailNew'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
@@ -16,6 +15,7 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import FAQ from './components/common/FAQ'
 import Profile from './components/common/Profile'
+import ErrorPage from './components/common/ErrorPage'
 
 class App extends React.Component {
   render() {
