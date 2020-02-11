@@ -15,12 +15,12 @@ describe('GET /trails/:id', () => {
     })
       .then(user => {
         return Trail.create({
-          name: 'Snakes in Hydeing',
-          directions: 'W2 2UH',
-          clueOne: 'You\'re a trail blazer- visit the royal geographical society and follow the road north.', 
-          clueTwo: 'A serpent Hydes in the grass to your left. Have a visit!', 
-          clueThree: 'Find its sister by the water and ask her for a gin and tonic!',
-          image: 'https://live.staticflickr.com/795/41372147681_474b2acda4_b.jpg',
+          name: 'Ensnared',
+          directions: 'E11 1PE',
+          clueOne: ' A man with a knife, similar but not quite.',
+          clueTwo: 'Feast here, you might.',
+          clueThree: 'Not a trap but a snare with brook that\'s not near.',
+          image: 'https://s3.geograph.org.uk/geophotos/04/68/12/4681299_c93298e5_1024x1024.jpg',
           weatherFactor: true,
           user
         })
