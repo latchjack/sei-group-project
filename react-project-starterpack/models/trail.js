@@ -25,8 +25,8 @@ const completionSchema = new mongoose.Schema({
 const trailSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   directions: { type: String, required: true },
-  longitude: { type: Number, required: true },
-  latitude: { type: Number, required: true },
+  longitude: { type: Number },
+  latitude: { type: Number },
   clueOne: { type: String, required: true },
   clueTwo: { type: String },
   clueThree: { type: String },

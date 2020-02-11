@@ -15,7 +15,6 @@ class Register extends React.Component {
     errors: {}
     
   }
-
   
   handleChange = e => {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
@@ -25,17 +24,13 @@ class Register extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault()
-    console.log('i am submitting')
     try {
       await axios.post('/api/register', this.state.data)
-      console.log(this.state.data)
       this.props.history.push('/login') 
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
     }
   }
-
-
 
   render() {
 

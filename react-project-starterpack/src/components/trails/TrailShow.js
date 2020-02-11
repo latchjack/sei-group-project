@@ -35,8 +35,6 @@ class TrailShow extends React.Component {
   }
 
   isOwner = () => {
-    console.log('make trail', Auth.getPayLoad().sub)
-    console.log('current user', this.state.trail.user._id)
     return Auth.getPayLoad().sub === this.state.trail.user._id
   }
 
