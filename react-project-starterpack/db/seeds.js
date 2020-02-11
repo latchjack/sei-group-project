@@ -39,6 +39,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'Snakes in Hydeing',
           directions: 'W2 2UH',
+          longitude: -0.166276,
+          latitude: 51.507998,
           clueOne: 'You\'re a trail blazer- visit the royal geographical society and follow the road north.', 
           clueTwo: 'A serpent Hydes in the grass to your left. Have a visit!', 
           clueThree: 'Find its sister by the water and ask her for a gin and tonic!',
@@ -49,6 +51,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'General Assembly Trail',
           directions: 'E1 7PT',
+          longitude: -0.072513,
+          latitude: 51.515379,
           clueOne: 'Find the chef and keep him on your right as you turn the corner.', 
           clueTwo: 'This is Major Tom to Ground Control- there\'s something to my left and it\'s floating in a most peculiar way.', 
           clueThree: 'From below it looks very different today!',
@@ -59,6 +63,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'A Stable For Your Steed',
           directions: 'RM6 4HY',
+          longitude: 0.111934,
+          latitude: 51.566546,
           clueOne: 'Here your metal steed quenches its thirst.', 
           clueTwo: 'As you exit, look right.', 
           clueThree: 'Tall I stand amidst the green. Look near my feet- it will be seen.',
@@ -69,6 +75,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'Brick-n-mixx',
           directions: 'E13 8PT',
+          longitude: 0.028978,
+          latitude: 51.525969,
           clueOne: 'Twit twit twoo, we are staring at you.',
           clueTwo: 'London\'s most famous murderer committed his second grizzly offence here.',
           clueThree: 'I am hidden in outer space',
@@ -79,6 +87,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'Nectar Royalty',
           directions: 'E9 7HJ',
+          longitude: -0.044288,
+          latitude: 51.537367,
           clueOne: 'Opposite and next to royalty.',
           clueTwo: 'I am a cache box near a cash box.',
           clueThree: 'Large plant with a trunk.',
@@ -89,6 +99,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'One Person\'s Junk',
           directions: 'E17 9HQ',
+          longitude: -0.008138,
+          latitude: 51.583888,
           clueOne: 'These plates are out of your league; you could say, premier.',
           clueTwo: 'Just bare off of Shernal and you\'re nearly there',
           clueThree: 'Through the day I blend, and at dark beware of the glare.',
@@ -99,6 +111,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'Ensnared',
           directions: 'E11 1PE',
+          longitude: 0.020725,
+          latitude: 51.583145,
           clueOne: ' A man with a knife, similar but not quite.',
           clueTwo: 'Feast here, you might.',
           clueThree: 'Not a trap but a snare with brook that\'s not near.',
@@ -109,6 +123,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'Ditch Divers',
           directions: 'E1 6GY',
+          longitude: -0.076338,
+          latitude: 51.523454,
           clueOne: 'It\'s a park, but cubic in nature.',
           clueTwo: 'Feast, Fun & Fashion.',
           clueThree: 'The park is in a ditch.',
@@ -119,6 +135,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
         {
           name: 'The Clapping Robbers',
           directions: 'SW11 1DJ',
+          longitude: -0.162389,
+          latitude: 51.463496,
           clueOne: 'Located near the busiest train station in the UK.',
           clueTwo: 'Drinks, games and people. Comes alive at night.',
           clueThree: 'Beware of the four tea-leaves!',
