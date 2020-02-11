@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken')
 const { secret } = require('../../config/environment')
 
 const testTrail = {
-  name: 'Snakes in Hydeing',
-  directions: 'W2 2UH',
-  clueOne: 'You\'re a trail blazer- visit the royal geographical society and follow the road north.', 
-  clueTwo: 'A serpent Hydes in the grass to your left. Have a visit!', 
-  clueThree: 'Find its sister by the water and ask her for a gin and tonic!',
-  image: 'https://live.staticflickr.com/795/41372147681_474b2acda4_b.jpg',
+  name: 'One Person\'s Junk',
+  directions: 'E17 9HQ',
+  clueOne: 'These plates are out of your league; you could say, premier.',
+  clueTwo: 'Just bare off of Shernal and you\'re nearly there',
+  clueThree: 'Through the day I blend, and at dark beware of the glare.',
+  image: 'http://www.godsownjunkyard.co.uk/gods%20own%202.jpg',
   weatherFactor: true
 }
 
