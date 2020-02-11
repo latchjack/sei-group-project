@@ -26,7 +26,7 @@ class CompleteForm extends React.Component {
     const trailId = this.props.match.params.id
     console.log('i am submitting')
     try {
-      await axios.post(`/api/trails/${trailId}`, this.state.data)//needs an id to post this onto the specific trail
+      await axios.post(`/api/trails/${trailId}/complete`, this.state.data)//needs an id to post this onto the specific trail
       console.log(this.state.data)
       this.props.history.push('/trails') //trails page
     } catch (err) {

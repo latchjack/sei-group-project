@@ -51,6 +51,20 @@ class TrailShow extends React.Component {
     }
   }
 
+  // handleComplete = async () => {
+  //   const trailId = this.props.match.params.id
+  //   try {
+  //     await axios.get(`/api/trails/${trailId}/like`, {
+  //       headers: { Authorization: `Bearer ${Auth.getToken()}` }
+  //     })
+  //   } catch (err) {
+  //     console.log(err.response)
+  //   }
+  // }
+
+  // }
+  
+
   render() {
     const { trail } = this.state
     if (!trail) return null
@@ -66,7 +80,7 @@ class TrailShow extends React.Component {
               </span>
               <span>Like</span>
             </button>
-            <Link to={'/trails/:id/complete'}><button className="button">Complete Form</button></Link>
+            <Link to={`/trails/${trail._id}/complete`}><button className="button">Complete Form</button></Link>
           </div>
           <hr />
           <div className="columns">
@@ -75,8 +89,6 @@ class TrailShow extends React.Component {
                 <img src={trail.image} alt={trail.name} id="ShowImage" />
               </figure>
               <br />
-              <Link to={'#'}><button className=" button is-success">Edit Trail</button></Link>
-              <Link to={'#'}><button className="button is-danger">Delete Trail</button></Link>
             </div>
             <div className="container">
               <h3 className="title is-3">Trail Clues</h3>

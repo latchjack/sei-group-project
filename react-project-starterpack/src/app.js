@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 import Map from './components/common/Map'
 import TrailNew from './components/trails/TrailNew'
+import TrailEdit from './components/trails/TrailEdit'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
 import TrailIndex from './components/trails/TrailIndex'
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="/trails/:id/complete"component={CompleteForm}/>
             <Route path="/trails/new"component={TrailNew} />
             <Route path="/trails/:id" component={TrailShow}/>
+            <Route path="trails/:id/edit" component={TrailEdit}/>
             <Route path="/trails" component={TrailIndex}/>
             <Route path="/FAQ" component={FAQ}/>
             <Route path="/register"component={Register}/>
