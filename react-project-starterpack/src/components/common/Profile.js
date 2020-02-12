@@ -26,22 +26,22 @@ class Profile extends React.Component {
     console.log(this.state.profile)
     return (
       <section className="section">
-        <h1>Username and User Image</h1>
+        <h1 className="title">Username and User Image</h1>
         <div className="container">
-          <h2>Trails that user has made:</h2>
+          <h2 className="title is-4">Trails that user has made:</h2>
           <div className="columns is-mobile is-multiline">
             {profile.createdTrails && profile.createdTrails.length === 0 && 
-            <p>You have not created any trails yet!</p>}
+            <p className="subtitle">You have not created any trails yet!</p>}
             {profile.createdTrails && profile.createdTrails.map(trail => (
               <TrailCard key={trail._id} {...trail} />
             ))}
           </div>
         </div>
         <div className="container">
-          <h2>Trails that user has liked:</h2>
+          <h2 className="title is-4">Saved Trails:</h2>
           <div className="columns is-mobile is-multiline">
             {profile.likedTrails && profile.likedTrails.length === 0 && 
-            <p>You have not saved any trails yet!</p>}
+            <p className="subtitle">You have not saved any trails yet!</p>}
             {profile.likedTrails && profile.likedTrails.map(trail => (
               <TrailCard key={trail._id} {...trail} />
             ))}
