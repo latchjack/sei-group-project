@@ -102,7 +102,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true }, (er
           longitude: -0.008138,
           latitude: 51.583888,
           clueOne: 'These plates are out of your league; you could say, premier.',
-          clueTwo: 'Just bare off of Shernal and you\'re nearly there',
+          clueTwo: 'Just bare off of Shernal and you\'re nearly there.',
           clueThree: 'Through the day I blend, and at dark beware of the glare.',
           image: 'http://www.godsownjunkyard.co.uk/gods%20own%202.jpg',
           weatherFactor: true,

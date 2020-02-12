@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from '../../lib/Auth'
+import auth from '../../lib/Auth'
 
 class CompleteForm extends React.Component {
   state = {
@@ -27,7 +27,7 @@ class CompleteForm extends React.Component {
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
         {
-          headers: { Authorization: `Bearer ${Auth.getToken()}` }
+          headers: { Authorization: `Bearer ${auth.getToken()}` }
         })
       this.props.history.push(`/trails/${trailId}`) 
     } catch (err) {

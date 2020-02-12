@@ -29,5 +29,6 @@ class Auth {
     return sub
   }
 
+  
 }
 export default Auth

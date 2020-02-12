@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
-import Auth from '../../lib/auth'
+import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import CompleteForm from '../trails/CompleteForm'
@@ -29,7 +29,7 @@ class TrailShow extends React.Component {
     try {
       await axios.delete(`/api/trails/${trailId}`, {
         headers: {
-          Authorization: `Bearer ${Auth.getToken()}`
+          Authorization: `Bearer ${auth.getToken()}`
         }
       })
       this.props.history.push('/trails')
@@ -39,14 +39,14 @@ class TrailShow extends React.Component {
   }
 
   isOwner = () => {
-    return Auth.getPayLoad().sub === this.state.trail.user._id
+    return auth.getPayLoad().sub === this.state.trail.user._id
   }
 
   handleClick = async () => {
     const trailId = this.props.match.params.id
     try {
       await axios.get(`/api/trails/${trailId}/like`, {
-        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+        headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
     } catch (err) {
       console.log(err.response)   
@@ -56,9 +56,9 @@ class TrailShow extends React.Component {
   render() {
     const { trail } = this.state
     if (!trail) return null
-    console.log(trail.likes)
-    console.log(Auth.getUser())
-    console.log(trail.likes.includes(Auth.getUser()))
+    // console.log(trail.likes)
+    console.log(auth.getUser())
+    console.log(trail.likes.filter(like => like.user === auth.getUser()))
     return (
       <section className="section">
         <div className="SHOWPAGE">

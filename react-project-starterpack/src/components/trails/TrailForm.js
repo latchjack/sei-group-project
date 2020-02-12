@@ -91,7 +91,7 @@ const TrailForm = ({ data, handleChange, handleSubmit }) => {
           />
             
         </div> 
-        <button type="submit" className="button is-fullwidth is-warning">Make Geocache</button>
+        <button type="submit" className="button is-fullwidth is-info">Make Geocache</button>
       </form>
 
     </div>
