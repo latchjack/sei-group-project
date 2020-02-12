@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from './../../lib/Auth'
+import Auth from './../../lib/auth'
 import Map from '../common/Map'
 
 class TrailNew extends React.Component {

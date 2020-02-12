@@ -2,9 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
-import Auth from './../../lib/Auth'
+import Auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import IdMap from '../common/IdMap'
 
 class TrailShow extends React.Component {
   state = {
@@ -47,7 +48,7 @@ class TrailShow extends React.Component {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
     } catch (err) {
-      console.log(err.response)
+      console.log(err.response)   
     }
   }
 
@@ -59,7 +60,7 @@ class TrailShow extends React.Component {
   render() {
     const { trail } = this.state
     if (!trail) return null
-    console.log(this.state.save)
+    console.log(this.state.trail)
     return (
       <section className="section">
         <div className="SHOWPAGE">
@@ -114,6 +115,12 @@ class TrailShow extends React.Component {
                 <h4 className="title is-3">Map Locations</h4>
                 <br />
                 <img src='https://c7.uihere.com/icons/305/955/619/gps-location-map-mobile-phone-pointer-smartphone-icon-3443604f1c2335175832ded904a4f6b7.png' />
+                <IdMap 
+                  data={{
+                    latitude: trail.latitude,
+                    longitude: trail.longitude
+                  }}
+                />
               </div>
               <hr />
               <br />
