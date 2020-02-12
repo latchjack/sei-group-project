@@ -49,18 +49,7 @@ class TrailShow extends React.Component {
     }
   }
 
-  // handleComplete = async () => {
-  //   const trailId = this.props.match.params.id
-  //   try {
-  //     await axios.get(`/api/trails/${trailId}/like`, {
-  //       headers: { Authorization: `Bearer ${Auth.getToken()}` }
-  //     })
-  //   } catch (err) {
-  //     console.log(err.response)
-  //   }
-  // }
-
-  // }
+  
   
 
   render() {
@@ -78,7 +67,7 @@ class TrailShow extends React.Component {
               </span>
               <span>Like</span>
             </button>
-            <Link to={`/trails/${trail._id}/complete`}><button className="button">Complete Form</button></Link>
+            <Link to={`/trails/${trail._id}/complete`}><button className="button">Have you completed this trail?</button></Link>
           </div>
           <hr />
           <div className="columns">

@@ -16,7 +16,7 @@ const likeSchema = new mongoose.Schema({
 //our completion form that will be accessed from the SHOW page and then added to the trailSchema
 const completionSchema = new mongoose.Schema({
   text: { type: String, required: true },
-  image: { type: String, required: true },
+  image: { type: String },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 }, {
   timestamps: true 

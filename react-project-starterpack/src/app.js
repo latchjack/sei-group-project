@@ -25,16 +25,16 @@ class App extends React.Component {
           <Navbar/>
           <Switch>
 
+            <Route exact path="/"component={Home}/>
+            <Route path="/trails/:id/edit" component={TrailEdit}/>
             <Route path="/trails/:id/complete"component={CompleteForm}/>
             <Route path="/trails/new"component={TrailNew} />
             <Route path="/trails/:id" component={TrailShow}/>
-            <Route path="trails/:id/edit" component={TrailEdit}/>
             <Route path="/trails" component={TrailIndex}/>
             <Route path="/FAQ" component={FAQ}/>
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
             <Route path="/profile" component={Profile} />
-            <Route exact path="/"component={Home}/>
             <Route path='/*' component={ErrorPage} />
             
           </Switch>
