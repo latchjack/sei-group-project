@@ -2,6 +2,10 @@ html{
   height:100%
 }
 
+main {
+  min-height: 100vh;
+}
+
 //HERO PAGE (HOME)
 .hero-body {
   background-image: url('https://i.imgur.com/AQBlxQk.jpg');
@@ -51,9 +55,8 @@ html{
 
 //FAQ
 .FAQPage{
-  font-family: 'Luckiest Guy', cursive;
   font-size: 30px;
-  color:#24DB38;
+  color:#189627;
   letter-spacing: 1px;
 }
 .FAQtxt{
@@ -61,7 +64,7 @@ color:  black;
 }
 
 .title{
-  color: #24DB38;
+  color: #189627;
 }
 
 //SHOW PAGE
@@ -74,7 +77,7 @@ color:  black;
 }
 
 .showClue{
-  color: #24DB38;
+  color: #189627;
 }
 // #ShowImage{
 //   border-radius: 2%;
@@ -99,23 +102,36 @@ color:  black;
 }
 
 .card-header-title{
-  color: #24DB38;
+  color: #189627;
 }
+
 
 //Footer
 .footer{
   min-height: 100%;
   padding: 0.5rem 0.5rem 0.5rem;
-}
-
-.footerContent{
-  height: 50px;
-  width:50px;
+  background-color: whitesmoke;
   display: flex;
-  flex-direction: row;
-  margin-left: 1100px;
+  justify-content: flex-end;
 }
 
-#icon{
-  padding-right: 15px;
+.footerContent {
+  display: flex;
+  justify-content: flex-end;
+  display: flex;
+  height: 50px;
+  flex-basis: 100%;
+
+  img {
+    width: 50px;
+    margin: 5px;
+  }
+}
+
+
+
+//NavbarBurger
+
+#root > main > nav > div > div.navbar-menu.is-active > div > a{
+  color:(rgb(0, 153, 255));
 }

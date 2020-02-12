@@ -14,15 +14,15 @@ class FAQ extends React.Component {
           <hr/>
           <hr/>
           <Collapsible trigger = 'The Game  +' className="dropDown">
-            <p className="FAQtxt">Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Participants navigate to a specific set of GPS coordinates and then attempt to find the geocache *container* hidden at that location.</p>
+            <p className="FAQtxt">Geocaching is a real-world, outdoor treasure hunting game using GPS-enabled devices. Participants navigate to a specific set of GPS coordinates and then attempt to find the geocache <q>container</q> hidden at that location.</p>
           </Collapsible>
           <hr/>
           <Collapsible trigger = 'How is the game played?  +' className="dropDown">
             <ul className="FAQtxt">
               <li>At its simplest level, geocaching requires these 9 steps:</li>
               <li>1.Register for a free Basic Membership.</li>
-              <li>2. Visit the *Hide and Seek a Cache* page.</li>
-              <li>3.Enter your postal code and click *search.*</li>
+              <li>2. Visit the <q>Hide and Seek a Cache</q> page.</li>
+              <li>3.Enter your postal code and click <q>search.</q></li>
               <li>4.Choose any geocache from the list and click on its name.</li>
               <li>5.Enter the coordinates of the geocache into your GPS Device.</li>
               <li>6.Use your GPS device to assist you in finding the hidden geocache.</li>
