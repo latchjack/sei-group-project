@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from '../../lib/Auth'
+import auth from '../../lib/auth'
 import Map from '../common/Map'
 
 class TrailEdit extends React.Component{
@@ -48,7 +48,7 @@ class TrailEdit extends React.Component{
     const trailId = this.props.match.params.id
     try {
       const { data } = await axios.put(`/api/trails/${trailId}`, this.state.data, {
-        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+        headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
       this.props.history.push(`/trails/${data._id}`)
     } catch (err) {
