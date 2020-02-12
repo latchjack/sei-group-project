@@ -114,7 +114,7 @@ class TrailShow extends React.Component {
           <hr />
           <div className="columns">
             <div className="column is-half">
-              <button onClick={this.handleClick} className="button is-danger">
+              <button onClick={this.handleSave} className="button is-danger">
                 <span className="icon is-small">
                   <FontAwesomeIcon icon={faHeart} />
                 </span>
@@ -153,16 +153,6 @@ class TrailShow extends React.Component {
                 <p className="showClue"> 3. {trail.clueThree}</p>
               </Collapsible>
               <hr />
-              <div className="Mapbox">
-                <h4 className="title is-3">Map Locations</h4>
-                <br />
-                <IdMap 
-                  data={{
-                    latitude: trail.latitude,
-                    longitude: trail.longitude
-                  }}
-                />
-              </div>
               <h4>{trail.weatherFactor}</h4>
               <Collapsible trigger='Have You Completed This GeoCache?' className="dropDown">
                 <section className="section">
