@@ -101,13 +101,8 @@ class TrailShow extends React.Component {
     return (
       <section className="section">
         <div className="SHOWPAGE">
-<<<<<<< HEAD
-          <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
-          <h4>Postcode: {trail.directions}</h4>
-=======
           <h2 className="title is-3">{trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
->>>>>>> development
           <div className="column-is-half">
           </div>
           <hr />
@@ -188,10 +183,7 @@ class TrailShow extends React.Component {
                 </section>
                   
               </Collapsible>
-              <div className="Mapbox">
-                <h4 className="title is-3">Map Locations</h4>
-                <br />
-
+          
               <hr />
               <h4>Is Weather a Factor? {trail.weatherFactor}</h4>
               <br />
