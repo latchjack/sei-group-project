@@ -16,11 +16,8 @@ import Login from './components/auth/Login'
 import FAQ from './components/common/FAQ'
 import Profile from './components/common/Profile'
 import ErrorPage from './components/common/ErrorPage'
-<<<<<<< HEAD
 import Footer from './components/common/Footer'
-=======
 import SecureRoute from './components/common/SecureRoute'
->>>>>>> 0fcd8efb1cd7b697e1279edd21f60e6edf787c8a
 
 class App extends React.Component {
   render() {
