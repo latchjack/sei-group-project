@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
 
@@ -44,17 +44,30 @@ class TrailShow extends React.Component {
     return auth.getPayLoad().sub === this.state.trail.user._id
   }
 
-  handleClick = async () => {
+  handleSave = async () => {
     const trailId = this.props.match.params.id
     try {
       await axios.get(`/api/trails/${trailId}/like`, {
         headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
     } catch (err) {
-      console.log(err.response)   
+      console.log(err.response)
     }
   }
 
+  handleLikeDelete = async () => {
+    const trailId = this.props.match.params.id
+    try {
+      await axios.delete(`/api/trails/${trailId}`, {
+        headers: {
+          Authorization: `Bearer ${auth.getToken()}`
+        }
+      })
+      this.props.history.push('/trails')
+    } catch (err) {
+      this.props.history.push('/notfound')
+    }
+  }
 
   handleChange = e => {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
@@ -70,14 +83,11 @@ class TrailShow extends React.Component {
         {
           headers: { Authorization: `Bearer ${auth.getToken()}` }
         })
-      this.props.history.push(`/trails/${trailId}`) 
+      this.props.history.push(`/trails/${trailId}`)
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
     }
   }
-
-
-
 
   handleUpload = async ({ target: { files } }) => {
     const data = new FormData
@@ -88,10 +98,6 @@ class TrailShow extends React.Component {
       this.handleChange({ target: { name: 'image', value: res.data.url } })
     })
   }
-
-
-
-
 
   render() {
     const { trail } = this.state
@@ -114,10 +120,16 @@ class TrailShow extends React.Component {
                 </span>
                 <span>Save</span>
               </button>
+              <button onClick={this.handleLikeDelete} className="button">
+                <span className="icon is-small">
+                  <FontAwesomeIcon icon={faHeartBroken} />
+                </span>
+                <span>Remove</span>
+              </button>
               <div className="Mapbox">
                 <br />
-                
-                <IdMap 
+
+                <IdMap
                   data={{
                     latitude: trail.latitude,
                     longitude: trail.longitude
@@ -165,39 +177,39 @@ class TrailShow extends React.Component {
                             name="text"
                             required
                             placeholder="Text"
-                            onChange={this.handleChange}               
+                            onChange={this.handleChange}
                           />
                         </div>
                       </div>
                       <hr />
-                      {image ? 
+                      {image ?
                         <div>
                           <img src={image} />
                         </div>
                         :
-          <>
-            <h4>Please upload a photo</h4>
-            <br />
-            <label className={labelClass}>{this.props.labelText}</label>
-            <input
-              className={this.props.inputClassName}
-              type="file"
-              onChange={this.handleUpload}
-            />
-          </>
+                        <>
+                          <h4>Please upload a photo</h4>
+                          <br />
+                          <label className={labelClass}>{this.props.labelText}</label>
+                          <input
+                            className={this.props.inputClassName}
+                            type="file"
+                            onChange={this.handleUpload}
+                          />
+                        </>
                       }
                       <hr />
                       <button type="submit" className="button is-fullwidth is-warning">Submit</button>
                     </form>
                   </div>
                 </section>
-                  
+
               </Collapsible>
-          
+
               <hr />
               <h4>Is Weather a Factor? {trail.weatherFactor}</h4>
               <br />
-             
+
 
               {this.isOwner() &&
                 <>
@@ -205,9 +217,7 @@ class TrailShow extends React.Component {
                   <button onClick={this.handleDelete} className="button is-danger">Delete Trail</button>
                 </>
               }
-              
-              
-            
+
             </div>
           </div>
         </div>

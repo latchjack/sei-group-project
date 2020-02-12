@@ -24,6 +24,7 @@ router.route('/trails/:id/complete')
 
 router.route('/trails/:id/like')
   .get(secureRoute, trails.like)
+  .delete(secureRoute, trails.likeDelete)
 
 router.route('/register')
   .post(users.register)
