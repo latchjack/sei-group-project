@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true , unique: true },
   email: { type: String, required: true , unique: true },
   password: { type: String, required: true }
+  // image: { type: String }
 })
 
 userSchema.virtual('createdTrails', {
@@ -13,7 +14,7 @@ userSchema.virtual('createdTrails', {
   foreignField: 'user'
 })
 
-//could use this for 'saved' trails
+//using this for 'saved' trails
 userSchema.virtual('likedTrails', {
   ref: 'Trail',
   localField: '_id',
