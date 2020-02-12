@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-import Auth from '../../lib/auth'
+import auth from '../../lib/auth'
 import TrailCard from '../trails/TrailCard'
 
 class Profile extends React.Component {
@@ -13,7 +13,7 @@ class Profile extends React.Component {
   async componentDidMount() {
     try {
       const res = await axios.get('/api/profile', {
-        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+        headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
       this.setState({ profile: res.data })
     } catch (err) {
