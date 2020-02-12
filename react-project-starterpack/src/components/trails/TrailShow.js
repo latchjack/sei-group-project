@@ -43,7 +43,6 @@ class TrailShow extends React.Component {
 
   handleClick = async () => {
     const trailId = this.props.match.params.id
-    console.log(this.state.trail.likes)
     try {
       await axios.get(`/api/trails/${trailId}/like`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -65,23 +64,12 @@ class TrailShow extends React.Component {
           <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
           <div className="column-is-half">
-            {this.state.save &&
-              <button onClick={this.handleClick, this.handleSave} className="button is-danger">
-                <span className="icon is-small">
-                  <FontAwesomeIcon icon={faHeart} />
-                </span>
-                <span>Save</span>
-              </button>
-            }
-            {!this.state.save &&
-              <button onClick={this.handleClick, this.handleSave} className="button">
-                <span className="icon is-small">
-                  <FontAwesomeIcon icon={faHeart} />
-                </span>
-                <span>Save</span>
-              </button>
-            }
-            
+            <button onClick={this.handleClick} className="button is-danger">
+              <span className="icon is-small">
+                <FontAwesomeIcon icon={faHeart} />
+              </span>
+              <span>Save</span>
+            </button>
             <Link to={`/trails/${trail._id}/complete`}><button className="button is-warning">I have completed this trail</button></Link>
           </div>
           <hr />

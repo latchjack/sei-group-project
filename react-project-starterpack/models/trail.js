@@ -30,11 +30,7 @@ const trailSchema = new mongoose.Schema({
   clueOne: { type: String, required: true },
   clueTwo: { type: String },
   clueThree: { type: String },
-<<<<<<< HEAD
   image: { type: String },
-=======
-  image: { type: String  },
->>>>>>> development
   weatherFactor: { type: Boolean, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ],
