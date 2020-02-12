@@ -16,6 +16,7 @@ import Login from './components/auth/Login'
 import FAQ from './components/common/FAQ'
 import Profile from './components/common/Profile'
 import ErrorPage from './components/common/ErrorPage'
+import Footer from './components/common/Footer'
 import SecureRoute from './components/common/SecureRoute'
 
 class App extends React.Component {
@@ -37,9 +38,10 @@ class App extends React.Component {
             <Route path="/login"component={Login} />
             <Route path="/profile" component={Profile} />
             <Route path='/*' component={ErrorPage} />
-            
           </Switch>
+          
         </main>
+        <Footer/>
       </BrowserRouter>
     )
   }
