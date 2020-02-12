@@ -61,7 +61,9 @@ class TrailEdit extends React.Component{
     data.append('file', files[0])
     data.append('upload_preset', 'rksde5wr')
     const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
-    this.setState({ image: res.data.url })
+    this.setState({ image: res.data.url }, () => {
+      this.handleChange({ target: { name: 'image', value: res.data.url } })
+    })
   }
 
 
@@ -91,11 +93,11 @@ class TrailEdit extends React.Component{
             <div className="control">
               <input 
                 className="input"
-                name="postcode"
+                name="directions"
                 required
                 placeholder="Postcode"
                 onChange={this.handleChange}
-                value={this.state.data.postcode}
+                value={this.state.data.directions}
               />
             </div>
           </div> 
