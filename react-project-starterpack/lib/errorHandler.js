@@ -2,8 +2,10 @@ function errorHandler(err, req, res, next) {
   // console.log('this errors name is ', err.name)
   if (err.name === 'ValidationError') {
     const customErrors = {}
+    console.log(err)
     for (const key in err.errors) {
       customErrors[key] = err.errors[key].message
+      console.log(err)
     }
     return res.status(422).json({ message: 'Unprocessable Entity', errors: customErrors })
   }

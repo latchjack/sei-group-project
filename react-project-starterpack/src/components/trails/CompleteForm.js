@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-//does this need auth key?
+import Auth from '../../lib/Auth'
 
 class CompleteForm extends React.Component {
   state = {
@@ -17,22 +17,25 @@ class CompleteForm extends React.Component {
 
   handleChange = e => {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
-    console.log(data)
     this.setState({ data })
   }
 
   handleSubmit = async e => {
     e.preventDefault()
     const trailId = this.props.match.params.id
-    console.log('i am submitting')
+    console.log(this.state.data, 'submit')
     try {
-      await axios.post(`/api/trails/${trailId}`, this.state.data)//needs an id to post this onto the specific trail
-      console.log(this.state.data)
-      this.props.history.push('/trails') //trails page
+      await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
+        {
+          headers: { Authorization: `Bearer ${Auth.getToken()}` }
+        })
+      this.props.history.push(`/trails/${trailId}`) 
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
     }
   }
+
+
 
 
   handleUpload = async ({ target: { files } }) => {
@@ -40,7 +43,9 @@ class CompleteForm extends React.Component {
     data.append('file', files[0])
     data.append('upload_preset', 'rksde5wr')
     const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
-    this.setState({ image: res.data.url })
+    this.setState({ image: res.data.url }, () => {
+      this.handleChange({ target: { name: 'image', value: res.data.url } })
+    })
   }
 
 

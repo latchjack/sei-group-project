@@ -61,6 +61,7 @@ function destroy(req, res, next) {
 //new controller for completion form
 function completion(req, res, next) {
   req.body.user = req.currentUser
+  console.log(req.body)
   Trail 
     .findById(req.params.id)
     .then(trail => {
