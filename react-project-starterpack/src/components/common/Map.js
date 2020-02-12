@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import ReactMapGL, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
@@ -39,14 +38,14 @@ class Map extends React.Component {
               </Marker>
             }
             {/* {showPopup && <Popup
-          latitude={this.state.clickedLocation[0]}
-          longitude={this.state.clickedLocation[1]}
-          closeButton={true}
-          closeOnClick={false}
-          onClose={() => this.setState({ showPopup: false })}
-          anchor="top" >
-          <div>You are here</div>
-        </Popup>} */}
+        //   latitude={this.state.clickedLocation[0]}
+        //   longitude={this.state.clickedLocation[1]}
+        //   closeButton={true}
+        //   closeOnClick={false}
+        //   onClose={() => this.setState({ showPopup: false })}
+        //   anchor="top" >
+        //   <div>You are here</div>
+        // </Popup>} */}
           </ReactMapGL>
         </div>
       </div>
