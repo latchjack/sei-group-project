@@ -1,22 +1,35 @@
 import React from 'react'
+import axios from 'axios'
+
 import ReactMapGL, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 const mapboxToken = process.env.MAPBOX_ACCESS_TOKEN
-// const pinImage = '/src/assets/pin.png'
 
-class Map extends React.Component {
+class IdMap extends React.Component {
 
   state = {
     viewport: {
       width: 550,
       height: 500,
-      latitude: 51.515313,
-      longitude: -0.071626,
-      zoom: 12
+      latitude: 51.515313 || `${this.state.params.id.latitude}`,
+      longitude: -0.071626 || `${this.state.params.id.longitude}`,
+      zoom: 15
     },
     clickedLocation: null,
     showPopup: false
+  }
+
+  async componentDidMount () {
+    console.log('I have mounted')
+    try {
+      const res = await axios.get('/api/trails/:id')
+      console.log(res.data)
+      this.setState({ clickedLocation: res.data })
+    } catch (err) {
+      console.log(err)
+    }
+
   }
 
   render() {
@@ -28,7 +41,6 @@ class Map extends React.Component {
             mapStyle="mapbox://styles/mapbox/streets-v9" 
             {...this.state.viewport} 
             onViewportChange={viewport => this.setState({ viewport })}
-            onClick={this.props.handleMap}
           >
             {this.props.data.latitude &&
               <Marker 
@@ -37,15 +49,6 @@ class Map extends React.Component {
                 <div className="pin" /> 
               </Marker>
             }
-            {/* {showPopup && <Popup
-          latitude={this.state.clickedLocation[0]}
-          longitude={this.state.clickedLocation[1]}
-          closeButton={true}
-          closeOnClick={false}
-          onClose={() => this.setState({ showPopup: false })}
-          anchor="top" >
-          <div>You are here</div>
-        </Popup>} */}
           </ReactMapGL>
         </div>
       </div>
@@ -53,4 +56,4 @@ class Map extends React.Component {
   }
 }
 
-export default Map
+export default IdMap
