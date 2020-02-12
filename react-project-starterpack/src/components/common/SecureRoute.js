@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import Auth from '../../lib/Auth'
+import auth from '../../lib/auth'
 
 const SecureRoute = ({ component: Component, ...rest }) => {
 
-  if (Auth.isAuthenticated()) return <Route {...rest} component={Component}/>
-  Auth.logout()
+  if (auth.isAuthenticated()) return <Route {...rest} component={Component}/>
+  auth.logout()
   return <Redirect to="/login"/>
   
 }

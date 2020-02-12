@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
-import Auth from '../../lib/auth'
+import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import CompleteForm from '../trails/CompleteForm'
@@ -29,7 +29,7 @@ class TrailShow extends React.Component {
     try {
       await axios.delete(`/api/trails/${trailId}`, {
         headers: {
-          Authorization: `Bearer ${Auth.getToken()}`
+          Authorization: `Bearer ${auth.getToken()}`
         }
       })
       this.props.history.push('/trails')
@@ -39,14 +39,14 @@ class TrailShow extends React.Component {
   }
 
   isOwner = () => {
-    return Auth.getPayLoad().sub === this.state.trail.user._id
+    return auth.getPayLoad().sub === this.state.trail.user._id
   }
 
   handleClick = async () => {
     const trailId = this.props.match.params.id
     try {
       await axios.get(`/api/trails/${trailId}/like`, {
-        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+        headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
     } catch (err) {
       console.log(err.response)   
@@ -114,7 +114,7 @@ class TrailShow extends React.Component {
               <div className="Mapbox">
                 <h4 className="title is-3">Map Locations</h4>
                 <br />
-                <img src='https://c7.uihere.com/icons/305/955/619/gps-location-map-mobile-phone-pointer-smartphone-icon-3443604f1c2335175832ded904a4f6b7.png' />
+                
                 <IdMap 
                   data={{
                     latitude: trail.latitude,

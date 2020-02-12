@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import Auth from '../../lib/auth'
+import auth from '../../lib/auth'
 
 class Navbar extends React.Component {
 
@@ -12,7 +12,7 @@ class Navbar extends React.Component {
 
 
   handleLogout = () => {
-    Auth.logout()
+    auth.logout()
     this.props.history.push('/')
   }
 
@@ -40,11 +40,11 @@ class Navbar extends React.Component {
             <div className="navbar-end">
               <Link className="navbar-item" to="/trails">See All Trails</Link>
               <Link className="navbar-item" to="/FAQ">FAQ</Link>
-              {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
-              {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
-              {Auth.isAuthenticated() && <Link className="navbar-item" to="/trails/new">Add a Trail</Link>}
-              {Auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
-              {Auth.isAuthenticated() && <Link className="navbar-item" to="/profile">Profile</Link>}
+              {!auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
+              {!auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
+              {auth.isAuthenticated() && <Link className="navbar-item" to="/trails/new">Add a Trail</Link>}
+              {auth.isAuthenticated() && <a onClick={this.handleLogout} className="navbar-item">Logout</a>}
+              {auth.isAuthenticated() && <Link className="navbar-item" to="/profile">Profile</Link>}
             </div>
           </div>
         </div>
