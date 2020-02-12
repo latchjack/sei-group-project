@@ -23,6 +23,12 @@ class Auth {
     return now < payload.exp 
   }
 
+  static getUser() {
+    const { sub } = this.getPayLoad()
+    if (!sub) return false 
+    return sub
+  }
+
 }
 export default Auth 
 

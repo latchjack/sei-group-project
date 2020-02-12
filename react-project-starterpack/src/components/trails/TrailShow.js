@@ -42,6 +42,7 @@ class TrailShow extends React.Component {
 
   handleClick = async () => {
     const trailId = this.props.match.params.id
+    console.log(this.state.trail.likes)
     try {
       await axios.get(`/api/trails/${trailId}/like`, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -51,37 +52,38 @@ class TrailShow extends React.Component {
     }
   }
 
-  handleSave = () => {
-    const save = !this.state.save
-    this.setState({ save })
-  }
+  // I want to toggle the save button to be red (is-danger) when user has liked it, and default if not.
+  // After component mounts data, check if trail.likes.includes(Auth.getUser())
+  // If true, load the button as red
+  // If false, load the button as default
+  // When the button is clicked, and trail.likes.includes(Auth.getUser()), delete the like and turn button default
+  // When the button is clicked, and trail.likes.includes(Auth.getUser()), add the like and turn button red
+
+  // handleSave = () => {
+  //   const save = !this.state.save
+  //   this.setState({ save })
+  //   console.log(this.state.save)
+  //   console.log
+  // }
 
   render() {
     const { trail } = this.state
     if (!trail) return null
-    console.log(this.state.save)
+    console.log(trail.likes)
+    console.log(Auth.getUser())
+    console.log(trail.likes.includes(Auth.getUser()))
     return (
       <section className="section">
         <div className="SHOWPAGE">
           <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
           <div className="column-is-half">
-            {this.state.save &&
-              <button onClick={this.handleClick, this.handleSave} className="button is-danger">
-                <span className="icon is-small">
-                  <FontAwesomeIcon icon={faHeart} />
-                </span>
-                <span>Save</span>
-              </button>
-            }
-            {!this.state.save &&
-              <button onClick={this.handleClick, this.handleSave} className="button">
-                <span className="icon is-small">
-                  <FontAwesomeIcon icon={faHeart} />
-                </span>
-                <span>Save</span>
-              </button>
-            }
+            <button onClick={this.handleClick} className="button is-danger">
+              <span className="icon is-small">
+                <FontAwesomeIcon icon={faHeart} />
+              </span>
+              <span>Save</span>
+            </button>
             <Link to={'/trails/:id/complete'}><button className="button is-warning">I have completed this trail</button></Link>
           </div>
           <hr />

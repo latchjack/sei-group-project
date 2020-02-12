@@ -115,4 +115,19 @@ function like(req, res, next) {
     .catch(next)
 }
 
-module.exports = { index, create, show, update, destroy, commentCreate, commentDelete, completion, like }
+function likeDelete(req, res, next) {
+  Trail
+    .findById(req.params.id)
+    .then(trail => {
+      if (!trail) return res.status(404).json({ message: 'Not Found' })
+      if (trail.likes.some(like => like.user.equals(req.currentUser._id))) {
+        const like = trail.likes.filter(like => like.user.equals(req.currentUser._id))[0]
+        like.remove()
+        return trail.save()
+      }
+    })
+    .then(trail => res.status(202).json(trail))
+    .catch(next)
+}
+
+module.exports = { index, create, show, update, destroy, commentCreate, commentDelete, completion, like, likeDelete }
