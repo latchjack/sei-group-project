@@ -52,20 +52,6 @@ class TrailShow extends React.Component {
     }
   }
 
-  // I want to toggle the save button to be red (is-danger) when user has liked it, and default if not.
-  // After component mounts data, check if trail.likes.includes(Auth.getUser())
-  // If true, load the button as red
-  // If false, load the button as default
-  // When the button is clicked, and trail.likes.includes(Auth.getUser()), delete the like and turn button default
-  // When the button is clicked, and trail.likes.includes(Auth.getUser()), add the like and turn button red
-
-  // handleSave = () => {
-  //   const save = !this.state.save
-  //   this.setState({ save })
-  //   console.log(this.state.save)
-  //   console.log
-  // }
-
   render() {
     const { trail } = this.state
     if (!trail) return null
