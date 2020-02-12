@@ -15,6 +15,7 @@ import Login from './components/auth/Login'
 import FAQ from './components/common/FAQ'
 import Profile from './components/common/Profile'
 import ErrorPage from './components/common/ErrorPage'
+import Footer from './components/common/Footer'
 
 class App extends React.Component {
   render() {
@@ -34,9 +35,10 @@ class App extends React.Component {
             <Route path="/profile" component={Profile} />
             <Route exact path="/"component={Home}/>
             <Route path='/*' component={ErrorPage} />
-            
           </Switch>
+          
         </main>
+        <Footer/>
       </BrowserRouter>
     )
   }
