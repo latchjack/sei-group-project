@@ -5,6 +5,7 @@ import Collapsible from 'react-collapsible'
 import Auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
 
 class TrailShow extends React.Component {
@@ -83,7 +84,8 @@ class TrailShow extends React.Component {
                 <span>Save</span>
               </button>
             }
-            <Link to={'/trails/:id/complete'}><button className="button is-warning">I have completed this trail</button></Link>
+            
+            <Link to={`/trails/${trail._id}/complete`}><button className="button is-warning">I have completed this trail</button></Link>
           </div>
           <hr />
           <div className="columns">
@@ -92,8 +94,6 @@ class TrailShow extends React.Component {
                 <img src={trail.image} alt={trail.name} id="ShowImage" />
               </figure>
               <br />
-              <Link to={'#'}><button className=" button is-success">Edit Trail</button></Link>
-              <Link to={'#'}><button className="button is-danger">Delete Trail</button></Link>
             </div>
             <div className="container">
               <h3 className="title is-3">Trail Clues</h3>

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from './../../lib/auth'
+import auth from './../../lib/auth'
 import Map from '../common/Map'
 
 class TrailNew extends React.Component {
@@ -27,7 +27,6 @@ class TrailNew extends React.Component {
     }
 
     handleChange = ({ target: { name, value, checked, type } }) => {
-      console.log(this.state.data) //value of type is if someone checked the check box
       const newValue = type === 'checkbox' ? checked : value //update state with calculated new value, if the type is check box then use checked value, if not then use it's own value
       const data = ({ ...this.state.data, [name]: newValue })
       this.setState({ data })
@@ -37,8 +36,9 @@ class TrailNew extends React.Component {
       e.preventDefault() 
       try {
         const res = await axios.post('/api/trails', this.state.data, {
-          headers: { Authorization: `Bearer ${Auth.getToken()}` }
+          headers: { Authorization: `Bearer ${auth.getToken()}` }
         })
+        console.log(res)
         this.props.history.push(`/trails/${res.data._id}`)
       } catch (err) {
         console.log(err)
@@ -50,7 +50,10 @@ class TrailNew extends React.Component {
       data.append('file', files[0])
       data.append('upload_preset', 'rksde5wr')
       const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
-      this.setState({ image: res.data.url })
+      console.log(res)
+      this.setState({ image: res.data.url }, () => {
+        this.handleChange({ target: { name: 'image', value: res.data.url } })
+      })
     }
   
 
@@ -69,7 +72,7 @@ class TrailNew extends React.Component {
                 <input 
                   className="input"
                   name="name"
-                  required
+                  
                   placeholder="Name"
                   onChange={this.handleChange}
                   value={this.state.data.name}
@@ -81,11 +84,11 @@ class TrailNew extends React.Component {
               <div className="control">
                 <input 
                   className="input"
-                  name="postcode"
+                  name="directions"
                   required
                   placeholder="Postcode"
                   onChange={this.handleChange}
-                  value={this.state.data.postcode}
+                  value={this.state.data.directions}
                 />
               </div>
             </div> 
