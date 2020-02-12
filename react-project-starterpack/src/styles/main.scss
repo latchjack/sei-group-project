@@ -1,3 +1,11 @@
+html{
+  height:100%
+}
+
+main {
+  min-height: 100vh;
+}
+
 //HERO PAGE (HOME)
 .hero-body {
   background-image: url('https://i.imgur.com/AQBlxQk.jpg');
@@ -47,10 +55,16 @@
 
 //FAQ
 .FAQPage{
-  font-family: 'Luckiest Guy', cursive;
   font-size: 30px;
-  color:#32CD32;
+  color:#189627;
   letter-spacing: 1px;
+}
+.FAQtxt{
+color:  black;
+}
+
+.title{
+  color: #189627;
 }
 
 //SHOW PAGE
@@ -61,12 +75,63 @@
 .dropDown{
   cursor: pointer;
 }
+
+.showClue{
+  color: #189627;
+}
 // #ShowImage{
 //   border-radius: 2%;
 //  }
 
 .card{
   &:hover {
-    box-shadow: 0px 0px 10px 10px springgreen;
+    box-shadow: 0px 0px 10px 10px #40FF00;
   }
+}
+
+//Trails
+.trailIndex{
+  margin: 20px;
+}
+
+//CARD
+.card {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.card-header-title{
+  color: #189627;
+}
+
+
+//Footer
+.footer{
+  min-height: 100%;
+  padding: 0.5rem 0.5rem 0.5rem;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: flex-end;
+  display: flex;
+  height: 50px;
+  flex-basis: 100%;
+
+  img {
+    width: 50px;
+    margin: 5px;
+  }
+}
+
+
+
+//NavbarBurger
+
+#root > main > nav > div > div.navbar-menu.is-active > div > a{
+  color:(rgb(0, 153, 255));
 }

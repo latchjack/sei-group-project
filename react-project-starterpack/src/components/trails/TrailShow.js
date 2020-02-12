@@ -65,7 +65,7 @@ class TrailShow extends React.Component {
     return (
       <section className="section">
         <div className="SHOWPAGE">
-          <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
+          <h2 className="title is-3">{trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
           <div className="column-is-half">
             {this.state.save &&
@@ -99,18 +99,17 @@ class TrailShow extends React.Component {
               <h3 className="title is-3">Trail Clues</h3>
               <hr />
               <Collapsible trigger='ClueOne +' className="dropDown">
-                <p>1. {trail.clueOne}</p>
+                <p className="showClue">1. {trail.clueOne}</p>
               </Collapsible>
               <hr />
               <Collapsible trigger='Clue Two +' className="dropDown">
-                <p>2. {trail.clueTwo}</p>
+                <p className="showClue">2. {trail.clueTwo}</p>
               </Collapsible>
               <hr />
               <Collapsible trigger='Clue Three +' className="dropDown">
-                <p>3. {trail.clueThree}</p>
+                <p className="showClue"> 3. {trail.clueThree}</p>
               </Collapsible>
               <hr />
-              <h4>{trail.weatherFactor}</h4>
               <div className="Mapbox">
                 <h4 className="title is-3">Map Locations</h4>
                 <br />
@@ -123,6 +122,7 @@ class TrailShow extends React.Component {
                 />
               </div>
               <hr />
+              <h4>Is Weather a Factor? {trail.weatherFactor}</h4>
               <br />
               {this.isOwner() &&
                 <>
