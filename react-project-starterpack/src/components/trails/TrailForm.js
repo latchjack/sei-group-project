@@ -24,13 +24,13 @@ const TrailForm = ({ data, handleChange, handleSubmit }) => {
           </div>
         </div> 
         <div className="field">
-          <label className="label">Directions</label>
+          <label className="label">Postcode</label>
           <div className="control">
             <input 
               className="input"
               name="directions"
               required
-              placeholder="Directions"
+              placeholder="Postcode"
               onChange={handleChange}
               value={data.directions}
             />
