@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from '../../lib/Auth'
+import auth from '../../lib/auth'
 
 class CompleteForm extends React.Component {
   state = {
@@ -9,7 +9,8 @@ class CompleteForm extends React.Component {
       image: null
     },
     
-    errors: {}
+    errors: {},
+    trail: null
 
   }
  
@@ -27,7 +28,7 @@ class CompleteForm extends React.Component {
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
         {
-          headers: { Authorization: `Bearer ${Auth.getToken()}` }
+          headers: { Authorization: `Bearer ${auth.getToken()}` }
         })
       this.props.history.push(`/trails/${trailId}`) 
     } catch (err) {
@@ -53,13 +54,14 @@ class CompleteForm extends React.Component {
   
 
   render() {
+    console.log(this.props.match.params.id)
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
     return (
 
       <section className="section">
         <div className="columns">
-          <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter">
+          <form onSubmit={this.handleSubmit} className="column is-half">
             <h2 className="title">Geocache Completion Form</h2>
             <div className="field">
               <label className="label">How was your experience?</label>
@@ -73,6 +75,7 @@ class CompleteForm extends React.Component {
                 />
               </div>
             </div>
+            <hr />
             {image ? 
               <div>
                 <img src={image} />
@@ -80,6 +83,7 @@ class CompleteForm extends React.Component {
               :
           <>
             <h4>Please upload a photo</h4>
+            <br />
             <label className={labelClass}>{this.props.labelText}</label>
             <input
               className={this.props.inputClassName}
@@ -88,7 +92,7 @@ class CompleteForm extends React.Component {
             />
           </>
             }
-            
+            <hr />
             <button type="submit" className="button is-fullwidth is-warning">Submit</button>
           </form>
         </div>

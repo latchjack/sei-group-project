@@ -9,7 +9,7 @@ const IdMap = ({ data: { latitude, longitude } }) => {
   const viewport = {
     width: 550,
     height: 500,
-    zoom: 15
+    zoom: 16
   }
 
   return (
