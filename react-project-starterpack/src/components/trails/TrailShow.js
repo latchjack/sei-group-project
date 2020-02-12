@@ -26,8 +26,6 @@ class TrailShow extends React.Component {
     }
   }
 
-<<<<<<< HEAD
-=======
   handleDelete = async () => {
     const trailId = this.props.match.params.id
     try {
@@ -42,7 +40,6 @@ class TrailShow extends React.Component {
     }
   }
 
->>>>>>> d382e752c98902ee1dc0e7d32f73424a7018fbb1
   isOwner = () => {
     return auth.getPayLoad().sub === this.state.trail.user._id
   }
@@ -54,20 +51,23 @@ class TrailShow extends React.Component {
         headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
     } catch (err) {
-      console.log(err.response)   
+      console.log(err.response)
     }
   }
 
-<<<<<<< HEAD
-  handleDelete = async () => {
+  handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}/like`, {
-        headers: { Authorization: `Bearer ${auth.getToken()}` }
+      await axios.delete(`/api/trails/${trailId}`, {
+        headers: {
+          Authorization: `Bearer ${auth.getToken()}`
+        }
       })
+      this.props.history.push('/trails')
     } catch (err) {
-      console.log(err.response) 
-=======
+      this.props.history.push('/notfound')
+    }
+  }
 
   handleChange = e => {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
@@ -83,15 +83,11 @@ class TrailShow extends React.Component {
         {
           headers: { Authorization: `Bearer ${auth.getToken()}` }
         })
-      this.props.history.push(`/trails/${trailId}`) 
+      this.props.history.push(`/trails/${trailId}`)
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
->>>>>>> d382e752c98902ee1dc0e7d32f73424a7018fbb1
     }
   }
-
-
-
 
   handleUpload = async ({ target: { files } }) => {
     const data = new FormData
@@ -103,61 +99,43 @@ class TrailShow extends React.Component {
     })
   }
 
-
-
-
-
   render() {
     const { trail } = this.state
     if (!trail) return null
-<<<<<<< HEAD
-    console.log(trail.likes)
-=======
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
->>>>>>> d382e752c98902ee1dc0e7d32f73424a7018fbb1
     return (
       <section className="section">
         <div className="SHOWPAGE">
           <h2 className="title is-3">{trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
           <div className="column-is-half">
-<<<<<<< HEAD
-            <button onClick={this.handleSave} className="button is-danger">
-              <span className="icon is-small">
-                <FontAwesomeIcon icon={faHeart} />
-              </span>
-              <span>Save</span>
-            </button>
-            <Link to={`/trails/${trail._id}/complete`}><button className="button is-warning">I have completed this trail</button></Link>
-=======
->>>>>>> d382e752c98902ee1dc0e7d32f73424a7018fbb1
           </div>
           <hr />
           <div className="columns">
             <div className="column is-half">
-<<<<<<< HEAD
-              <figure className="image">
-                <img src={trail.image} alt={trail.name} id="ShowImage" />
-              </figure>
-=======
               <button onClick={this.handleClick} className="button is-danger">
                 <span className="icon is-small">
                   <FontAwesomeIcon icon={faHeart} />
                 </span>
                 <span>Save</span>
               </button>
+              <button onClick={this.handleLikeDelete} className="button">
+                <span className="icon is-small">
+                  <FontAwesomeIcon icon={faHeartBroken} />
+                </span>
+                <span>Remove</span>
+              </button>
               <div className="Mapbox">
                 <br />
-                
-                <IdMap 
+
+                <IdMap
                   data={{
                     latitude: trail.latitude,
                     longitude: trail.longitude
                   }}
                 />
               </div>
->>>>>>> d382e752c98902ee1dc0e7d32f73424a7018fbb1
               <br />
             </div>
             <div className="container">
@@ -189,39 +167,39 @@ class TrailShow extends React.Component {
                             name="text"
                             required
                             placeholder="Text"
-                            onChange={this.handleChange}               
+                            onChange={this.handleChange}
                           />
                         </div>
                       </div>
                       <hr />
-                      {image ? 
+                      {image ?
                         <div>
                           <img src={image} />
                         </div>
                         :
-          <>
-            <h4>Please upload a photo</h4>
-            <br />
-            <label className={labelClass}>{this.props.labelText}</label>
-            <input
-              className={this.props.inputClassName}
-              type="file"
-              onChange={this.handleUpload}
-            />
-          </>
+                        <>
+                          <h4>Please upload a photo</h4>
+                          <br />
+                          <label className={labelClass}>{this.props.labelText}</label>
+                          <input
+                            className={this.props.inputClassName}
+                            type="file"
+                            onChange={this.handleUpload}
+                          />
+                        </>
                       }
                       <hr />
                       <button type="submit" className="button is-fullwidth is-warning">Submit</button>
                     </form>
                   </div>
                 </section>
-                  
+
               </Collapsible>
-          
+
               <hr />
               <h4>Is Weather a Factor? {trail.weatherFactor}</h4>
               <br />
-             
+
 
               {this.isOwner() &&
                 <>
@@ -229,9 +207,7 @@ class TrailShow extends React.Component {
                   <button onClick={this.handleDelete} className="button is-danger">Delete Trail</button>
                 </>
               }
-              
-              
-            
+
             </div>
           </div>
         </div>
