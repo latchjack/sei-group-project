@@ -11,6 +11,7 @@ class CompleteForm extends React.Component {
     
     errors: {},
     trail: null
+
   }
  
 
@@ -22,7 +23,7 @@ class CompleteForm extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault()
-    const trailId = this.props.trail.id
+    const trailId = this.props.match.params.id
     console.log(this.state.data, 'submit')
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
@@ -53,14 +54,11 @@ class CompleteForm extends React.Component {
   
 
   render() {
-    const { trail } = this.state
-    if (!trail) return null
-    console.log(this.props.trail)
+    console.log(this.props.match.params.id)
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
-    
     return (
-      
+
       <section className="section">
         <div className="columns">
           <form onSubmit={this.handleSubmit} className="column is-half">

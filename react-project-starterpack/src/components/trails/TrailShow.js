@@ -101,13 +101,8 @@ class TrailShow extends React.Component {
     return (
       <section className="section">
         <div className="SHOWPAGE">
-<<<<<<< HEAD
-          <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
-          <h4>Postcode: {trail.directions}</h4>
-=======
           <h2 className="title is-3">{trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
->>>>>>> development
           <div className="column-is-half">
           </div>
           <hr />
@@ -146,7 +141,6 @@ class TrailShow extends React.Component {
                 <p className="showClue"> 3. {trail.clueThree}</p>
               </Collapsible>
               <hr />
-<<<<<<< HEAD
               <h4>{trail.weatherFactor}</h4>
               <Collapsible trigger='Have You Completed This GeoCache?' className="dropDown">
                 <section className="section">
@@ -189,19 +183,7 @@ class TrailShow extends React.Component {
                 </section>
                   
               </Collapsible>
-=======
-              <div className="Mapbox">
-                <h4 className="title is-3">Map Locations</h4>
-                <br />
-                <img src='https://c7.uihere.com/icons/305/955/619/gps-location-map-mobile-phone-pointer-smartphone-icon-3443604f1c2335175832ded904a4f6b7.png' />
-                <IdMap 
-                  data={{
-                    latitude: trail.latitude,
-                    longitude: trail.longitude
-                  }}
-                />
-              </div>
->>>>>>> development
+          
               <hr />
               <h4>Is Weather a Factor? {trail.weatherFactor}</h4>
               <br />
