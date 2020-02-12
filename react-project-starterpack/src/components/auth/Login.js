@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from './../../lib/Auth'
+import auth from './../../lib/auth'
 
 
 class Login extends React.Component {
@@ -22,7 +22,7 @@ class Login extends React.Component {
     e.preventDefault()
     try {
       const res = await axios.post('/api/login', this.state.data)
-      Auth.setToken(res.data.token)
+      auth.setToken(res.data.token)
       
     } catch (err) {
       this.setState({ error: 'Incorrect Credentials' })
