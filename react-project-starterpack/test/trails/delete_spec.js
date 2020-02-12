@@ -1,4 +1,8 @@
 /* global api, describe, it, expect, beforeEach, afterEach */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
 const Trail = require('../../models/trail')
 const User = require('../../models/user')
 const jwt = require('jsonwebtoken')
@@ -18,15 +22,23 @@ const testUserData = [{
 
 describe('DELETE /trails/:id', () => {
   let token = null
+<<<<<<< HEAD
 
   let incorrectToken = null
   let trail = null
 
+=======
+  let incorrectToken = null
+  let trail = null
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
   beforeEach(done => {
     User.create(testUserData)
       .then(users => {
         token = jwt.sign({ sub: users[0]._id }, secret, { expiresIn: '6h' })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
         incorrectToken = jwt.sign({ sub: users[1]._id }, secret, { expiresIn: '6h' })
         return Trail.create({
           name: 'Murky Depths',
@@ -44,13 +56,19 @@ describe('DELETE /trails/:id', () => {
         done()
       })
   })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
   afterEach(done => {
     User.deleteMany()
       .then(() => Trail.deleteMany())
       .then(() => done())
   })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
   it('should return a 401 response without a token', done => {
     api.delete(`/api/trails/${trail._id}`)
       .end((err, res) => {
@@ -58,7 +76,10 @@ describe('DELETE /trails/:id', () => {
         done()
       })
   })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
   it('should return a 204 response with a token', done => {
     api.delete(`/api/trails/${trail._id}`)
       .set('Authorization', `Bearer ${token}`)
@@ -67,7 +88,10 @@ describe('DELETE /trails/:id', () => {
         done()
       })
   })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
   it('should return no data', done => {
     api.delete(`/api/trails/${trail._id}`)
       .set('Authorization', `Bearer ${token}`)
@@ -76,7 +100,10 @@ describe('DELETE /trails/:id', () => {
         done()
       })
   })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
   it('should return a 401 response with a token for a user that did not create the resource', done => {
     api.delete(`/api/trails/${trail._id}`)
       .set('Authorization', `Bearer ${incorrectToken}`)
@@ -85,5 +112,8 @@ describe('DELETE /trails/:id', () => {
         done()
       })
   })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a5c44fb82db36116cba5d5c938581a14338c931
 })

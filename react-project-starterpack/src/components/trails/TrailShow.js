@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import Auth from './../../lib/Auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 class TrailShow extends React.Component {
-  state = { trail: null }
+  state = {
+    trail: null,
+    save: false
+  }
 
   async componentDidMount() {
     const trailId = this.props.match.params.id
@@ -19,14 +22,13 @@ class TrailShow extends React.Component {
     }
   }
 
-
   handleDelete = async () => {
     const trailId = this.props.match.params.id
     try {
       await axios.delete(`/api/trails/${trailId}`, {
         headers: {
-          Authorization: `Bearer ${Auth.getToken()}
-    ` }
+          Authorization: `Bearer ${Auth.getToken()}`
+        }
       })
       this.props.history.push('/trails')
     } catch (err) {
@@ -49,22 +51,38 @@ class TrailShow extends React.Component {
     }
   }
 
+  handleSave = () => {
+    const save = !this.state.save
+    this.setState({ save })
+  }
+
   render() {
     const { trail } = this.state
     if (!trail) return null
+    console.log(this.state.save)
     return (
       <section className="section">
         <div className="SHOWPAGE">
           <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
           <div className="column-is-half">
-            <button onClick={this.handleClick} className="button">
-              <span className="icon is-small">
-                <FontAwesomeIcon icon={faThumbsUp} />
-              </span>
-              <span>Like</span>
-            </button>
-            <Link to={'/trails/:id/complete'}><button className="button">Complete Form</button></Link>
+            {this.state.save &&
+              <button onClick={this.handleClick, this.handleSave} className="button is-danger">
+                <span className="icon is-small">
+                  <FontAwesomeIcon icon={faHeart} />
+                </span>
+                <span>Save</span>
+              </button>
+            }
+            {!this.state.save &&
+              <button onClick={this.handleClick, this.handleSave} className="button">
+                <span className="icon is-small">
+                  <FontAwesomeIcon icon={faHeart} />
+                </span>
+                <span>Save</span>
+              </button>
+            }
+            <Link to={'/trails/:id/complete'}><button className="button is-warning">I have completed this trail</button></Link>
           </div>
           <hr />
           <div className="columns">
@@ -80,15 +98,15 @@ class TrailShow extends React.Component {
               <h3 className="title is-3">Trail Clues</h3>
               <hr />
               <Collapsible trigger='ClueOne +' className="dropDown">
-                <p>{trail.clueOne}</p>
+                <p>1. {trail.clueOne}</p>
               </Collapsible>
               <hr />
               <Collapsible trigger='Clue Two +' className="dropDown">
-                <p>2.{trail.clueTwo}</p>
+                <p>2. {trail.clueTwo}</p>
               </Collapsible>
               <hr />
               <Collapsible trigger='Clue Three +' className="dropDown">
-                <p>3.{trail.clueThree}</p>
+                <p>3. {trail.clueThree}</p>
               </Collapsible>
               <hr />
               <h4>{trail.weatherFactor}</h4>
