@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
 
@@ -24,25 +24,11 @@ class TrailShow extends React.Component {
     }
   }
 
-  handleDelete = async () => {
-    const trailId = this.props.match.params.id
-    try {
-      await axios.delete(`/api/trails/${trailId}`, {
-        headers: {
-          Authorization: `Bearer ${auth.getToken()}`
-        }
-      })
-      this.props.history.push('/trails')
-    } catch (err) {
-      this.props.history.push('/notfound')
-    }
-  }
-
   isOwner = () => {
     return auth.getPayLoad().sub === this.state.trail.user._id
   }
 
-  handleClick = async () => {
+  handleSave = async () => {
     const trailId = this.props.match.params.id
     try {
       await axios.get(`/api/trails/${trailId}/like`, {
@@ -53,19 +39,28 @@ class TrailShow extends React.Component {
     }
   }
 
+  handleDelete = async () => {
+    const trailId = this.props.match.params.id
+    try {
+      await axios.delete(`/api/trails/${trailId}/like`, {
+        headers: { Authorization: `Bearer ${auth.getToken()}` }
+      })
+    } catch (err) {
+      console.log(err.response) 
+    }
+  }
+
   render() {
     const { trail } = this.state
     if (!trail) return null
-    // console.log(trail.likes)
-    console.log(auth.getUser())
-    console.log(trail.likes.filter(like => like.user === auth.getUser()))
+    console.log(trail.likes)
     return (
       <section className="section">
         <div className="SHOWPAGE">
           <h2 className="title is-3">🔍 {trail.name} 🔎</h2>
           <h4>{trail.directions}</h4>
           <div className="column-is-half">
-            <button onClick={this.handleClick} className="button is-danger">
+            <button onClick={this.handleSave} className="button is-danger">
               <span className="icon is-small">
                 <FontAwesomeIcon icon={faHeart} />
               </span>

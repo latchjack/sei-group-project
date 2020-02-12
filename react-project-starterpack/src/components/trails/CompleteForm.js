@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import auth from '../../lib/Auth'
+import auth from '../../lib/auth'
 
 class CompleteForm extends React.Component {
   state = {
