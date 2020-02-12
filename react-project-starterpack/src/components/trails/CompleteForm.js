@@ -9,8 +9,8 @@ class CompleteForm extends React.Component {
       image: null
     },
     
-    errors: {}
-
+    errors: {},
+    trail: null
   }
  
 
@@ -22,7 +22,7 @@ class CompleteForm extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault()
-    const trailId = this.props.match.params.id
+    const trailId = this.props.trail.id
     console.log(this.state.data, 'submit')
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
@@ -53,13 +53,17 @@ class CompleteForm extends React.Component {
   
 
   render() {
+    const { trail } = this.state
+    if (!trail) return null
+    console.log(this.props.trail)
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
+    
     return (
-
+      
       <section className="section">
         <div className="columns">
-          <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter">
+          <form onSubmit={this.handleSubmit} className="column is-half">
             <h2 className="title">Geocache Completion Form</h2>
             <div className="field">
               <label className="label">How was your experience?</label>
@@ -73,6 +77,7 @@ class CompleteForm extends React.Component {
                 />
               </div>
             </div>
+            <hr />
             {image ? 
               <div>
                 <img src={image} />
@@ -80,6 +85,7 @@ class CompleteForm extends React.Component {
               :
           <>
             <h4>Please upload a photo</h4>
+            <br />
             <label className={labelClass}>{this.props.labelText}</label>
             <input
               className={this.props.inputClassName}
@@ -88,7 +94,7 @@ class CompleteForm extends React.Component {
             />
           </>
             }
-            
+            <hr />
             <button type="submit" className="button is-fullwidth is-warning">Submit</button>
           </form>
         </div>
