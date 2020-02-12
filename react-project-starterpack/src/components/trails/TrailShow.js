@@ -113,7 +113,6 @@ class TrailShow extends React.Component {
               <div className="Mapbox">
                 <h4 className="title is-3">Map Locations</h4>
                 <br />
-                <img src='https://c7.uihere.com/icons/305/955/619/gps-location-map-mobile-phone-pointer-smartphone-icon-3443604f1c2335175832ded904a4f6b7.png' />
                 <IdMap 
                   data={{
                     latitude: trail.latitude,
