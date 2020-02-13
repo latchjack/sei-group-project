@@ -58,7 +58,7 @@ class TrailShow extends React.Component {
   handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}`, {
+      await axios.delete(`/api/trails/${trailId}/like`, {
         headers: {
           Authorization: `Bearer ${auth.getToken()}`
         }

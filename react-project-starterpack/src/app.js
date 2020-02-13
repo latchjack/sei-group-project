@@ -14,6 +14,8 @@ import CompleteForm from './components/trails/CompleteForm'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import FAQ from './components/common/FAQ'
+import About from './components/common/About'
+import Contact from './components/common/Contact'
 import Profile from './components/common/Profile'
 import ErrorPage from './components/common/ErrorPage'
 import Footer from './components/common/Footer'
@@ -34,6 +36,8 @@ class App extends React.Component {
             <Route path="/trails/:id" component={TrailShow}/>
             <Route path="/trails" component={TrailIndex}/>
             <Route path="/FAQ" component={FAQ}/>
+            <Route path="/about" component={About}/>
+            <Route path="/contact" component={Contact}/>
             <Route path="/register"component={Register}/>
             <Route path="/login"component={Login} />
             <Route path="/profile" component={Profile} />
