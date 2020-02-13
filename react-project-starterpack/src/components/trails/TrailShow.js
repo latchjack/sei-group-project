@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
 import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
 
@@ -150,7 +150,7 @@ class TrailShow extends React.Component {
               </Collapsible>
               <hr />
               <Collapsible trigger='Clue Three +' className="dropDown">
-                <p className="showClue"> 3. {trail.clueThree}</p>
+                <p className="showClue">3. {trail.clueThree}</p>
               </Collapsible>
               <hr />
               <h4>{trail.weatherFactor}</h4>
