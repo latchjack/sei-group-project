@@ -59,7 +59,7 @@ class TrailShow extends React.Component {
   handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}`, {
+      await axios.delete(`/api/trails/${trailId}/like`, {
         headers: {
           Authorization: `Bearer ${auth.getToken()}`
         }
@@ -118,13 +118,13 @@ class TrailShow extends React.Component {
               <FontAwesomeIcon icon={faCloudSunRain} /> </span>
             <p>You&apos;ll need good weather for this trail!</p>
             </div>
-              }
-              {!trail.weatherFactor &&
+          }
+          {!trail.weatherFactor &&
             <div><span className="icon is-small">
               <FontAwesomeIcon icon={faBuilding} /> </span> 
             <p>You can do this trail in any weather!</p>
             </div>
-              }
+          }
           <div className="column-is-half">
           </div>
           <hr />
