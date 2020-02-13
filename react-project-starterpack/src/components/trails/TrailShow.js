@@ -5,7 +5,6 @@ import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
-import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
 
 class TrailShow extends React.Component {
