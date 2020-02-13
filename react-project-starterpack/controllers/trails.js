@@ -72,6 +72,7 @@ function completion(req, res, next) {
     .catch(next)
 }
 
+//have not implented comments into the front end yet
 function commentCreate(req, res, next) {
   req.body.user = req.currentUser
   Trail 

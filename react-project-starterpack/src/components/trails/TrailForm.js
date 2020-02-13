@@ -51,7 +51,6 @@ const TrailForm = ({ data, handleChange, handleSubmit }) => {
             <input 
               className="input"
               name="clueTwo"
-              required
               placeholder="Clue Two"
               onChange={handleChange}
               value={data.clueTwo}
@@ -60,7 +59,6 @@ const TrailForm = ({ data, handleChange, handleSubmit }) => {
             <input 
               className="input"
               name="clueThree"
-              required
               placeholder="Clue Three"
               onChange={handleChange}
               value={data.clueThree}

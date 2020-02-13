@@ -1,15 +1,15 @@
 /* global api, describe, it, expect, beforeEach, afterEach */
 const User = require('../../models/user')
 
-const testDataIncorrect = {
-  username: 'test',
-  email: 'test@test.test',
-  password: 'test',
+const testDataPasswordIncorrect = {
+  username: 'testPass',
+  email: 'testPass@test.test',
+  password: 'pass',
   passwordConfirmation: 'incorrect'
 }
 
 const testDataDuplicateUsername = {
-  username: 'test',
+  username: 'testMain',
   email: 'unique@test.test',
   password: 'test',
   passwordConfirmation: 'test'
@@ -17,7 +17,7 @@ const testDataDuplicateUsername = {
 
 const testDataDuplicateEmail = {
   username: 'unique',
-  email: 'test@test.test',
+  email: 'testMain@test.test',
   password: 'test',
   passwordConfirmation: 'test'
 }
@@ -33,8 +33,8 @@ describe('POST /register', () => {
 
   beforeEach(done => {
     User.create({
-      username: 'test',
-      email: 'test@test.test',
+      username: 'testMain',
+      email: 'testMain@test.test',
       password: 'test',
       passwordConfirmation: 'test'
     })
@@ -45,10 +45,9 @@ describe('POST /register', () => {
     User.deleteMany().then(() => done())
   })
 
-  //all 422 responses failing. Not sure if this is because I need to add a statement into the controller or uniqe validation is not working
   it('should return a 422 response if password does not match passwordConfirmation', done => {
     api.post('/api/register')
-      .send(testDataIncorrect)
+      .send(testDataPasswordIncorrect)
       .end((err, res) => {
         expect(res.status).to.eq(422)
         done()
