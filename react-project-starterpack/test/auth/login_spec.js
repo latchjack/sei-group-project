@@ -2,12 +2,12 @@
 const User = require('../../models/user')
 
 const loginDataCorrect = { 
-  email: 'test@test.test',
+  email: 'testMe@test.test',
   password: 'test'
 }
 
 const loginDataIncorrect = { 
-  email: 'test@test.test',
+  email: 'testMe@test.test',
   password: 'wrong'
 }
 
@@ -15,8 +15,8 @@ describe('POST /login', () => {
 
   beforeEach(done => { 
     User.create({
-      username: 'test',
-      email: 'test@test.test', 
+      username: 'testMe',
+      email: 'testMe@test.test', 
       password: 'test',
       passwordConfirmation: 'test'
     })

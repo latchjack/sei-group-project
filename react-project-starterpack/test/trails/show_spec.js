@@ -8,8 +8,8 @@ describe('GET /trails/:id', () => {
 
   beforeEach(done => {
     User.create({
-      username: 'Rory',
-      email: 'Rory@email',
+      username: 'user',
+      email: 'user@email',
       password: 'pass',
       passwordConfirmation: 'pass'
     })
@@ -17,6 +17,8 @@ describe('GET /trails/:id', () => {
         return Trail.create({
           name: 'Ensnared',
           directions: 'E11 1PE',
+          longitude: 0.020725,
+          latitude: 51.583145,
           clueOne: ' A man with a knife, similar but not quite.',
           clueTwo: 'Feast here, you might.',
           clueThree: 'Not a trap but a snare with brook that\'s not near.',
@@ -26,7 +28,7 @@ describe('GET /trails/:id', () => {
         })
       })
       .then(createdTrail => {
-        trail = createdTrail  
+        trail = createdTrail
         done()
       })
   })
@@ -37,7 +39,7 @@ describe('GET /trails/:id', () => {
       .then(() => done())
   })
 
-  //test is saying that done is not resolving this?
+  //test is saying that done() is not resolving this?  
   it('should return a 404 not found for an invalid trail id', done => {
     api.get('/api/trails/1234')
       .end((err, res) => {
@@ -47,7 +49,7 @@ describe('GET /trails/:id', () => {
   })
 
   it('should return a 200 response', done => {
-    api.get(`/api/trails/${trail._id}`) 
+    api.get(`/api/trails/${trail._id}`)
       .end((err, res) => {
         expect(res.status).to.eq(200)
         done()
@@ -55,7 +57,7 @@ describe('GET /trails/:id', () => {
   })
 
   it('should return an object', done => {
-    api.get(`/api/trails/${trail._id}`) 
+    api.get(`/api/trails/${trail._id}`)
       .end((err, res) => {
         expect(res.body).to.be.an('object')
         done()
@@ -71,8 +73,12 @@ describe('GET /trails/:id', () => {
           'clueOne',
           'clueTwo',
           'clueThree',
+          'longitude',
+          'latitude',
           'image',
           'weatherFactor',
+          'likes',
+          'completion',
           'user'
         ])
         done()
@@ -88,11 +94,14 @@ describe('GET /trails/:id', () => {
         expect(trail.clueOne).to.be.a('string')
         expect(trail.clueTwo).to.be.a('string')
         expect(trail.clueThree).to.be.a('string')
+        expect(trail.longitude).to.be.a('number')
+        expect(trail.latitude).to.be.a('number')
         expect(trail.image).to.be.a('string')
         expect(trail.weatherFactor).to.be.a('boolean')
+        expect(trail.likes).to.be.an('array')
+        expect(trail.completion).to.be.an('array')
         expect(trail.user).to.be.an('object')
         done()
       })
   })
 })
-

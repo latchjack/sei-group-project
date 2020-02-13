@@ -1,4 +1,4 @@
-/* global api, describe, it, expect, beforeEach, afterEach */
+/* global api, describe, it, expect, beforeEach, afterEach */ 
 
 const Trail = require('../../models/trail')
 const User = require('../../models/user')
@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken')
 const { secret } = require('../../config/environment')
 
 const testUserData = [{
-  username: 'test',
-  email: 'test@email',
+  username: 'testOne',
+  email: 'testOne@email',
   password: 'test',
   passwordConfirmation: 'test'
 }, {
@@ -15,7 +15,6 @@ const testUserData = [{
   email: 'testTwo@email',
   password: 'test',
   passwordConfirmation: 'test'
-
 }]
 
 describe('PUT /trails/:id', () => {
@@ -26,13 +25,15 @@ describe('PUT /trails/:id', () => {
       .then(users => {
         token = jwt.sign({ sub: users[0]._id }, secret, { expiresIn: '6h' }) 
         return Trail.create({
-          name: 'Snakes in Hydeing',
-          directions: 'W2 2UH',
-          clueOne: 'You\'re a trail blazer- visit the royal geographical society and follow the road north.', 
-          clueTwo: 'A serpent Hydes in the grass to your left. Have a visit!', 
-          clueThree: 'Find its sister by the water and ask her for a gin and tonic!',
-          image: 'https://live.staticflickr.com/795/41372147681_474b2acda4_b.jpg',
-          weatherFactor: true,
+          name: 'The Clapping Robbers',
+          directions: 'SW11 1DJ',
+          longitude: -0.162389,
+          latitude: 51.463496,
+          clueOne: 'Located near the busiest train station in the UK.',
+          clueTwo: 'Drinks, games and people. Comes alive at night.',
+          clueThree: 'Beware of the four tea-leaves!',
+          image: 'https://thenudge.com/wp-content/uploads/2019/08/Four_Thieves_2.jpg',
+          weatherFactor: false,
           user: users[0]
         })
       })
@@ -79,12 +80,13 @@ describe('PUT /trails/:id', () => {
           'clueOne',
           'clueTwo',
           'clueThree',
+          'longitude',
+          'latitude',
           'image',
           'weatherFactor',
-          'user',
-          'comments',
           'likes',
-          'completion'  
+          'completion', 
+          'user' 
         ])
         done()
       })
@@ -102,12 +104,13 @@ describe('PUT /trails/:id', () => {
         expect(trail.clueOne).to.be.a('string')
         expect(trail.clueTwo).to.be.a('string')
         expect(trail.clueThree).to.be.a('string')
+        expect(trail.longitude).to.be.a('number')
+        expect(trail.latitude).to.be.a('number')
         expect(trail.image).to.be.a('string')
         expect(trail.weatherFactor).to.be.a('boolean')
-        expect(trail.user).to.be.an('string')
-        expect(trail.comments).to.be.an('array')
         expect(trail.likes).to.be.an('array')
-        expect(trail.completion).to.be.a('array')
+        expect(trail.completion).to.be.an('array')
+        expect(trail.user).to.be.a('string')
         done()
       })
   })   
