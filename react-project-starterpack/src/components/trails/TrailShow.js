@@ -77,7 +77,7 @@ class TrailShow extends React.Component {
   }
 
   handleSubmit = async e => {
-    e.preventDefault()
+    //e.preventDefault()
     const trailId = this.props.match.params.id
     console.log(this.state.data, 'submit')
     try {
@@ -119,30 +119,32 @@ class TrailShow extends React.Component {
               <FontAwesomeIcon icon={faCloudSunRain} /> </span>
             <p>You&apos;ll need good weather for this trail!</p>
             </div>
-              }
-              {!trail.weatherFactor &&
+          }
+          <br />
+          {!trail.weatherFactor &&
             <div><span className="icon is-small">
               <FontAwesomeIcon icon={faBuilding} /> </span> 
             <p>You can do this trail in any weather!</p>
             </div>
-              }
+          }
+          <button onClick={this.handleSave} className="button is-danger">
+            <span className="icon is-small">
+              <FontAwesomeIcon icon={faHeart} />
+            </span>
+            <span>Save</span>
+          </button>
+          <button onClick={this.handleLikeDelete} className="button">
+            <span className="icon is-small">
+              <FontAwesomeIcon icon={faHeartBroken} />
+            </span>
+            <span>Remove</span>
+          </button>
           <div className="column-is-half">
           </div>
           <hr />
           <div className="columns">
             <div className="column is-half">
-              <button onClick={this.handleSave} className="button is-danger">
-                <span className="icon is-small">
-                  <FontAwesomeIcon icon={faHeart} />
-                </span>
-                <span>Save</span>
-              </button>
-              <button onClick={this.handleLikeDelete} className="button">
-                <span className="icon is-small">
-                  <FontAwesomeIcon icon={faHeartBroken} />
-                </span>
-                <span>Remove</span>
-              </button>
+           
               <div className="Mapbox">
                 <br />
               
@@ -154,20 +156,29 @@ class TrailShow extends React.Component {
                 />
               </div>
               <br />
+              <div>Comments</div>
+              {this.state.trail.completion.map(complete => {
+                return <div key={complete._id}>
+                  <h2>{complete.text}</h2>
+                  <img src={complete.image}/>
+                </div>
+              })  
+              }
+              <br />
             </div>
             <div className="container">
               <h3 className="title is-3">Trail Clues</h3>
               <hr />
               <Collapsible trigger='ClueOne +' className="dropDown">
-                <p className="showClue">1. {trail.clueOne}</p>
+                <p className="showClue">{trail.clueOne}</p>
               </Collapsible>
               <hr />
               <Collapsible trigger='Clue Two +' className="dropDown">
-                <p className="showClue">2. {trail.clueTwo}</p>
+                <p className="showClue">{trail.clueTwo}</p>
               </Collapsible>
               <hr />
               <Collapsible trigger='Clue Three +' className="dropDown">
-                <p className="showClue"> 3. {trail.clueThree}</p>
+                <p className="showClue">{trail.clueThree}</p>
               </Collapsible>
               <hr />
               <h4>{trail.weatherFactor}</h4>
@@ -213,17 +224,7 @@ class TrailShow extends React.Component {
 
               </Collapsible>
               <hr />
-              <>
-              <div className='section'>Comments</div>
-              {this.state.trail.completion.map(complete => {
-                return <div key={complete._id}>
-                  <h2>{complete.text}</h2>
-                  <img src={complete.image}/>
-                </div>
-              }  
-              )  
-              }
-              </>
+              
               {this.isOwner() &&
                 <>
                   <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
