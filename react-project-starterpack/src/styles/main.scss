@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+
+
 html{
   height:100%
 }
@@ -62,12 +67,12 @@ main {
 
 //FAQ
 .FAQPage{
-  font-size: 30px;
-  color:#189627;
+  font-size: 22px;
   letter-spacing: 1px;
 }
 .FAQtxt{
 color:  black;
+font-size: 20px;
 }
 
 .title{
@@ -79,10 +84,20 @@ color:  black;
   font-weight: bolder;
 }
 
+.section {
+  padding-top: 1.5rem;
+  padding-right: 6rem;
+  padding-left: 6rem;
+}
+
+.clueTitle {
+  color: grey
+}
 .dropDown{
   cursor: pointer;
 }
 
+// document.querySelector("#root > main > section > div > div.columns > div.columns > div")
 
 // #ShowImage{
 //   border-radius: 2%;
@@ -93,6 +108,9 @@ color:  black;
     transform: scale(1.1);
 }
 
+h2.title {
+  padding-bottom: 0px;
+}
 
 //Trails
 .trailIndex{
@@ -113,13 +131,42 @@ color:  black;
   
 }
 
-.h2, h3, span {
+h1, h2, h3, span {
   color: black;
+  font-weight: bold;
 }
 
 .title {
   color: grey;
 }
+
+.commentTitle {
+  font-weight: bold;
+  color: black;
+}
+
+//showpage
+
+.button {
+  margin: 0px 5px;
+}
+
+div.column.is-half {
+  margin-left: 10px;
+}
+
+h2 {
+  margin-bottom: 0px;
+
+}
+
+#aboutBox {
+  margin-top: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+
 
 //Footer
 .footer{

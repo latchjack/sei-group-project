@@ -112,20 +112,21 @@ class TrailShow extends React.Component {
     return (
       <section className="section">
         <div className="SHOWPAGE">
-          <h2 className="title is-3">{trail.name} 🔎</h2>
+          <h2 className='trailTitle is-size-1'>{trail.name}</h2>
           {trail.weatherFactor &&
-            <div><span className="icon is-small">
-              <FontAwesomeIcon icon={faCloudSunRain} /> </span>
-                <p>You&apos;ll need good weather for this trail!</p>
-            </div>
+          <div>
+            <i className="fas fa-cloud-sun-rain"></i>
+            &nbsp;You&apos;ll need good weather for this trail!
+          </div>
+          }
+          {!trail.weatherFactor &&
+          <div>
+            <i className="fas fa-building"></i>
+             &nbsp;You can do this trail in any weather!
+          </div>   
           }
           <br />
-          {!trail.weatherFactor &&
-            <div><span className="icon is-small">
-              <FontAwesomeIcon icon={faBuilding} /> </span>
-            <p>You can do this trail in any weather!</p>
-            </div>
-          }
+          <br />
           <button onClick={this.handleSave} className="button is-danger">
             <span className="icon is-small">
               <FontAwesomeIcon icon={faHeart} />
@@ -138,11 +139,10 @@ class TrailShow extends React.Component {
             </span>
             <span>Remove</span>
           </button>
-          <div className="column-is-half">
-          </div>
+          
           <hr />
           <div className="columns">
-            <div className="column is-half">
+            <div className="column is-6">
            
               <div className="Mapbox">
                 <br />
@@ -156,7 +156,7 @@ class TrailShow extends React.Component {
               </div>
               <br />
               
-              <h1><strong>Comments on this Geocache!</strong></h1>
+              <h1 className='commentTitle'>Comments on this Geocache!</h1>
               <br />
               <article className="media">
                 {this.state.trail.completion.map(complete => {
@@ -184,10 +184,11 @@ class TrailShow extends React.Component {
 
               <br />
             </div>
-            <div className="container">
-              <h3 className="title is-3">Trail Clues</h3>
+           
+            <div className="box">
+              <h3 className="clueTitle is-size-3">Trail Clues</h3>
               <hr />
-              <Collapsible trigger='ClueOne +' className="dropDown">
+              <Collapsible trigger='Clue One +' className="dropDown">
                 <p className="showClue">{trail.clueOne}</p>
               </Collapsible>
               <hr />
@@ -201,28 +202,27 @@ class TrailShow extends React.Component {
               <hr />
               <h4>{trail.weatherFactor}</h4>
               <Collapsible trigger='Have You Completed This GeoCache?' className="dropDown">
-                <section className="section">
-                  <div className="columns">
-                    <form onSubmit={this.handleSubmit} className="column is-half">
-                      <h2 className="title">Geocache Logbook</h2>
-                      <div className="field">
-                        <label className="label">How was your experience?</label>
-                        <div className="control">
-                          <input
-                            className="input"
-                            name="text"
-                            required
-                            placeholder="Text"
-                            onChange={this.handleChange}
-                          />
-                        </div>
+                <div className="card-content">
+                  <form onSubmit={this.handleSubmit}>
+                    <h2 className="title">Geocache Logbook</h2>
+                    <div className="field">
+                      <label className="label">How was your experience?</label>
+                      <div className="control">
+                        <input
+                          className="input"
+                          name="text"
+                          required
+                          placeholder="Text"
+                          onChange={this.handleChange}
+                        />
                       </div>
-                      <hr />
-                      {image ?
-                        <div>
-                          <img src={image} />
-                        </div>
-                        :
+                    </div>
+                    <hr />
+                    {image ?
+                      <div>
+                        <img src={image} />
+                      </div>
+                      :
                         <>
                           <h4>Please upload a photo</h4>
                           <br />
@@ -233,13 +233,11 @@ class TrailShow extends React.Component {
                             onChange={this.handleUpload}
                           />
                         </>
-                      }
-                      <hr />
-                      <button type="submit" className="button is-fullwidth is-warning">Submit</button>
-                    </form>
-                  </div>
-                </section>
-
+                    }
+                    <hr />
+                    <button type="submit" className="button is-fullwidth is-warning">Submit</button>
+                  </form>
+                </div>
               </Collapsible>
               <hr />
               
@@ -253,6 +251,7 @@ class TrailShow extends React.Component {
             </div>
           </div>
         </div>
+       
       </section>
     )
   }
