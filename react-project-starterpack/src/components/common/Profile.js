@@ -23,7 +23,6 @@ class Profile extends React.Component {
 
   render() {
     const { profile } = this.state
-    console.log(this.state.profile)
     return (
       <section className="section">
         <h1 className="title">{profile.username}&apos;s profile</h1>
@@ -44,6 +43,17 @@ class Profile extends React.Component {
             {profile.likedTrails && profile.likedTrails.length === 0 && 
             <p className="subtitle">You have not saved any trails yet!</p>}
             {profile.likedTrails && profile.likedTrails.map(trail => (
+              <TrailCard key={trail._id} {...trail} />
+            ))}
+          </div>
+        </div>
+        <hr />
+        <div className="container">
+          <h2 className="title is-4">Completed Trails:</h2>
+          <div className="columns is-mobile is-multiline">
+            {profile.completedTrails && profile.completedTrails.length === 0 && 
+            <p className="subtitle">You have not completed any trails yet!</p>}
+            {profile.completedTrails && profile.completedTrails.map(trail => (
               <TrailCard key={trail._id} {...trail} />
             ))}
           </div>
