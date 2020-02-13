@@ -75,7 +75,7 @@ class TrailShow extends React.Component {
     this.setState({ data })
   }
 
-  handleSubmit = async e => {
+  handleSubmit = async () => {
     //e.preventDefault()
     const trailId = this.props.match.params.id
     console.log(this.state.data, 'submit')
