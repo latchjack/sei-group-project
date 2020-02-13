@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const Home = () => (
 
   <section className="hero is-fullheight-with-navbar is-primary">
