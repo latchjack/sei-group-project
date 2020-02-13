@@ -5,7 +5,6 @@ import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
-import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
 
 class TrailShow extends React.Component {
@@ -105,7 +104,6 @@ class TrailShow extends React.Component {
 
   render() {
     if (!this.state.trail) return null
-    console.log(this.state.trail.completion.map(c => c.text))
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
