@@ -13,7 +13,8 @@ class TrailShow extends React.Component {
     trail: null,
     save: false,
     text: '',
-    image: null
+    image: null,
+    isCompleteOwner: false
 
   }
 
@@ -52,7 +53,7 @@ class TrailShow extends React.Component {
         headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
     } catch (err) {
-      console.log(err.response)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -75,10 +76,9 @@ class TrailShow extends React.Component {
     this.setState({ data })
   }
 
-  handleSubmit = async e => {
+  handleSubmit = async () => {
     //e.preventDefault()
     const trailId = this.props.match.params.id
-    console.log(this.state.data, 'submit')
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
         {
@@ -100,15 +100,42 @@ class TrailShow extends React.Component {
     })
   }
 
+  checkForOwner = () => {
+    if ((this.isCompleteOwner() !== auth.getUser())) {
+      return false
+    }
+  }
+
+  isCompleteOwner = () => {
+    const result = this.state.trail.completion.filter(complete => complete.user._id === auth.getUser())
+    return result[0].user._id
+  }
+
+  handleCompleteDelete = async () => {
+    const trailId = this.props.match.params.id
+    try {
+      await axios.delete(`/api/trails/${trailId}/complete`,
+        {
+          headers: { Authorization: `Bearer ${auth.getToken()}` }
+        })
+      this.props.history.push('/profile')
+    } catch (err) {
+      this.setState({ errors: err.response.data.errors })
+    }
+  }
+
 
 
   render() {
     if (!this.state.trail) return null
-    console.log(this.state.trail.completion)
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
+    // console.log('all completions', this.state.trail.completion)
+    // console.log('current user', auth.getUser())
+    // console.log('calling isCompleteOwner function', this.isCompleteOwner())
+    // console.log('does current user own a completion on the page?', this.isCompleteOwner() )
     return (
       <section className="section">
         <div className="SHOWPAGE">
@@ -116,14 +143,14 @@ class TrailShow extends React.Component {
           {trail.weatherFactor &&
             <div><span className="icon is-small">
               <FontAwesomeIcon icon={faCloudSunRain} /> </span>
-            <p>You&apos;ll need good weather for this trail!</p>
+              <p>You&apos;ll need good weather for this trail!</p>
             </div>
           }
           <br />
           {!trail.weatherFactor &&
             <div><span className="icon is-small">
               <FontAwesomeIcon icon={faBuilding} /> </span>
-            <p>You can do this trail in any weather!</p>
+              <p>You can do this trail in any weather!</p>
             </div>
           }
           <button onClick={this.handleSave} className="button is-danger">
@@ -143,7 +170,7 @@ class TrailShow extends React.Component {
           <hr />
           <div className="columns">
             <div className="column is-half">
-           
+
               <div className="Mapbox">
                 <br />
 
@@ -155,8 +182,9 @@ class TrailShow extends React.Component {
                 />
               </div>
               <br />
-              
               <h1><strong>Comments on this geocache</strong></h1>
+              <br />
+              <button onClick={this.handleCompleteDelete} className="button is-danger">Delete my comment</button>
               <br />
               <article className="media">
                 {this.state.trail.completion.map(complete => {
@@ -165,7 +193,7 @@ class TrailShow extends React.Component {
                       <p>{complete.user.username}</p>
                       <div className="media-left">
                         <figure className="image is-64x64">
-                          <img src={complete.image}/>
+                          <img src={complete.image} />
                         </figure>
                       </div>
                       <div className='media-content'>
@@ -175,12 +203,11 @@ class TrailShow extends React.Component {
                       </div>
                     </div>
                   </div>
-                })  
+                })
                 }
-                  
               </article>
-             
-             
+
+
 
               <br />
             </div>
@@ -242,7 +269,7 @@ class TrailShow extends React.Component {
 
               </Collapsible>
               <hr />
-              
+
               {this.isOwner() &&
                 <>
                   <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>

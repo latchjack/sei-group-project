@@ -20,6 +20,7 @@ function show(req, res, next) {
   Trail
     .findById(req.params.id)
     .populate('completion.user')
+    .populate('user')
     .then(trail => {
       if (!trail) throw new Error('Not Found')
       res.status(200).json(trail)
