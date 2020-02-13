@@ -59,7 +59,7 @@ class TrailShow extends React.Component {
   handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}`, {
+      await axios.delete(`/api/trails/${trailId}/like`, {
         headers: {
           Authorization: `Bearer ${auth.getToken()}`
         }
@@ -100,7 +100,7 @@ class TrailShow extends React.Component {
     })
   }
 
-  
+
 
   render() {
     if (!this.state.trail) return null
@@ -116,15 +116,15 @@ class TrailShow extends React.Component {
           {trail.weatherFactor &&
             <div><span className="icon is-small">
               <FontAwesomeIcon icon={faCloudSunRain} /> </span>
-            <p>You&apos;ll need good weather for this trail!</p>
+              <p>You&apos;ll need good weather for this trail!</p>
             </div>
-              }
-              {!trail.weatherFactor &&
+          }
+          {!trail.weatherFactor &&
             <div><span className="icon is-small">
-              <FontAwesomeIcon icon={faBuilding} /> </span> 
-            <p>You can do this trail in any weather!</p>
+              <FontAwesomeIcon icon={faBuilding} /> </span>
+              <p>You can do this trail in any weather!</p>
             </div>
-              }
+          }
           <div className="column-is-half">
           </div>
           <hr />
@@ -144,7 +144,7 @@ class TrailShow extends React.Component {
               </button>
               <div className="Mapbox">
                 <br />
-              
+
                 <IdMap
                   data={{
                     latitude: trail.latitude,
@@ -213,15 +213,15 @@ class TrailShow extends React.Component {
               </Collapsible>
               <hr />
               <>
-              <div className='section'>Comments</div>
-              {this.state.trail.completion.map(complete => {
-                return <div key={complete._id}>
-                  <h2>{complete.text}</h2>
-                  <img src={complete.image}/>
-                </div>
-              }  
-              )  
-              }
+                <div className='section'>Comments</div>
+                {this.state.trail.completion.map(complete => {
+                  return <div key={complete._id}>
+                    <h2>{complete.text}</h2>
+                    <img src={complete.image} />
+                  </div>
+                }
+                )
+                }
               </>
               {this.isOwner() &&
                 <>
