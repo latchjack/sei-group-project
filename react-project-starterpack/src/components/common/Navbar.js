@@ -40,6 +40,8 @@ class Navbar extends React.Component {
             <div className="navbar-end">
               <Link className="navbar-item" to="/trails">See All Trails</Link>
               <Link className="navbar-item" to="/FAQ">FAQ</Link>
+              <Link className="navbar-item" to="/about">About</Link>
+              <Link className="navbar-item" to="/contact">Contact</Link>
               {!auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
               {!auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
               {auth.isAuthenticated() && <Link className="navbar-item" to="/trails/new">Add a Trail</Link>}
