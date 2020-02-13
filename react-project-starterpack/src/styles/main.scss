@@ -128,10 +128,14 @@ color:  black;
   }
 }
 
-
-
 //NavbarBurger
 
 #root > main > nav > div > div.navbar-menu.is-active > div > a{
   color:(rgb(0, 153, 255));
+}
+
+//SearchBar
+
+.SearchBar{
+  width: 500px;
 }
