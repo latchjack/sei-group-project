@@ -242,21 +242,7 @@ class TrailShow extends React.Component {
 
               </Collapsible>
               <hr />
-<<<<<<< HEAD
-              <>
-                <div className='section'>Comments</div>
-                {this.state.trail.completion.map(complete => {
-                  return <div key={complete._id}>
-                    <h2>{complete.text}</h2>
-                    <img src={complete.image} />
-                  </div>
-                }
-                )
-                }
-              </>
-=======
               
->>>>>>> development
               {this.isOwner() &&
                 <>
                   <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
