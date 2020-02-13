@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
-import CompleteForm from '../trails/CompleteForm'
+import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
 import IdMap from '../common/IdMap'
+import CompletedTrailForm from './CompletedTrailForm'
 
 class TrailShow extends React.Component {
   state = {
@@ -77,7 +77,6 @@ class TrailShow extends React.Component {
   handleSubmit = async e => {
     e.preventDefault()
     const trailId = this.props.match.params.id
-    console.log(this.state.data, 'submit')
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
         {
@@ -94,6 +93,7 @@ class TrailShow extends React.Component {
     data.append('file', files[0])
     data.append('upload_preset', 'rksde5wr')
     const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
+
     this.setState({ image: res.data.url }, () => {
       this.handleChange({ target: { name: 'image', value: res.data.url } })
     })
@@ -104,6 +104,8 @@ class TrailShow extends React.Component {
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
+    
+   
     return (
       <section className="section">
         <div className="SHOWPAGE">
@@ -188,18 +190,65 @@ class TrailShow extends React.Component {
                           />
                         </>
                       }
+
                       <hr />
                       <button type="submit" className="button is-fullwidth is-warning">Submit</button>
                     </form>
                   </div>
                 </section>
-
               </Collapsible>
 
-              <hr />
-              <h4>Is Weather a Factor? {trail.weatherFactor}</h4>
-              <br />
+              <Collapsible trigger='Completed Geocache' className='dropdown'>
+                <section className='section'>
+                  <div className='columns'>
+                    <form className='column is-half'>
+                      <h2 className='title'>Comments from users</h2>
+                      <div className='field'>
+                        <label className='label'>Text</label>
+                        <div className='control'>
+                          <input 
+                            className='input'
+                            name='text'
+                            placeholder='Text'
+                            value={this.state.trail.completion.text} 
+                            onChange={this.handleChange}
+                          /> 
+                        </div>
+                      </div>
+                      <div className='field'>
+                        <label className='label'>Image</label>
+                        <div className='control'>
+                          <input 
+                            className='input'
+                            name='image'
+                            placeholder='Image'
+                            value={this.state.trail.completion.image} 
+                            onChange={this.handleChange}
+                          /> 
+                        </div>
+                      </div>
 
+                    </form>
+                  </div>
+                </section>
+              </Collapsible>
+
+
+              <hr />
+              {trail.weatherFactor &&
+            <div><span className="icon is-small">
+              <FontAwesomeIcon icon={faCloudSunRain} /> </span>
+            <p>You&apos;ll need good weather for this trail!</p>
+            </div>
+              }
+              {!trail.weatherFactor &&
+            <div><span className="icon is-small">
+              <FontAwesomeIcon icon={faBuilding} /> </span> 
+            <p>You can do this trail in any weather!</p>
+            </div>
+              }
+              <br />
+              
 
               {this.isOwner() &&
                 <>
