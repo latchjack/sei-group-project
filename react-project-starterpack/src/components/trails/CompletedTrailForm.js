@@ -24,7 +24,7 @@ const CompletedTrailForm = ({ text, image, _id }) => (
 )
 
 
-export default CompletedTrailForm
+
 
 
 
@@ -70,6 +70,6 @@ export default CompletedTrailForm
 //   }
 // }
 
-// export default CheeseShow
+// export default CompletedTrailForm
 
 

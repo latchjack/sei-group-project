@@ -5,15 +5,17 @@ import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
+import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
-
 
 class TrailShow extends React.Component {
   state = {
+
     trail: null,
     save: false,
     text: '',
     image: null
+
   }
 
   async componentDidMount() {
@@ -58,7 +60,7 @@ class TrailShow extends React.Component {
   handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}/like`, {
+      await axios.delete(`/api/trails/${trailId}`, {
         headers: {
           Authorization: `Bearer ${auth.getToken()}`
         }
@@ -77,12 +79,13 @@ class TrailShow extends React.Component {
   handleSubmit = async e => {
     e.preventDefault()
     const trailId = this.props.match.params.id
+    console.log(this.state.data, 'submit')
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
         {
           headers: { Authorization: `Bearer ${auth.getToken()}` }
         })
-      this.props.history.push(`/trails/${trailId}`)
+      this.setState({ image: null, text: '' })
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
     }
@@ -93,24 +96,36 @@ class TrailShow extends React.Component {
     data.append('file', files[0])
     data.append('upload_preset', 'rksde5wr')
     const res = await axios.post(' https://api.cloudinary.com/v1_1/dbpx50jcj/image/upload', data)
-
     this.setState({ image: res.data.url }, () => {
       this.handleChange({ target: { name: 'image', value: res.data.url } })
     })
   }
 
+  
+
   render() {
+    if (!this.state.trail) return null
+    console.log(this.state.trail.completion.map(c => c.text))
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
-    
-   
     return (
       <section className="section">
         <div className="SHOWPAGE">
           <h2 className="title is-3">{trail.name} 🔎</h2>
-          <h4>{trail.directions}</h4>
+          {trail.weatherFactor &&
+            <div><span className="icon is-small">
+              <FontAwesomeIcon icon={faCloudSunRain} /> </span>
+            <p>You&apos;ll need good weather for this trail!</p>
+            </div>
+              }
+              {!trail.weatherFactor &&
+            <div><span className="icon is-small">
+              <FontAwesomeIcon icon={faBuilding} /> </span> 
+            <p>You can do this trail in any weather!</p>
+            </div>
+              }
           <div className="column-is-half">
           </div>
           <hr />
@@ -190,66 +205,25 @@ class TrailShow extends React.Component {
                           />
                         </>
                       }
-
                       <hr />
                       <button type="submit" className="button is-fullwidth is-warning">Submit</button>
                     </form>
                   </div>
                 </section>
+
               </Collapsible>
-
-              <Collapsible trigger='Completed Geocache' className='dropdown'>
-                <section className='section'>
-                  <div className='columns'>
-                    <form className='column is-half'>
-                      <h2 className='title'>Comments from users</h2>
-                      <div className='field'>
-                        <label className='label'>Text</label>
-                        <div className='control'>
-                          <input 
-                            className='input'
-                            name='text'
-                            placeholder='Text'
-                            value={this.state.trail.completion.text} 
-                            onChange={this.handleChange}
-                          /> 
-                        </div>
-                      </div>
-                      <div className='field'>
-                        <label className='label'>Image</label>
-                        <div className='control'>
-                          <input 
-                            className='input'
-                            name='image'
-                            placeholder='Image'
-                            value={this.state.trail.completion.image} 
-                            onChange={this.handleChange}
-                          /> 
-                        </div>
-                      </div>
-
-                    </form>
-                  </div>
-                </section>
-              </Collapsible>
-
-
               <hr />
-              {trail.weatherFactor &&
-            <div><span className="icon is-small">
-              <FontAwesomeIcon icon={faCloudSunRain} /> </span>
-            <p>You&apos;ll need good weather for this trail!</p>
-            </div>
+              <>
+              <div className='section'>Comments</div>
+              {this.state.trail.completion.map(complete => {
+                return <div key={complete._id}>
+                  <h2>{complete.text}</h2>
+                  <img src={complete.image}/>
+                </div>
+              }  
+              )  
               }
-              {!trail.weatherFactor &&
-            <div><span className="icon is-small">
-              <FontAwesomeIcon icon={faBuilding} /> </span> 
-            <p>You can do this trail in any weather!</p>
-            </div>
-              }
-              <br />
-              
-
+              </>
               {this.isOwner() &&
                 <>
                   <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
