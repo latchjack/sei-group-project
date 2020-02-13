@@ -7,16 +7,18 @@ const { secret } = require('../../config/environment')
 const testTrail = {
   name: 'One Person\'s Junk',
   directions: 'E17 9HQ',
+  longitude: -0.008138,
+  latitude: 51.583888,
   clueOne: 'These plates are out of your league; you could say, premier.',
-  clueTwo: 'Just bare off of Shernal and you\'re nearly there',
+  clueTwo: 'Just bare off of Shernal and you\'re nearly there.',
   clueThree: 'Through the day I blend, and at dark beware of the glare.',
   image: 'http://www.godsownjunkyard.co.uk/gods%20own%202.jpg',
   weatherFactor: true
 }
 
 const testUserData = {
-  username: 'test',
-  email: 'test@email',
+  username: 'testCreate',
+  email: 'testCreate@email',
   password: 'test',
   passwordConfirmation: 'test'
 }
@@ -70,9 +72,10 @@ describe('POST /trails', () => {
           'clueOne',
           'clueTwo',
           'clueThree',
+          'longitude',
+          'latitude',
           'image',
           'weatherFactor',
-          'comments',
           'likes',
           'completion',
           'user'
@@ -93,9 +96,10 @@ describe('POST /trails', () => {
         expect(trail.clueOne).to.be.a('string')
         expect(trail.clueTwo).to.be.a('string')
         expect(trail.clueThree).to.be.a('string')
+        expect(trail.longitude).to.be.a('number')
+        expect(trail.latitude).to.be.a('number')
         expect(trail.image).to.be.a('string')
         expect(trail.weatherFactor).to.be.a('boolean')
-        expect(trail.comments).to.be.an('array')
         expect(trail.likes).to.be.an('array')
         expect(trail.completion).to.be.an('array')
         expect(trail.user).to.be.an('object')

@@ -5,7 +5,7 @@ import TrailCard from './TrailCard'
 import Search from './Search'
 
 class TrailIndex extends React.Component {
-  state = { 
+  state = {
     trails: [],
     searchTerm: ''
   }
@@ -14,14 +14,14 @@ class TrailIndex extends React.Component {
     try {
       const res = await axios.get('/api/trails')
       this.setState({ trails: res.data, searchData: res.data })
-    } catch (err){
+    } catch (err) {
       console.log(err)
     }
   }
 
   basicSearchFunction = (e) => {
     this.setState({ searchTerm: e.target.value })
-    
+
   }
 
   filterTrails = () => {
@@ -30,20 +30,21 @@ class TrailIndex extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-    
     return (
       <section className="trailIndex">
         <div className="trailContainer">
-          <div className ="Search">
-            <Search
-              basicSearchFunction = {this.basicSearchFunction}
-              {...this.state}
-            />
+          <div className="box">
+            <div className="Search">
+              <p>Search Trails:</p>
+              <Search
+                basicSearchFunction={this.basicSearchFunction}
+                {...this.state}
+              />
+            </div>
           </div>
           <div className="columns is-mobile is-multiline">
             {this.filterTrails().map(trail => (
-              <TrailCard key= {trail.name} {...trail}/>
+              <TrailCard key={trail.name} {...trail} />
             ))}
           </div>
         </div>

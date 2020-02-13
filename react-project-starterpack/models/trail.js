@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+//have not added comments to front-end yet
 const commentSchema = new mongoose.Schema({
   text: { type: String, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }

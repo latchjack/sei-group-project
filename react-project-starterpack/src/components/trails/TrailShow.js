@@ -100,7 +100,7 @@ class TrailShow extends React.Component {
     })
   }
 
-  
+
 
   render() {
     if (!this.state.trail) return null
@@ -122,7 +122,7 @@ class TrailShow extends React.Component {
           <br />
           {!trail.weatherFactor &&
             <div><span className="icon is-small">
-              <FontAwesomeIcon icon={faBuilding} /> </span> 
+              <FontAwesomeIcon icon={faBuilding} /> </span>
             <p>You can do this trail in any weather!</p>
             </div>
           }
@@ -146,7 +146,7 @@ class TrailShow extends React.Component {
            
               <div className="Mapbox">
                 <br />
-              
+
                 <IdMap
                   data={{
                     latitude: trail.latitude,

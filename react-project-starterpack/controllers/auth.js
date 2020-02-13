@@ -31,6 +31,7 @@ function profile(req, res) {
     .findById(req.currentUser._id)
     .populate('createdTrails')
     .populate('likedTrails')
+    .populate('completedTrails')
     .then(user => res.status(200).json(user))
     .catch(err => res.json(err))
 }

@@ -63,6 +63,7 @@ function completion(req, res, next) {
   req.body.user = req.currentUser
   Trail 
     .findById(req.params.id)
+    .populate('user')
     .then(trail => {
       if (!trail) return res.status(404).json({ message: 'Not Found' })
       trail.completion.push(req.body)
@@ -72,6 +73,7 @@ function completion(req, res, next) {
     .catch(next)
 }
 
+//have not implented comments into the front end yet
 function commentCreate(req, res, next) {
   req.body.user = req.currentUser
   Trail 
