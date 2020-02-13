@@ -37,9 +37,7 @@ describe('GET /trails/:id', () => {
       .then(() => done())
   })
 
-
-  //test is saying that done() is not resolving this?
-  
+  //test is saying that done() is not resolving this?  
   it('should return a 404 not found for an invalid trail id', done => {
     api.get('/api/trails/1234')
       .end((err, res) => {
