@@ -155,11 +155,14 @@ class TrailShow extends React.Component {
                 />
               </div>
               <br />
-              <div className='box'>
-                <h1><strong>Comments on this geocache</strong></h1>
-                <article className="media">
-                  {this.state.trail.completion.map(complete => {
-                    return <div key={complete._id}>
+              
+              <h1><strong>Comments on this geocache</strong></h1>
+              <br />
+              <article className="media">
+                {this.state.trail.completion.map(complete => {
+                  return <div key={complete._id}>
+                    <div className='box'>
+                      <p>{complete.user.username}</p>
                       <div className="media-left">
                         <figure className="image is-64x64">
                           <img src={complete.image}/>
@@ -167,17 +170,16 @@ class TrailShow extends React.Component {
                       </div>
                       <div className='media-content'>
                         <div className='content'>
-                          <p>User: {complete.user.username}
-                            <br />
-                            {complete.text}</p>
+                          <p>{complete.text}</p>
                         </div>
                       </div>
                     </div>
-                  })  
-                  }
+                  </div>
+                })  
+                }
                   
-                </article>
-              </div>
+              </article>
+             
              
 
               <br />
