@@ -149,7 +149,7 @@ class TrailNew extends React.Component {
                   
             </div> 
             <Map handleMap={this.handleMap} data={this.state.data}/>
-            <button type="submit" className="button is-fullwidth is-warning">Make Geocache</button>
+            <button type="submit" className="button is-fullwidth is-link">Make Geocache</button>
             
           </form>
         </div>

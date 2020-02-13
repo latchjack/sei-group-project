@@ -21,6 +21,13 @@ userSchema.virtual('likedTrails', {
   foreignField: 'likes.user'
 })
 
+//need to hook this up to profile
+userSchema.virtual('completedTrails', {
+  ref: 'Trail',
+  localField: '_id',
+  foreignField: 'completion.user'
+})
+
 userSchema
   .set('toJSON', {
     virtuals: true,
