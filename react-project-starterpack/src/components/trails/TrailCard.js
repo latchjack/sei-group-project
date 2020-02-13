@@ -16,7 +16,6 @@ const TrailCard = ({ name, image, directions, _id }) => (
       <div className="card">
         <div className="card-header">
           <h4 className="card-header-title">{name}</h4>
-          <h5 className="card-header-subtitle"><strong>{directions}</strong></h5>
         </div>
         <div className="cardImage">
           <figure className="image-card">
