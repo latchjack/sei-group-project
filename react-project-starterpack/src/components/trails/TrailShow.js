@@ -59,7 +59,7 @@ class TrailShow extends React.Component {
   handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}`, {
+      await axios.delete(`/api/trails/${trailId}/like`, {
         headers: {
           Authorization: `Bearer ${auth.getToken()}`
         }
@@ -104,6 +104,7 @@ class TrailShow extends React.Component {
 
   render() {
     if (!this.state.trail) return null
+    console.log(this.state.trail.completion)
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
@@ -154,14 +155,31 @@ class TrailShow extends React.Component {
                 />
               </div>
               <br />
-              <div>Comments</div>
-              {this.state.trail.completion.map(complete => {
-                return <div key={complete._id}>
-                  <h2>{complete.text}</h2>
-                  <img src={complete.image}/>
-                </div>
-              })  
-              }
+              <div className='box'>
+                <h1><strong>Comments on this geocache</strong></h1>
+                <article className="media">
+                  {this.state.trail.completion.map(complete => {
+                    return <div key={complete._id}>
+                      <div className="media-left">
+                        <figure className="image is-64x64">
+                          <img src={complete.image}/>
+                        </figure>
+                      </div>
+                      <div className='media-content'>
+                        <div className='content'>
+                          <p>User: {complete.user.username}
+                            <br />
+                            {complete.text}</p>
+                        </div>
+                      </div>
+                    </div>
+                  })  
+                  }
+                  
+                </article>
+              </div>
+             
+
               <br />
             </div>
             <div className="container">
@@ -184,7 +202,7 @@ class TrailShow extends React.Component {
                 <section className="section">
                   <div className="columns">
                     <form onSubmit={this.handleSubmit} className="column is-half">
-                      <h2 className="title">Geocache Completion Form</h2>
+                      <h2 className="title">Geocache Logbook</h2>
                       <div className="field">
                         <label className="label">How was your experience?</label>
                         <div className="control">
