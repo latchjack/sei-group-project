@@ -116,7 +116,7 @@ class TrailShow extends React.Component {
           {trail.weatherFactor &&
             <div><span className="icon is-small">
               <FontAwesomeIcon icon={faCloudSunRain} /> </span>
-              <p>You&apos;ll need good weather for this trail!</p>
+            <p>You&apos;ll need good weather for this trail!</p>
             </div>
           }
           <br />
