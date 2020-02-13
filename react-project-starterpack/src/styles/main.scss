@@ -115,7 +115,7 @@ color:  black;
   justify-content: flex-end;
 }
 
-.footerContent {
+.socialMedia {
   display: flex;
   justify-content: flex-end;
   display: flex;
@@ -148,4 +148,14 @@ color:  black;
 
 #root > main > nav > div > div.navbar-menu.is-active > div > a{
   color:(rgb(0, 153, 255));
+}
+
+//SearchBar
+
+.SearchBar{
+  width: 500px;
+}
+.Weather{
+
+
 }
