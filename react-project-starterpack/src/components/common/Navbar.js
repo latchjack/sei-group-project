@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import auth from '../../lib/auth'
+import GeoSvg from './../../assets/geo_planet.svg'
+
 
 class Navbar extends React.Component {
 
@@ -29,6 +31,7 @@ class Navbar extends React.Component {
       <nav className="navbar has-background-link">
         <div className="container">
           <div className="navbar-brand">
+            <img src={GeoSvg} id="logo" />
             <Link className="navbar-item" to="/">Home </Link>
             <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar} >
               <span></span>
