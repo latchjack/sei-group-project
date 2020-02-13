@@ -15,7 +15,6 @@ class Footer extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.intervalId)
-    console.log('unmounted')
   }
 
   getWeather = async () => {
