@@ -128,6 +128,20 @@ color:  black;
   }
 }
 
+.contactContent {
+  display: flex;
+  justify-content: flex-start;
+  display: flex;
+  padding-top: 15px;
+  height: 50px;
+  flex-basis: 100%;
+}
+
+.mapSpace {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 
 
 //NavbarBurger
