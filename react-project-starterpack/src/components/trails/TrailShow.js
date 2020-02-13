@@ -6,7 +6,7 @@ import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
 import IdMap from '../common/IdMap'
-import CompletedTrailForm from './CompletedTrailForm'
+
 
 class TrailShow extends React.Component {
   state = {
