@@ -116,7 +116,7 @@ class TrailShow extends React.Component {
           {trail.weatherFactor &&
             <div><span className="icon is-small">
               <FontAwesomeIcon icon={faCloudSunRain} /> </span>
-              <p>You&apos;ll need good weather for this trail!</p>
+                <p>You&apos;ll need good weather for this trail!</p>
             </div>
           }
           <br />
@@ -156,7 +156,7 @@ class TrailShow extends React.Component {
               </div>
               <br />
               
-              <h1><strong>Comments on this geocache</strong></h1>
+              <h1><strong>Comments on this Geocache!</strong></h1>
               <br />
               <article className="media">
                 {this.state.trail.completion.map(complete => {
@@ -244,10 +244,10 @@ class TrailShow extends React.Component {
               <hr />
               
               {this.isOwner() &&
-                <>
+                <div>
                   <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
                   <button onClick={this.handleDelete} className="button is-danger">Delete Trail</button>
-                </>
+                </div>
               }
 
             </div>
