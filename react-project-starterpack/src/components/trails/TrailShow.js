@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
 import CompleteForm from '../trails/CompleteForm'
 import IdMap from '../common/IdMap'
 
 class TrailShow extends React.Component {
   state = {
+
     trail: null,
     save: false,
     text: '',
     image: null
+
   }
 
   async componentDidMount() {
@@ -58,7 +60,7 @@ class TrailShow extends React.Component {
   handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}/like`, {
+      await axios.delete(`/api/trails/${trailId}`, {
         headers: {
           Authorization: `Bearer ${auth.getToken()}`
         }
@@ -83,7 +85,7 @@ class TrailShow extends React.Component {
         {
           headers: { Authorization: `Bearer ${auth.getToken()}` }
         })
-      this.props.history.push(`/trails/${trailId}`)
+      this.setState({ image: null, text: '' })
     } catch (err) {
       this.setState({ errors: err.response.data.errors })
     }
@@ -99,7 +101,11 @@ class TrailShow extends React.Component {
     })
   }
 
+  
+
   render() {
+    if (!this.state.trail) return null
+    console.log(this.state.trail.completion.map(c => c.text))
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
@@ -108,7 +114,18 @@ class TrailShow extends React.Component {
       <section className="section">
         <div className="SHOWPAGE">
           <h2 className="title is-3">{trail.name} 🔎</h2>
-          <h4>{trail.directions}</h4>
+          {trail.weatherFactor &&
+            <div><span className="icon is-small">
+              <FontAwesomeIcon icon={faCloudSunRain} /> </span>
+            <p>You&apos;ll need good weather for this trail!</p>
+            </div>
+              }
+              {!trail.weatherFactor &&
+            <div><span className="icon is-small">
+              <FontAwesomeIcon icon={faBuilding} /> </span> 
+            <p>You can do this trail in any weather!</p>
+            </div>
+              }
           <div className="column-is-half">
           </div>
           <hr />
@@ -128,7 +145,7 @@ class TrailShow extends React.Component {
               </button>
               <div className="Mapbox">
                 <br />
-
+              
                 <IdMap
                   data={{
                     latitude: trail.latitude,
@@ -195,12 +212,18 @@ class TrailShow extends React.Component {
                 </section>
 
               </Collapsible>
-
               <hr />
-              <h4>Is Weather a Factor? {trail.weatherFactor}</h4>
-              <br />
-
-
+              <>
+              <div className='section'>Comments</div>
+              {this.state.trail.completion.map(complete => {
+                return <div key={complete._id}>
+                  <h2>{complete.text}</h2>
+                  <img src={complete.image}/>
+                </div>
+              }  
+              )  
+              }
+              </>
               {this.isOwner() &&
                 <>
                   <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
