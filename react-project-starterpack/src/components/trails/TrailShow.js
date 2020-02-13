@@ -104,7 +104,7 @@ class TrailShow extends React.Component {
 
   render() {
     if (!this.state.trail) return null
-    console.log(this.state.trail.completion)
+    console.log(this.state.trail)
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
