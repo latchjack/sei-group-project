@@ -58,7 +58,7 @@ class TrailShow extends React.Component {
   handleLikeDelete = async () => {
     const trailId = this.props.match.params.id
     try {
-      await axios.delete(`/api/trails/${trailId}`, {
+      await axios.delete(`/api/trails/${trailId}/like`, {
         headers: {
           Authorization: `Bearer ${auth.getToken()}`
         }
@@ -114,7 +114,7 @@ class TrailShow extends React.Component {
           <hr />
           <div className="columns">
             <div className="column is-half">
-              <button onClick={this.handleClick} className="button is-danger">
+              <button onClick={this.handleSave} className="button is-danger">
                 <span className="icon is-small">
                   <FontAwesomeIcon icon={faHeart} />
                 </span>
