@@ -8,7 +8,6 @@ const Home = () => (
     <div className="hero-body">
       <div className="container">
         <p className="title is-1 has-text-centered" id="Hero_txt"><span className="geo-text"><img src={Geotext} /></span></p>
-        <p className=" title is-2 has-text-centered " id="Hero_sub">The largest treasure Hunt Community in London!</p>
       </div>
     </div>
   </section>
