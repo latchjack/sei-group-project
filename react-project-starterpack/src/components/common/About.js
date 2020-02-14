@@ -1,5 +1,6 @@
 import React from 'react'
 import Collapsible from 'react-collapsible'
+import LogoImage from '../../assets/geo_planet_with_text.svg'
 
 
 class About extends React.Component {
@@ -8,8 +9,8 @@ class About extends React.Component {
     return (
       <>
       <section className="FAQPage">
+        <span className='styleLogo'><img src={LogoImage} id="logo2" /></span>
         <div className="box" id="aboutBox">
-          <br/>
           <h1 className=" title is-3">ABOUT US</h1>
           <hr/>
           <div className='content'>

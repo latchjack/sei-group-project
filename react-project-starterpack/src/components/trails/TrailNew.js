@@ -63,73 +63,74 @@ class TrailNew extends React.Component {
       const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
       const { image } = this.state
       return (
-        <div className="columns">
-          <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter">
-            <h2 className="title">Create a new GeoCache</h2>
-            <div className="field">
-              <label className="label">Name</label>
-              <div className="control">
-                <input 
-                  className="input"
-                  name="name"
+        <div className="box" id="trailNewBox">
+          <div className="columns">
+            <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter">
+              <h2 className="title">Create a new GeoCache</h2>
+              <div className="field">
+                <label className="label">Name</label>
+                <div className="control">
+                  <input 
+                    className="input"
+                    name="name"
                   
-                  placeholder="Name"
-                  onChange={this.handleChange}
-                  value={this.state.data.name}
-                />
-              </div>
-            </div> 
-            <div className="field">
-              <label className="label">Postcode</label>
-              <div className="control">
-                <input 
-                  className="input"
-                  name="directions"
-                  required
-                  placeholder="Postcode"
-                  onChange={this.handleChange}
-                  value={this.state.data.directions}
-                />
-              </div>
-            </div> 
-            <div className="field">
-              <label className="label">Clues</label>
-              <div className="control">
-                <input 
-                  className="input"
-                  name="clueOne"
-                  required
-                  placeholder="Clue One"
-                  onChange={this.handleChange}
-                  value={this.state.data.clueOne}
-                />           
-                <input 
-                  className="input"
-                  name="clueTwo"
-                  required
-                  placeholder="Clue Two"
-                  onChange={this.handleChange}
-                  value={this.state.data.clueTwo}
-                />
-                  
-                <input 
-                  className="input"
-                  name="clueThree"
-                  required
-                  placeholder="Clue Three"
-                  onChange={this.handleChange}
-                  value={this.state.data.clueThree}
-                />
-              </div>
-            </div> 
-            {image ? 
-              <div>
-                <img src={image} />
-              </div>
-              :
+                    placeholder="Name"
+                    onChange={this.handleChange}
+                    value={this.state.data.name}
+                  />
+                </div>
+              </div> 
+              <div className="field">
+                <label className="label">Postcode</label>
+                <div className="control">
+                  <input 
+                    className="input"
+                    name="directions"
+                    required
+                    placeholder="Postcode"
+                    onChange={this.handleChange}
+                    value={this.state.data.directions}
+                  />
+                </div>
+              </div> 
+              <div className="field">
+                <label className="label">Clues</label>
+                <div className="control">
+                  <input 
+                    className="input"
+                    name="clueOne"
+                    required
+                    placeholder="Clue One"
+                    onChange={this.handleChange}
+                    value={this.state.data.clueOne}
+                  />
+                 <div>&nbsp;</div>         
+                  <input 
+                    className="input"
+                    name="clueTwo"
+                    required
+                    placeholder="Clue Two"
+                    onChange={this.handleChange}
+                    value={this.state.data.clueTwo}
+                  />
+                  <div>&nbsp;</div> 
+                  <input 
+                    className="input"
+                    name="clueThree"
+                    required
+                    placeholder="Clue Three"
+                    onChange={this.handleChange}
+                    value={this.state.data.clueThree}
+                  />
+                </div>
+              </div> 
+              {image ? 
+                <div>
+                  <img src={image} />
+                </div>
+                :
           <>
-            <h4>Please upload a photo</h4>
-            <br />
+            <label className='label'>Please upload a photo</label>
             <label className={labelClass}>{this.props.labelText}</label>
             <input
               className={this.props.inputClassName}
@@ -137,22 +138,25 @@ class TrailNew extends React.Component {
               onChange={this.handleUpload}
             />
           </>
-            }
-            <div className="field">
-              <label className="checkbox label">Please check if weather is a factor</label>
-              <input 
-                type="checkbox"
-                name="weatherFactor"
-                onChange={this.handleChange}
-                checked={this.state.data.weatherFactor}
+              }
+              <br />
+              <div className="field">
+                <br />
+                <label className="checkbox label">Please check if weather is a factor</label>
+                <input 
+                  type="checkbox"
+                  name="weatherFactor"
+                  onChange={this.handleChange}
+                  checked={this.state.data.weatherFactor}
                       
-              />
+                />
                   
-            </div> 
-            <Map handleMap={this.handleMap} data={this.state.data}/>
-            <button type="submit" className="button is-fullwidth is-link">Make Geocache</button>
+              </div> 
+              <Map handleMap={this.handleMap} data={this.state.data}/>
+              <button type="submit" className="button is-fullwidth is-link">Make Geocache</button>
             
-          </form>
+            </form>
+          </div>
         </div>
       )
       

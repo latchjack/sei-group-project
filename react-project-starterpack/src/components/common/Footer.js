@@ -3,8 +3,6 @@ import axios from 'axios'
 
 const weatherToken = process.env.WEATHER_ACCESS_KEY
 
-
-
 class Footer extends React.Component {
   state = {  weather: null }
 
@@ -25,8 +23,6 @@ class Footer extends React.Component {
       console.log(err)
     }
   }
-
-
  
   render() {
     if (!this.state.weather) return null
@@ -34,10 +30,10 @@ class Footer extends React.Component {
       <footer className="footer">
         <div className="columns">
           <div className="column is-half-mobile is-one-half-desktop" id="Weather">
-            <h1>Weather Report: {this.state.weather.weather[0].main}</h1>
-            <h1>Temprature: {Math.floor((this.state.weather.main.temp) - (273.15))}°C</h1>
-            <h1>Wind Speed: {this.state.weather.wind.speed} km</h1>
-            <h1>{this.state.weather.weather[0].description}</h1>
+            <h1 className="has-text-weight-normal">Weather Report: {this.state.weather.weather[0].main}</h1>
+            <h2 className="has-text-weight-normal">Temperature: {Math.floor((this.state.weather.main.temp) - (273.15))}°C</h2>
+            <h2 className="has-text-weight-normal">Wind Speed: {this.state.weather.wind.speed} km</h2>
+            <h2>{this.state.weather.weather[0].description}</h2>
             <figure className="image-card">
               <img src={`http://openweathermap.org/img/wn/${this.state.weather.weather[0].icon}.png`} alt={this.state.weather.weather[0].main} />
             </figure>

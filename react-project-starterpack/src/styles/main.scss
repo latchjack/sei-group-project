@@ -142,6 +142,7 @@ h1, h2, h3, span {
   color: grey;
 }
 
+
 .commentTitle {
   font-weight: bold;
   color: black;
@@ -164,11 +165,66 @@ h2 {
 
 }
 
+//aboutus page
+
+ .styleLogo {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+ }
+
+#logo2 {
+  width: 170px;
+  height: 170px;
+  
+}
+
+
+
 #aboutBox {
+  margin-top: 0px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 0px 20px;
+}
+
+//contactPage
+#contactBox {
   margin-top: 20px;
   margin-left: 100px;
   margin-right: 100px;
 }
+
+#theGang {
+  border: 2px solid black
+}
+
+//profile page
+
+
+
+  #profileBox {
+    margin-top: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 0px;
+  }
+
+  #profileSection > div.level > div > div > h2 {
+    color: black;
+  }
+  #profileSection > div:nth-child(2) > div > h2 {
+    color: grey;
+  }
+
+  #profileSection > div:nth-child(4) > div > h2 {
+    color: grey
+  }
+
+  #profileSection > div:nth-child(6) > div > h2 {
+    color: grey
+  }
+
 
 
 
@@ -204,9 +260,12 @@ h2 {
   background-image: url('https://media2.giphy.com/media/2tNvsKkc0qFdNhJmKk/giphy.gif');
   color: white;
   font-weight: bolder;
-  font-family: 'Fredoka One', cursive;
   background-size: cover;
   background-position: center;
+}
+
+#Weather h1 {
+  color: white;
 }
 
 .contactContent {
