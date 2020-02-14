@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import IdMap from '../common/IdMap'
+import Auth from '../../lib/auth'
 
 class TrailShow extends React.Component {
   state = {
@@ -14,7 +15,7 @@ class TrailShow extends React.Component {
     save: false,
     text: '',
     image: null,
-    isCompleteOwner: false
+    completeOwner: ''
 
   }
 
@@ -24,7 +25,7 @@ class TrailShow extends React.Component {
       const res = await axios.get(`/api/trails/${trailId}`)
       this.setState({ trail: res.data })
     } catch (err) {
-      console.log(err)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -86,7 +87,7 @@ class TrailShow extends React.Component {
         })
       this.setState({ image: null, text: '' })
     } catch (err) {
-      this.setState({ errors: err.response.data.errors })
+      this.props.history.push('/notfound')
     }
   }
 
@@ -100,19 +101,29 @@ class TrailShow extends React.Component {
     })
   }
 
+  isCompleteOwner = completion => {
+    return completion.user._id === Auth.getUser()
+  }
 
+  handleCompleteDelete = async (completetion) => {
+    const trailId = this.props.match.params.id
+    const completeId = completetion._id
+    try {
+      await axios.delete(`/api/trails/${trailId}/complete/${completeId}`,
+        {
+          headers: { Authorization: `Bearer ${auth.getToken()}` }
+        })
+      this.props.history.push('/profile')
+    } catch (err) {
+      this.props.history.push('/notfound')
+    }
+  }
 
   render() {
-    if (!this.state.trail) return null
-    console.log(this.state.trail)
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
     const { image } = this.state
-    // console.log('all completions', this.state.trail.completion)
-    // console.log('current user', auth.getUser())
-    // console.log('calling isCompleteOwner function', this.isCompleteOwner())
-    // console.log('does current user own a completion on the page?', this.isCompleteOwner() )
     return (
       <section className="section">
         <div className="SHOWPAGE">
@@ -178,13 +189,11 @@ class TrailShow extends React.Component {
                         </div>
                       </div>
                     </div>
+                    {this.isCompleteOwner(complete) && <button onClick={() => this.handleCompleteDelete(complete)} className="button is-danger">Delete my comment</button>}
                   </div>
                 })
                 }
               </article>
-
-
-
               <br />
             </div>
            
