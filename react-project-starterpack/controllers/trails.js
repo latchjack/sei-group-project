@@ -62,7 +62,7 @@ function destroy(req, res, next) {
 //new controller for completion form
 function completion(req, res, next) {
   req.body.user = req.currentUser
-  Trail 
+  Trail
     .findById(req.params.id)
     .populate('user')
     .then(trail => {
@@ -74,20 +74,22 @@ function completion(req, res, next) {
     .catch(next)
 }
 
-//have not implented comments into the front end yet
-function commentCreate(req, res, next) {
-  req.body.user = req.currentUser
-  Trail 
+function completionDelete(req, res, next) {
+  Trail
     .findById(req.params.id)
     .then(trail => {
       if (!trail) return res.status(404).json({ message: 'Not Found' })
-      trail.comments.push(req.body)
-      return trail.save()
+      if (trail.completion.some(completion => completion.user.equals(req.currentUser._id))) {
+        const completion = trail.completion.filter(completion => completion.user.equals(req.currentUser._id))[0]
+        completion.remove()
+        return trail.save()
+      }
     })
-    .then(trail => res.status(201).json(trail))
+    .then(trail => res.status(202).json(trail))
     .catch(next)
 }
 
+//have not implented comments into the front end yet
 function commentDelete(req, res, next) {
   Trail
     .findById(req.params.id)
@@ -101,6 +103,20 @@ function commentDelete(req, res, next) {
         return trail.save().then(() => res.sendStatus(204))
       }
     })
+    .catch(next)
+}
+
+//have not implented comments into the front end yet
+function commentCreate(req, res, next) {
+  req.body.user = req.currentUser
+  Trail
+    .findById(req.params.id)
+    .then(trail => {
+      if (!trail) return res.status(404).json({ message: 'Not Found' })
+      trail.comments.push(req.body)
+      return trail.save()
+    })
+    .then(trail => res.status(201).json(trail))
     .catch(next)
 }
 
@@ -133,4 +149,4 @@ function likeDelete(req, res, next) {
     .catch(next)
 }
 
-module.exports = { index, create, show, update, destroy, commentCreate, commentDelete, completion, like, likeDelete }
+module.exports = { index, create, show, update, destroy, commentCreate, commentDelete, completion, like, likeDelete, completionDelete }
