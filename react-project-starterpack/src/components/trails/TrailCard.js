@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShare, faBinoculars } from '@fortawesome/free-solid-svg-icons'
+import { faBinoculars } from '@fortawesome/free-solid-svg-icons'
 
 //make this a classical component with axios post request for likes
 //onclick: make post request
@@ -29,24 +29,19 @@ const TrailCard = ({ name, image, directions, _id }) => (
                 <span className="icon is-small">
                   <FontAwesomeIcon icon={faBinoculars} />
                 </span>
-                <span>View</span>
+                <span className="has-text-weight-light">View</span>
               </button>
             </span>
           </p>
-          <p className="card-footer-item">
-            <span>
-              <button className="button">
-                <span className="icon is-small">
-                  <FontAwesomeIcon icon={faShare} />
-                </span>
-                <span>Share</span>
-              </button>
+          <p className="card-footer-item has-text-centered">
+            <span className="has-text-weight-light">
+              {directions}
             </span>
           </p>
         </footer>
       </div>
     </Link>
-  </div>
+  </div >
 )
 
 export default TrailCard
