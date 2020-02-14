@@ -26,7 +26,7 @@ class TrailIndex extends React.Component {
 
   filterTrails = () => {
     const searchTerm = new RegExp(this.state.searchTerm, 'i')
-    return this.state.trails.filter(trail => searchTerm.test(trail.name))
+    return this.state.trails.filter(trail => searchTerm.test(trail.directions))
   }
 
   render() {
