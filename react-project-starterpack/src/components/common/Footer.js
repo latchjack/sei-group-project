@@ -9,7 +9,6 @@ class Footer extends React.Component {
 
   componentDidMount() {
     this.getWeather()
-    console.log('componenet did mount')
     this.interval = setInterval(this.getWeather , 300000)
   }
 
@@ -18,7 +17,6 @@ class Footer extends React.Component {
   }
 
   getWeather = async () => {
-    console.log('here')
     try {
       const res = await axios.get('http://api.openweathermap.org/data/2.5/weather?q=London&appid=b016717eb9738703b54db88c36140010')
       this.setState({ weather: res.data })

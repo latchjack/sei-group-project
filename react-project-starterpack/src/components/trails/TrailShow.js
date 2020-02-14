@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import Collapsible from 'react-collapsible'
 import auth from '../../lib/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faHeartBroken, faCloudSunRain, faBuilding } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import IdMap from '../common/IdMap'
+import Auth from '../../lib/auth'
 
 class TrailShow extends React.Component {
   state = {
@@ -13,7 +14,8 @@ class TrailShow extends React.Component {
     trail: null,
     save: false,
     text: '',
-    image: null
+    image: null,
+    completeOwner: ''
 
   }
 
@@ -23,7 +25,7 @@ class TrailShow extends React.Component {
       const res = await axios.get(`/api/trails/${trailId}`)
       this.setState({ trail: res.data })
     } catch (err) {
-      console.log(err)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -52,7 +54,7 @@ class TrailShow extends React.Component {
         headers: { Authorization: `Bearer ${auth.getToken()}` }
       })
     } catch (err) {
-      console.log(err.response)
+      this.props.history.push('/notfound')
     }
   }
 
@@ -78,7 +80,6 @@ class TrailShow extends React.Component {
   handleSubmit = async () => {
     //e.preventDefault()
     const trailId = this.props.match.params.id
-    console.log(this.state.data, 'submit')
     try {
       await axios.post(`/api/trails/${trailId}/complete`, this.state.data,
         {
@@ -86,7 +87,7 @@ class TrailShow extends React.Component {
         })
       this.setState({ image: null, text: '' })
     } catch (err) {
-      this.setState({ errors: err.response.data.errors })
+      this.props.history.push('/notfound')
     }
   }
 
@@ -100,11 +101,25 @@ class TrailShow extends React.Component {
     })
   }
 
+  isCompleteOwner = completion => {
+    return completion.user._id === Auth.getUser()
+  }
 
+  handleCompleteDelete = async (completetion) => {
+    const trailId = this.props.match.params.id
+    const completeId = completetion._id
+    try {
+      await axios.delete(`/api/trails/${trailId}/complete/${completeId}`,
+        {
+          headers: { Authorization: `Bearer ${auth.getToken()}` }
+        })
+      this.props.history.push('/profile')
+    } catch (err) {
+      this.props.history.push('/notfound')
+    }
+  }
 
   render() {
-    if (!this.state.trail) return null
-    console.log(this.state.trail)
     const { trail } = this.state
     if (!trail) return null
     const labelClass = this.props.labelClassName ? this.props.labelClassName : 'default_class'
@@ -165,7 +180,7 @@ class TrailShow extends React.Component {
                       <p>{complete.user.username}</p>
                       <div className="media-left">
                         <figure className="image is-64x64">
-                          <img src={complete.image}/>
+                          <img src={complete.image} />
                         </figure>
                       </div>
                       <div className='media-content'>
@@ -174,14 +189,11 @@ class TrailShow extends React.Component {
                         </div>
                       </div>
                     </div>
+                    {this.isCompleteOwner(complete) && <button onClick={() => this.handleCompleteDelete(complete)} className="button is-danger">Delete my comment</button>}
                   </div>
-                })  
+                })
                 }
-                  
               </article>
-             
-             
-
               <br />
             </div>
            
@@ -240,7 +252,7 @@ class TrailShow extends React.Component {
                 </div>
               </Collapsible>
               <hr />
-              
+
               {this.isOwner() &&
                 <div>
                   <Link to={`/trails/${trail._id}/edit`} className="button is-warning">Edit Trail</Link>
