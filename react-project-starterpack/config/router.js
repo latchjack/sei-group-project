@@ -22,6 +22,9 @@ router.route('/trails/:id/comments/:commentId')
 router.route('/trails/:id/complete')
   .post(secureRoute, trails.completion)
 
+router.route('/trails/:id/complete/:completeId')
+  .delete(secureRoute, trails.completionDelete)
+
 router.route('/trails/:id/like')
   .get(secureRoute, trails.like)
   .delete(secureRoute, trails.likeDelete)
