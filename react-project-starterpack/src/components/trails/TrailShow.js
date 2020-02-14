@@ -100,30 +100,6 @@ class TrailShow extends React.Component {
     })
   }
 
-  checkForOwner = () => {
-    if ((this.isCompleteOwner() !== auth.getUser())) {
-      return false
-    }
-  }
-
-  isCompleteOwner = () => {
-    const result = this.state.trail.completion.filter(complete => complete.user._id === auth.getUser())
-    return result[0].user._id
-  }
-
-  handleCompleteDelete = async () => {
-    const trailId = this.props.match.params.id
-    try {
-      await axios.delete(`/api/trails/${trailId}/complete`,
-        {
-          headers: { Authorization: `Bearer ${auth.getToken()}` }
-        })
-      this.props.history.push('/profile')
-    } catch (err) {
-      this.setState({ errors: err.response.data.errors })
-    }
-  }
-
 
 
   render() {
@@ -183,8 +159,6 @@ class TrailShow extends React.Component {
               </div>
               <br />
               <h1><strong>Comments on this geocache</strong></h1>
-              <br />
-              <button onClick={this.handleCompleteDelete} className="button is-danger">Delete my comment</button>
               <br />
               <article className="media">
                 {this.state.trail.completion.map(complete => {
