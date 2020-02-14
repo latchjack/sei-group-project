@@ -134,6 +134,7 @@ h1, h2, h3, span {
   color: grey;
 }
 
+
 .commentTitle {
   font-weight: bold;
   color: black;
@@ -187,12 +188,7 @@ h2 {
 }
 
 //profile page
-//  #profileSection {
-//    margin-top: 0px;
-//    margin-left: 300px;
-//    margin-right: 100px;
-//    padding: 0px;
-//  }
+
 
 
   #profileBox {
@@ -200,6 +196,21 @@ h2 {
     margin-left: 100px;
     margin-right: 100px;
     padding: 0px;
+  }
+
+  #profileSection > div.level > div > div > h2 {
+    color: black;
+  }
+  #profileSection > div:nth-child(2) > div > h2 {
+    color: grey;
+  }
+
+  #profileSection > div:nth-child(4) > div > h2 {
+    color: grey
+  }
+
+  #profileSection > div:nth-child(6) > div > h2 {
+    color: grey
   }
 
 

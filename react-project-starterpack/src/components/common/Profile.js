@@ -27,12 +27,21 @@ class Profile extends React.Component {
       <div className="box" id="profileBox">
         <div className="column is-mobile is-multiline">
           <section className="section" id="profileSection">
-            <div>
-              <i className="fas fa-map-marked-alt"></i>
-              {profile.username}&apos;s profile
+            <div className="level">
+              <div className="level-left">
+                <div className="level-item">
+                  <span className="icon is-large">
+                    <i className="fas fa-3x fa-map-marked-alt"></i>
+                  </span>
+                  <h2 className=" title is-3">&nbsp;{profile.username}&apos;s profile</h2>
+                  <div>&nbsp;</div>
+                  <div>&nbsp;</div>
+                  <span className="icon is-large">
+                    <i className="fas fa-3x fa-map-marked-alt"></i>
+                  </span>
+                </div>
+              </div>
             </div>
-            
-                  
             <div className="container">
               <div className="box">
                 <h2 className="is-size-4">Trails {profile.username} has made</h2>
