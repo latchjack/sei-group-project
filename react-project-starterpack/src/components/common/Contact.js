@@ -10,15 +10,14 @@ class Contact extends React.Component {
       <section className="section">
         
         <br/>
-        <div className="colums">
+        <div className="colums is-vcentered">
           <div className="column is-6">
             <h1 className=" title is-3">CONTACT US</h1>
-            <h3 className=" title is-3">Address</h3>
-            <ul>
-              <li>1 Geo Street</li>
-              <li>LONDON</li>
+            <h3 className="is-size-3">Address</h3>
+            <ul className="FAQtxt">
+              <li>45 Made Up Street</li>
+              <li>London</li>
               <li>EC2N 6UP</li>
-              <li>England</li>
             </ul>
             <div className="mapSpace">
               <IdMap
@@ -30,17 +29,17 @@ class Contact extends React.Component {
             </div>
             
           </div>
-          </div>
-          <div className="box">
-          <div className="column is-6">
+        
+         
+          <div className="column">
               
             <hr/>
-            <h3 className=" title is-3">Email</h3>
+            <h3 className="is-size-3">Email</h3>
             <p className="FAQtxt" href="mailto:contact@geocachr.com">contact@geocachr.com</p>
             <hr/>
           
-            <h3 className=" title is-3">Social Media</h3>
-            <p>Too modern for emails? You can also find us on popular social media platforms</p>
+            <h3 className="is-size-3">Social Media</h3>
+            <p className="FAQtxt">Too modern for emails? You can also find us on popular social media platforms</p>
             <div className="contactContent">
               <img src="https://image.flaticon.com/icons/svg/174/174848.svg" />
               <img src="https://image.flaticon.com/icons/svg/174/174855.svg" />
