@@ -145,6 +145,8 @@ h1, h2, h3, span {
   margin: 0px 5px;
 }
 
+
+
 div.column.is-half {
   margin-left: 10px;
 }
@@ -186,20 +188,29 @@ h2 {
   min-height: 100%;
   padding: 1rem 1rem 1rem;
   background-color: whitesmoke;
+  .column:nth-child(2) {
+    display:flex;
+    justify-content: flex-end;
+  }
 }
 
+.container-social{
+  display: unset;
+}
 
 .socialMedia {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+
   height: 50px;
   flex-basis: 100%;
 }
 #img{
-    width: 80px;
-    height: 80px;
-    margin: 20px;
+    width: 60px;
+    height: 60px;
+    margin: 40px;
 }
+
 #Weather{
   background-image: url('https://media2.giphy.com/media/2tNvsKkc0qFdNhJmKk/giphy.gif');
   color: white;
