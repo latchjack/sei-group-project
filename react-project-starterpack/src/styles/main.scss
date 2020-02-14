@@ -118,18 +118,24 @@ color:  black;
   background-color: whitesmoke;
 }
 
+.container-social{
+  display: unset;
+}
 
 .socialMedia {
   display: flex;
-  justify-content: space-between;
+  display: flex;
+  justify-content: flex-end;
   height: 50px;
   flex-basis: 100%;
 }
 #img{
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin: 20px;
+    flex-direction: flex-end;
 }
+
 #Weather{
   background-image: url('https://media2.giphy.com/media/2tNvsKkc0qFdNhJmKk/giphy.gif');
   color: white;
