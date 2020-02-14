@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+const weatherToken = process.env.WEATHER_ACCESS_KEY
+console.log(weatherToken)
 // import WeatherCard from '../trails/WeatherCard'
 
 
@@ -18,7 +20,7 @@ class Footer extends React.Component {
 
   getWeather = async () => {
     try {
-      const res = await axios.get('http://api.openweathermap.org/data/2.5/weather?q=London&appid=b016717eb9738703b54db88c36140010')
+      const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=London&appid=${weatherToken}`)
       this.setState({ weather: res.data })
     } catch (err){
       console.log(err)
