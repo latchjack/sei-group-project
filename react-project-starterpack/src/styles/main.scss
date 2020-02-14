@@ -18,6 +18,14 @@ main {
   background-size: cover;
   min-height: 100vh;
 }
+
+.geo-text {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  height: 200px;
+}
+
 #Hero_txt{
   color:(rgb(0, 153, 255));
   font-family: 'Luckiest Guy', cursive;
@@ -215,8 +223,6 @@ h2 {
   padding-bottom: 15px;
 }
 
-
-
 //NavbarBurger
 
 #root > main > nav > div > div.navbar-menu.is-active > div > a{
@@ -229,4 +235,9 @@ h2 {
   width: 500px;
 }
 
+@media only screen and (max-width: 840px) {
+  .column {
+    width: 100%;
+  }
+}
 
