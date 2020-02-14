@@ -35,7 +35,7 @@ class TrailIndex extends React.Component {
         <div className="trailContainer">
           <div className="box">
             <div className="Search">
-              <p>Search Trails:</p>
+              
               <Search
                 basicSearchFunction={this.basicSearchFunction}
                 {...this.state}

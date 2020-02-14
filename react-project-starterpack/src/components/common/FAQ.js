@@ -8,10 +8,9 @@ class FAQ extends React.Component {
     return (
       <>
       <section className="FAQPage">
-        <div className="container">
+        <div className="box" id="aboutBox">
           <br/>
-          <h1 className=" title is-3">FREQUENTLY ASKED QUESTIONS</h1>
-          <hr/>
+          <h2 className="title is-3">FAQ</h2>
           <hr/>
           <Collapsible trigger = 'The Game  +' className="dropDown">
             <p className="FAQtxt">Geocaching is a real-world treasure hunting game. Participants navigate to a specific set of GPS coordinates and then attempt to find the geocache <q>container</q> hidden at that location.</p>
@@ -20,12 +19,13 @@ class FAQ extends React.Component {
           <Collapsible trigger = 'How is the game played?  +' className="dropDown">
             <ul className="FAQtxt">
               <li>At its simplest level, geocaching requires these 6 steps:</li>
+              <br/>
               <li>1. Register on on our website.</li>
               <li>2. Visit the <q>See All Trails</q> page.</li>
-              <li>3.Choose any geocache from the list and click on its name.</li>
-              <li>4.Look at the map and the clues to assist you in finding the hidden geocache.</li>
-              <li>5.Log your find in the geocache logbook and return the geocache to its original location.</li>
-              <li>6.Share your geocaching stories and photos online.</li>
+              <li>3. Choose any geocache from the list and click on its name.</li>
+              <li>4. Look at the map and the clues to assist you in finding the hidden geocache.</li>
+              <li>5. Log your find in the geocache logbook and return the geocache to its original location.</li>
+              <li>6. Share your geocaching stories and photos online.</li>
             </ul>
           </Collapsible>
           <hr/>
