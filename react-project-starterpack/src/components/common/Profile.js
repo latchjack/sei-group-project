@@ -24,8 +24,9 @@ class Profile extends React.Component {
   render() {
     const { profile } = this.state
     return (
-      <div className="box" id="profileBox">
-        <h2 className="profileTitle is-size-2">{profile.username}&apos;s profile</h2>
+      <div className="column is-mobile is-multiline">
+      <section className="section">
+        <h1 className="title">{profile.username}&apos;s profile</h1>
         <div className="container">
           <h2 className="title is-4">Trails that {profile.username} has made:</h2>
           <div className="columns is-mobile is-multiline">
@@ -58,6 +59,7 @@ class Profile extends React.Component {
             ))}
           </div>
         </div>
+      </section>
       </div>
     )
   }
