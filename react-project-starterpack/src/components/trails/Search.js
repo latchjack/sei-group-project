@@ -4,7 +4,12 @@ const Search = ({ basicSearchFunction }) => (
 
   <form onSubmit={(e) => e.preventDefault()}>
     <div className="SearchBar">
-      <input className="input" placeholder="Search" onChange={basicSearchFunction}/>
+      <div className="control has-icons-left">
+        <input className="input" placeholder="Search Trails" onChange={basicSearchFunction}/>
+        <span className="icon is-small is-left">
+          <i className="fas fa-search"></i>
+        </span>
+      </div>
     </div>
   </form>
 

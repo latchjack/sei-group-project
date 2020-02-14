@@ -129,6 +129,7 @@ class TrailNew extends React.Component {
               :
           <>
             <h4>Please upload a photo</h4>
+            <br />
             <label className={labelClass}>{this.props.labelText}</label>
             <input
               className={this.props.inputClassName}
