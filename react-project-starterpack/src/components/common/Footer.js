@@ -2,8 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 const weatherToken = process.env.WEATHER_ACCESS_KEY
-console.log(weatherToken)
-// import WeatherCard from '../trails/WeatherCard'
+
 
 
 class Footer extends React.Component {
