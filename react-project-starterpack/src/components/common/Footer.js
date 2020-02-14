@@ -26,6 +26,8 @@ class Footer extends React.Component {
       console.log(err)
     }
   }
+
+
  
   render() {
     if (!this.state.weather) return null
@@ -34,20 +36,19 @@ class Footer extends React.Component {
         <div className="columns">
           <div className="column is-half-mobile is-one-half-desktop" id="Weather">
             <h1>Weather Report: {this.state.weather.weather[0].main}</h1>
-            <h1>Temprature: {this.state.weather.wind.speed}km</h1>
+            <h1>Temprature: {Math.floor((this.state.weather.main.temp) - (273.15))}°C</h1>
+            <h1>Wind Speed: {this.state.weather.wind.speed} km</h1>
             <h1>{this.state.weather.weather[0].description}</h1>
             <figure className="image-card">
               <img src={`http://openweathermap.org/img/wn/${this.state.weather.weather[0].icon}.png`} alt={this.state.weather.weather[0].main} />
             </figure>
           </div>
-          <div className="container-social">
-            <div className="column is-half-mobile is-one-half-desktop" id="socialMedia">
-              <a href="#"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" id="img" /></a>
-              <a href="#"><img src="https://image.flaticon.com/icons/svg/174/174855.svg" id="img"/></a>
-              <a href="#"><img src="https://image.flaticon.com/icons/svg/733/733579.svg" id="img"/></a>
-              <a href="#"><img src="https://image.flaticon.com/icons/svg/174/174883.svg" id="img"/></a>
-              <a href="#"><img src="https://image.flaticon.com/icons/svg/355/355980.svg" id="img"/></a>
-            </div>
+          <div className="column is-half-mobile is-one-half-desktop" id="socialMedia">
+            <a href="#"><img src="https://image.flaticon.com/icons/svg/174/174848.svg" id="img" /></a>
+            <a href="#"><img src="https://image.flaticon.com/icons/svg/174/174855.svg" id="img"/></a>
+            <a href="#"><img src="https://image.flaticon.com/icons/svg/733/733579.svg" id="img"/></a>
+            <a href="#"><img src="https://image.flaticon.com/icons/svg/174/174883.svg" id="img"/></a>
+            <a href="#"><img src="https://image.flaticon.com/icons/svg/355/355980.svg" id="img"/></a>
           </div>
         </div>
       </footer>
