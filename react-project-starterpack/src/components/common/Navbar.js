@@ -21,11 +21,12 @@ class Navbar extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ navbarOpen: false })
-    }
+    })
   }
 
 
   render() {
+    
     const { navbarOpen } = this.state
     return (
       <nav className="navbar has-background-link">
