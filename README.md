@@ -251,11 +251,12 @@ After building the map components I built the About page and also went on to wri
 ### Challenges
 The main challenges I had on this project were...
 1. Creating the dumb map component. It took me quite a few attempts to get it working right.
-2. Getting the map to be responsive.
+2. Getting the map to be responsive for use on mobile and tablets.
 
 ### Improvements
 The improvements I would like to make to the project would be...
 1. Figure out how to make the map responsive with the shrinking and growing of the browser window.
+2. A nice to have that we didn't have enough time to implement would have been if we could allow users to look at another user's profile, add friends and see their activity.
 
 ### Wins
 I learnt a lot in the process of building this application. I learnt a lot about the relationships between models in the database. This project also gave me a lot of practice with reading and understanding the documentation. I learnt the importance of good documentation as without it, this project would have been much more challenging.
