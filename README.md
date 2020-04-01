@@ -258,8 +258,18 @@ The improvements I would like to make to the project would be...
 1. Figure out how to make the map responsive with the shrinking and growing of the browser window.
 2. A nice to have that we didn't have enough time to implement would have been if we could allow users to look at another user's profile, add friends and see their activity.
 
+## Wins and Key Learnings
+
 ### Wins
 I learnt a lot in the process of building this application. I learnt a lot about the relationships between models in the database. This project also gave me a lot of practice with reading and understanding the documentation. I learnt the importance of good documentation as without it, this project would have been much more challenging.
+
+### Key Learnings
+The main things I learned building GeogachR
++ How to use Uber's Mapbox API.
++ Using Git as a team and avoid merge conflicts.
++ How to resolve merge conficts.
++ Creating smart and dumb components.
++ Hooking up the front-end to the back-end.
 ___
 
 #### Author
